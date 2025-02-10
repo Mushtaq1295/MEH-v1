@@ -8,14 +8,14 @@ const Accessories = () => {
 
   return (
     <>
-      <div id='accessories' className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-        {accessories.map(accessory => (
-          <AccessCard 
-            key={accessory._id}
-            accessory={accessory}
-          />
-        ))}
+      <div className="px-4 sm:px-1">
+      <div className="grid grid-cols-2 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {accessories.map((accessory) => (
+          <AccessCard key={accessory.id} accessory={accessory} />
+          ))}
       </div>
+      </div>
+
       
       {selectedAccessory && <AccessCardDetails />}
     </>

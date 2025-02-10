@@ -1,8 +1,8 @@
 const sampleEngines = [
   {
     title: "BS2",
-    image: "/public/Engines-pics/AshokLeyland/BS2.jpeg",
-    category: "Ashok Leyland",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475226/public/Engines-pics/AshokLeyland/mdxdjupvwuw6xpiicryn.jpg",
+    category: "ASHOK LEYLAND",
     price: 100,
     available: 32,
     model: 2002,
@@ -10,8 +10,8 @@ const sampleEngines = [
   },
   {
     title: "BS3",
-    image: "/public/Engines-pics/AshokLeyland/BS3.jpeg",
-    category: "Ashok Leyland",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475225/public/Engines-pics/AshokLeyland/lbfhhknckya4xhav0nml.jpg",
+    category: "ASHOK LEYLAND",
     price: 50,
     available: 22,
     model: 2002,
@@ -19,8 +19,8 @@ const sampleEngines = [
   },
   {
     title: "BS4",
-    image: "/public/Engines-pics/AshokLeyland/BS4.jpeg",
-    category: "Ashok Leyland",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475225/public/Engines-pics/AshokLeyland/as9dmeiw2ernaupmubf4.jpg",
+    category: "ASHOK LEYLAND",
     price: 102,
     available: 49,
     model: 2007,
@@ -28,8 +28,8 @@ const sampleEngines = [
   },
   {
     title: "BS6",
-    image: "/public/Engines-pics/AshokLeyland/BS6.webp",
-    category: "Ashok Leyland",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475227/public/Engines-pics/AshokLeyland/mbcxrmt5qty3zgv6rbeu.webp",
+    category: "ASHOK LEYLAND",
     price: 100,
     available: 26,
     model: 2008,
@@ -37,8 +37,8 @@ const sampleEngines = [
   },
   {
     title: "Bus",
-    image: "/public/Engines-pics/AshokLeyland/Bus.webp",
-    category: "Ashok Leyland",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475227/public/Engines-pics/AshokLeyland/vbswavl2fsjipmds6hyf.webp",
+    category: "ASHOK LEYLAND",
     price: 97,
     available: 11,
     model: 2003,
@@ -46,17 +46,46 @@ const sampleEngines = [
   },
   {
     title: "Lorry",
-    image: "/public/Engines-pics/AshokLeyland/Lorry.webp",
-    category: "Ashok Leyland",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475226/public/Engines-pics/AshokLeyland/gfrzleeqhatbx6b2kdr8.webp",
+    category: "ASHOK LEYLAND",
     price: 92,
     available: 43,
     model: 2009,
     from: "London, UK",
   },
   // Tata
+  
+  {
+    title: "402",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1739161722/public/Engines-pics/Tata/rkaqgcuxvhdakuxo8hwz.jpg",
+    category: "TATA",
+    price: 158,
+    available: 47,
+    model: 2016,
+    from: "Malibu, United States",
+  },
+  {
+    title: "407",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475222/public/Engines-pics/Tata/rkkozpf0ph5zriny76hr.jpg",
+    category: "TATA",
+    price: 158,
+    available: 47,
+    model: 2016,
+    from: "Malibu, United States",
+  },
+  {
+    title: "1613",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475223/public/Engines-pics/Tata/fsoprbt2ekmutgcvtobl.webp",
+    category: "TATA",
+    price: 158,
+    available: 47,
+    model: 2016,
+    from: "Malibu, United States",
+ 
+},
   {
     title: "1512",
-    image: "/public/Engines-pics/Tata/1512.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475222/public/Engines-pics/Tata/cb5pdt1wvad8irkqh3dg.jpg",
     category: "TATA",
     price: 158,
     available: 47,
@@ -65,7 +94,7 @@ const sampleEngines = [
   },
   {
     title: "1815",
-    image: "/public/Engines-pics/Tata/1815.webp",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475223/public/Engines-pics/Tata/umm4pxbqqj0jd0dklwqx.webp",
     category: "TATA",
     price: 132,
     available: 45,
@@ -74,7 +103,7 @@ const sampleEngines = [
   },
   {
     title: "BS2",
-    image: "/public/Engines-pics/Tata/BS2.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475222/public/Engines-pics/Tata/smanbxzyow7pe3ygyt5j.jpg",
     category: "TATA",
     price: 4,
     available: 190,
@@ -83,7 +112,7 @@ const sampleEngines = [
   },
   {
     title: "BS3",
-    image: "/public/Engines-pics/Tata/BS3.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475222/public/Engines-pics/Tata/tnpdyhfgnxangceia5pb.jpg",
     category: "TATA",
     price: 74,
     available: 109,
@@ -92,7 +121,7 @@ const sampleEngines = [
   },
   {
     title: "BS4",
-    image: "/public/Engines-pics/Tata/BS4.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475223/public/Engines-pics/Tata/ou2acn5hiuzkusorywwy.jpg",
     category: "TATA",
     price: 176,
     available: 29,
@@ -101,7 +130,7 @@ const sampleEngines = [
   },
   {
     title: "BS5",
-    image: "/public/Engines-pics/Tata/BS5.webp",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475224/public/Engines-pics/Tata/bwvt9mxvmhdj4xtk7jc5.webp",
     category: "TATA",
     price: 174,
     available: 19,
@@ -110,7 +139,7 @@ const sampleEngines = [
   },
   {
     title: "Cummins",
-    image: "/public/Engines-pics/Tata/Cummins.webp",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475224/public/Engines-pics/Tata/wzkxfjxndz5seoux5rwj.webp",
     category: "TATA",
     price: 12,
     available: 145,
@@ -119,7 +148,7 @@ const sampleEngines = [
   },
   {
     title: "Prima",
-    image: "/public/Engines-pics/Tata/Prima.webp",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475223/public/Engines-pics/Tata/fsoprbt2ekmutgcvtobl.webp",
     category: "TATA",
     price: 156,
     available: 43,
@@ -128,7 +157,7 @@ const sampleEngines = [
   },
   {
     title: "Tipper",
-    image: "/public/Engines-pics/Tata/Tipper.webp",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475223/public/Engines-pics/Tata/fsoprbt2ekmutgcvtobl.webp",
     category: "TATA",
     price: 100,
     available: 25,
@@ -138,7 +167,7 @@ const sampleEngines = [
   // Bharat Benz
   {
     title: "BS3",
-    image: "/public/Engines-pics/BharatBenz/BS3.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475227/public/Engines-pics/BharatBenz/i5y0034ugjwadcrokvmo.jpg",
     category: "BHARAT BENZ",
     price: 47,
     available: 10,
@@ -147,7 +176,7 @@ const sampleEngines = [
   },
   {
     title: "BS4",
-    image: "/public/Engines-pics/BharatBenz/BS4.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475227/public/Engines-pics/BharatBenz/k1xcdglskhmgskvz2lzn.jpg",
     category: "BHARAT BENZ",
     price: 31,
     available: 19,
@@ -156,7 +185,7 @@ const sampleEngines = [
   },
   {
     title: "Tipper",
-    image: "/public/Engines-pics/BharatBenz/Tipper.webp",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475228/public/Engines-pics/BharatBenz/ix3ws5wyw9s3d3bnjntx.webp",
     category: "BHARAT BENZ",
     price: 47,
     available: 18,
@@ -165,7 +194,7 @@ const sampleEngines = [
   },
   {
     title: "Truck",
-    image: "/public/Engines-pics/BharatBenz/Truck.webp",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475228/public/Engines-pics/BharatBenz/q7g5owfpprsfqpkdvmsz.webp",
     category: "BHARAT BENZ",
     price: 56,
     available: 42,
@@ -175,7 +204,7 @@ const sampleEngines = [
   // Eicher
   {
     title: "BS3",
-    image: "/public/Engines-pics/Eicher/BS3.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475224/public/Engines-pics/Eicher/dtj2owedqh1zlvrnpwnm.jpg",
     category: "EICHER",
     price: 98,
     available: 16,
@@ -184,7 +213,7 @@ const sampleEngines = [
   },
   {
     title: "BS4",
-    image: "/public/Engines-pics/Eicher/BS4.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475224/public/Engines-pics/Eicher/lv28c63qlrt994jzm9iv.jpg",
     category: "EICHER",
     price: 46,
     available: 24,
@@ -193,7 +222,7 @@ const sampleEngines = [
   },
   {
     title: "Eicher Pro",
-    image: "/public/Engines-pics/Eicher/Eicherpro.webp",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475225/public/Engines-pics/Eicher/ooudtu16zjerpa4a2xdy.webp",
     category: "EICHER",
     price: 141,
     available: 38,

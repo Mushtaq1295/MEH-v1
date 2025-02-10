@@ -17,7 +17,7 @@ const AccessCard = ({ accessory }) => {
       onClick={handleClick}
     >
       <img 
-        className="rounded-t-lg w-full h-48 object-cover" 
+        className="rounded-t-lg w-full h-60 object-cover" 
         src={accessory.image_url} 
         alt={accessory.title} 
       />
