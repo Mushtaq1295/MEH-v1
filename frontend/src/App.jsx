@@ -9,6 +9,7 @@ import EngineEditForm from "./components/Engines/EngineEditForm";
 import AccessEditForm from "./components/Accessories/AccessEditForm";
 import EngineCardDetails from "./components/Engines/EngineCardDetails";
 import AccessCardDetails from "./components/Accessories/AccessCardDetails";
+import EnginesList from "./components/Engines/EnginesList";
 import { EnginesProvider } from "./contexts/EnginesContext";
 import { AccessoriesProvider } from "./contexts/AccessoriesContext";
 
@@ -20,7 +21,8 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<AllCards />} />
-            <Route path="/engines/:brand" element={<EngineCardDetails />} />
+            <Route path="/engines/:brand" element={<EnginesList />} />
+            <Route path="/engine/details" element={<EngineCardDetails />} />
             <Route path="/details/enginecheckout" element={<EngineCheckoutForm />} />
             <Route path="/details/accesscheckout" element={<AccessCheckoutForm />} />
             <Route path="/details/engineedit" element={<EngineEditForm />} />

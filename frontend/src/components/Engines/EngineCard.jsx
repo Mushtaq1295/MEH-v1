@@ -12,9 +12,11 @@ const EngineCard = ({ engine }) => {
   const safeAvailable = engine.available ?? "N/A";
 
   const handleSelect = () => {
-    setSelectedEngine(engine); // Store selected engine
-    navigate("/engines/details"); // Navigate to details page
+    setSelectedEngine(engine);
+    navigate(`/engine/details`);
   };
+  
+  
 
   return (
     <div onClick={handleSelect} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm transition-transform transform hover:scale-105 cursor-pointer">

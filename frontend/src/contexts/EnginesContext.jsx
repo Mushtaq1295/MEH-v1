@@ -6,11 +6,12 @@ const EnginesContext = createContext(null);
 export const EnginesProvider = ({ children }) => {
   const [engines, setEngines] = useState([]);
   const [selectedEngine, setSelectedEngine] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const backend_url = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     getEnginesData();
-  }, []); // ✅ Runs only once when component mounts
+  }, []);
 
   const getEnginesData = async () => {
     try {
@@ -22,7 +23,10 @@ export const EnginesProvider = ({ children }) => {
   };
 
   return (
-    <EnginesContext.Provider value={{ engines, selectedEngine, setSelectedEngine }}>
+    <EnginesContext.Provider value={{ 
+      engines, selectedEngine, setSelectedEngine, 
+      selectedCategory, setSelectedCategory 
+    }}>
       {children}
     </EnginesContext.Provider>
   );
