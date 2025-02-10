@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
+import Search from "./Search";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,12 +22,17 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-gray-900 sticky">
+    <nav className="top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-zinc-900 sticky">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Logo */}
         <NavLink to="/" className="text-2xl font-semibold dark:text-white">
           MEH
         </NavLink>
+
+       <Search/>
+
+
+
 
         {/* Mobile Menu Button */}
         <div className="flex md:order-2">
@@ -51,16 +57,15 @@ const Navbar = () => {
                 d="M1 1h15M1 7h15M1 13h15"
               />
             </svg>
-          </button>
+          </button>   
         </div>
-
         {/* Navbar Links */}
         <div
           className={`items-center justify-between ${
             isMenuOpen ? "block" : "hidden"
           } w-full md:flex md:w-auto md:order-1`}
         >
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900">
+          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-zinc-900">
             {/* Home Link */}
             <li>
               <NavLink

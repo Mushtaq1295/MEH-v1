@@ -13,7 +13,7 @@ const AccessCard = ({ accessory }) => {
   };
   return (
     <div 
-      className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm transition-transform transform hover:scale-105 cursor-pointer"
+      className="max-w-sm dark:bg-zinc-900 border border-gray-200 rounded-lg shadow-sm transition-transform transform hover:scale-105 cursor-pointer"
       onClick={handleClick}
     >
       <img 
@@ -21,7 +21,7 @@ const AccessCard = ({ accessory }) => {
         src={accessory.image_url} 
         alt={accessory.title} 
       />
-      <div className="p-5">
+      <div className="p-5 text-white">
         <h6 className="mb-2 text-xl font-semibold">
           {accessory.title.replace("-", " ")}
         </h6>

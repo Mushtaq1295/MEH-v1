@@ -12,19 +12,19 @@ const AccessCardDetails = () => {
 
   return (
     <>
-      <h3 className="text-center text-2xl font-semibold mt-5 ml-4 sm:text-xl md:text-2xl lg:text-3xl">
+      <h3 className="text-white text-center text-2xl font-semibold mt-5 ml-4 sm:text-xl md:text-2xl lg:text-3xl">
           Details of {accessory.title.charAt(0).toUpperCase() + accessory.title.slice(1).replace("-", " ")}
       </h3>
 
 <div className="mt-2 w-full max-w-4xl mx-auto px-4">
-  <div className="flex flex-col lg:flex-row items-start bg-white shadow-lg rounded-lg p-4">
+  <div className="flex flex-col lg:flex-row items-start dark:bg-zinc-900 shadow-lg rounded-lg p-4">
     <img 
       src={accessory.image_url} 
       className="w-full lg:w-[60%] aspect-[4/3] object-cover rounded-lg" 
       alt={accessory.title} 
     />
     <div className="mt-4 lg:mt-0 lg:ml-7 flex-1">
-      <ul className="space-y-5 text-lg sm:text-base md:text-xl">
+      <ul className="space-y-5 text-lg sm:text-base md:text-xl text-white">
         <li>
           <strong className="text-lg">Title: </strong> 
           {accessory.title.replace("-", " ")}

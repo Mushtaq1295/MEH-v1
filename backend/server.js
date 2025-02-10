@@ -12,7 +12,13 @@ const db_url = process.env.ATLAS_DB_URL;
 const Accessory = require("./models/accessoryModel");
 const Engine = require("./models/engineModel");
 
+
+const accessoriesData = require("./DB/accessoriesData");
+const enginesData = require("./DB/enginesData");
+
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 const corsOptions = {
   origin: process.env.CLIENT_URL, // Allow requests from this origin
@@ -37,6 +43,16 @@ app.get("/engines", async (req, res) => {
 app.get("/accessories", async (req, res) => {
   const accessoryData = await Accessory.find();
   res.json(accessoryData);
+});
+
+// API to fetch accessories
+app.get("/api/accessories", (req, res) => {
+  res.json(accessoriesData);
+});
+
+// API to fetch engines
+app.get("/api/engines", (req, res) => {
+  res.json(enginesData);
 });
 
 app.listen(port, () => {

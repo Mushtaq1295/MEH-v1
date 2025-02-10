@@ -20,18 +20,18 @@ const EngineCardDetails = () => {
 
   return (
     <div>
-      <h3 className="text-center text-2xl font-semibold mt-5">
+      <h3 className="text-center text-2xl font-semibold mt-5 text-white">
         Details of {selectedEngine.title}
       </h3>
       <div className="mt-2 w-full max-w-4xl mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-start bg-white shadow-lg rounded-lg p-4">
+        <div className="flex flex-col lg:flex-row items-start dark:bg-zinc-900 shadow-lg rounded-lg p-4">
           <img 
             src={selectedEngine.image_url} 
             className="w-full lg:w-[60%] aspect-[4/3] object-cover rounded-lg" 
             alt={selectedEngine.title} 
           />
           <div className="mt-4 lg:mt-0 lg:ml-7 flex-1">
-            <ul className="space-y-5 text-lg">
+            <ul className="space-y-5 text-lg  text-white">
               <li><strong>Title:</strong> {selectedEngine.title}</li>
               <li><strong>Category:</strong> {selectedEngine.category}</li>
               <li><strong>Model:</strong> {selectedEngine.model}</li>
