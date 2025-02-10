@@ -2,8 +2,7 @@ const sampleEngines = [
   {
     title: "BS2",
     image: "/public/Engines-pics/AshokLeyland/BS2.jpeg",
-    category: "Engine",
-    EngineName: "Ashok Leyland",
+    category: "Ashok Leyland",
     price: 100,
     available: 32,
     model: 2002,
@@ -12,8 +11,7 @@ const sampleEngines = [
   {
     title: "BS3",
     image: "/public/Engines-pics/AshokLeyland/BS3.jpeg",
-    category: "Engine",
-    EngineName: "Ashok Leyland",
+    category: "Ashok Leyland",
     price: 50,
     available: 22,
     model: 2002,
@@ -22,8 +20,7 @@ const sampleEngines = [
   {
     title: "BS4",
     image: "/public/Engines-pics/AshokLeyland/BS4.jpeg",
-    category: "Engine",
-    EngineName: "Ashok Leyland",
+    category: "Ashok Leyland",
     price: 102,
     available: 49,
     model: 2007,
@@ -32,8 +29,7 @@ const sampleEngines = [
   {
     title: "BS6",
     image: "/public/Engines-pics/AshokLeyland/BS6.webp",
-    category: "Engine",
-    EngineName: "Ashok Leyland",
+    category: "Ashok Leyland",
     price: 100,
     available: 26,
     model: 2008,
@@ -42,8 +38,7 @@ const sampleEngines = [
   {
     title: "Bus",
     image: "/public/Engines-pics/AshokLeyland/Bus.webp",
-    category: "Engine",
-    EngineName: "Ashok Leyland",
+    category: "Ashok Leyland",
     price: 97,
     available: 11,
     model: 2003,
@@ -52,8 +47,7 @@ const sampleEngines = [
   {
     title: "Lorry",
     image: "/public/Engines-pics/AshokLeyland/Lorry.webp",
-    category: "Engine",
-    EngineName: "Ashok Leyland",
+    category: "Ashok Leyland",
     price: 92,
     available: 43,
     model: 2009,
@@ -63,8 +57,7 @@ const sampleEngines = [
   {
     title: "1512",
     image: "/public/Engines-pics/Tata/1512.jpeg",
-    category: "Engine",
-    EngineName: "TATA",
+    category: "TATA",
     price: 158,
     available: 47,
     model: 2016,
@@ -73,8 +66,7 @@ const sampleEngines = [
   {
     title: "1815",
     image: "/public/Engines-pics/Tata/1815.webp",
-    category: "Engine",
-    EngineName: "TATA",
+    category: "TATA",
     price: 132,
     available: 45,
     model: 2014,
@@ -83,8 +75,7 @@ const sampleEngines = [
   {
     title: "BS2",
     image: "/public/Engines-pics/Tata/BS2.jpeg",
-    category: "Engine",
-    EngineName: "TATA",
+    category: "TATA",
     price: 4,
     available: 190,
     model: 2003,
@@ -93,8 +84,7 @@ const sampleEngines = [
   {
     title: "BS3",
     image: "/public/Engines-pics/Tata/BS3.jpeg",
-    category: "Engine",
-    EngineName: "TATA",
+    category: "TATA",
     price: 74,
     available: 109,
     model: 2007,
@@ -103,8 +93,7 @@ const sampleEngines = [
   {
     title: "BS4",
     image: "/public/Engines-pics/Tata/BS4.jpeg",
-    category: "Engine",
-    EngineName: "TATA",
+    category: "TATA",
     price: 176,
     available: 29,
     model: 2005,
@@ -113,8 +102,7 @@ const sampleEngines = [
   {
     title: "BS5",
     image: "/public/Engines-pics/Tata/BS5.webp",
-    category: "Engine",
-    EngineName: "TATA",
+    category: "TATA",
     price: 174,
     available: 19,
     model: 2005,
@@ -123,8 +111,7 @@ const sampleEngines = [
   {
     title: "Cummins",
     image: "/public/Engines-pics/Tata/Cummins.webp",
-    category: "Engine",
-    EngineName: "TATA",
+    category: "TATA",
     price: 12,
     available: 145,
     model: 2021,
@@ -133,8 +120,7 @@ const sampleEngines = [
   {
     title: "Prima",
     image: "/public/Engines-pics/Tata/Prima.webp",
-    category: "Engine",
-    EngineName: "TATA",
+    category: "TATA",
     price: 156,
     available: 43,
     model: 2022,
@@ -143,8 +129,7 @@ const sampleEngines = [
   {
     title: "Tipper",
     image: "/public/Engines-pics/Tata/Tipper.webp",
-    category: "Engine",
-    EngineName: "TATA",
+    category: "TATA",
     price: 100,
     available: 25,
     model: 2003,
@@ -154,8 +139,7 @@ const sampleEngines = [
   {
     title: "BS3",
     image: "/public/Engines-pics/BharatBenz/BS3.jpeg",
-    category: "Engine",
-    EngineName: "BHARAT BENZ",
+    category: "BHARAT BENZ",
     price: 47,
     available: 10,
     model: 2014,
@@ -164,8 +148,7 @@ const sampleEngines = [
   {
     title: "BS4",
     image: "/public/Engines-pics/BharatBenz/BS4.jpeg",
-    category: "Engine",
-    EngineName: "BHARAT BENZ",
+    category: "BHARAT BENZ",
     price: 31,
     available: 19,
     model: 2003,
@@ -174,8 +157,7 @@ const sampleEngines = [
   {
     title: "Tipper",
     image: "/public/Engines-pics/BharatBenz/Tipper.webp",
-    category: "Engine",
-    EngineName: "BHARAT BENZ",
+    category: "BHARAT BENZ",
     price: 47,
     available: 18,
     model: 2000,
@@ -184,8 +166,7 @@ const sampleEngines = [
   {
     title: "Truck",
     image: "/public/Engines-pics/BharatBenz/Truck.webp",
-    category: "Engine",
-    EngineName: "BHARAT BENZ",
+    category: "BHARAT BENZ",
     price: 56,
     available: 42,
     model: 2005,
@@ -195,8 +176,7 @@ const sampleEngines = [
   {
     title: "BS3",
     image: "/public/Engines-pics/Eicher/BS3.jpeg",
-    category: "Engine",
-    EngineName: "EICHER",
+    category: "EICHER",
     price: 98,
     available: 16,
     model: 2002,
@@ -205,8 +185,7 @@ const sampleEngines = [
   {
     title: "BS4",
     image: "/public/Engines-pics/Eicher/BS4.jpeg",
-    category: "Engine",
-    EngineName: "EICHER",
+    category: "EICHER",
     price: 46,
     available: 24,
     model: 2004,
@@ -215,8 +194,7 @@ const sampleEngines = [
   {
     title: "Eicher Pro",
     image: "/public/Engines-pics/Eicher/Eicherpro.webp",
-    category: "Engine",
-    EngineName: "EICHER",
+    category: "EICHER",
     price: 141,
     available: 38,
     model: 2001,

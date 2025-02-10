@@ -1,53 +1,62 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import AllCards from "./components/AllCards";
-import EngineCardDetails from "./components/Engines/EngineCardDetails";
-import AccessCardDetails from "./components/Accessories/AccessCardDetails";
+import EngineCheckoutForm from "./components/Engines/EngineCheckoutForm";
+import AccessCheckoutForm from "./components/Accessories/AccessCheckoutForm";
 import Navbar from "./components/Header/Navbar";
-import EngineCard from "./components/Engines/EngineCard";
-// import AddForm from "./components/AddForm";
-import EngineCheckoutForm from "./components/Engines/EngineCheckoutForm"
-import AccessCheckoutForm from "./components/Accessories/AccessCheckoutForm"
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import History from "./components/Header/History";
 import EngineEditForm from "./components/Engines/EngineEditForm";
 import AccessEditForm from "./components/Accessories/AccessEditForm";
+import EngineCardDetails from "./components/Engines/EngineCardDetails";
+import AccessCardDetails from "./components/Accessories/AccessCardDetails";
+import { EnginesProvider, useEngines } from "./contexts/EnginesContext";
+import { AccessoriesProvider, useAccessories } from "./contexts/AccessoriesContext";
+import EngineList from "./components/Engines/EnginesList";
 
+const DataFetcher = () => {
+  const location = useLocation();
+  const { getAccessoriesData } = useAccessories();
+  const { getEnginesData } = useEngines();
+
+  useEffect(() => {
+    getAccessoriesData();
+    getEnginesData();
+  }, [location.pathname]); // Runs when the route changes
+
+  return null; // No UI, just fetching data
+};
 
 const App = () => {
-  const ScrollToSection = () => {
-    const { hash } = useLocation();
-  
-    useEffect(() => {
-      if (hash) {
-        const element = document.getElementById(hash.substring(1));
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    }, [hash]);
-  
-    return null; // No UI, just handling scroll
-  };
-
   return (
-    <>
-      {/* <Navbar/> */}
-      <Router> {/* ✅ Wrap everything inside Router */}
-      <Navbar />  {/* ✅ Navbar is now inside Router */}
-      <ScrollToSection />
-      <Routes>
-        <Route path="/" element={<AllCards />}/>
-        <Route path="/enginecheckout" element={ <EngineCheckoutForm/>}/>
-        <Route path="/accesscheckout" element={ <AccessCheckoutForm/>}/>
-        <Route path="/engineedit" element={<EngineEditForm />} />
-        <Route path="/accessedit" element={<AccessEditForm />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/details" element={<AccessCardDetails />} />
-      </Routes>
-    </Router>
-    </>
+    <EnginesProvider>
+      <AccessoriesProvider>
+        <Router>
+          <Navbar />
+          {/* <DataFetcher /> ✅ Ensures data fetch on route change */}
+          <Routes>
+            {/* Home */}
+            <Route path="/" element={<AllCards />} />
+
+            {/* Engines */}
+            <Route path="/engines" element={<EngineList/>} />
+            <Route path="/engines/details" element={<EngineCardDetails />} />
+            <Route path="/engines/checkout" element={<EngineCheckoutForm />} />
+            <Route path="/engines/edit" element={<EngineEditForm />} />
+
+            {/* Accessories */}
+            <Route path="/accessories/details" element={<AccessCardDetails />} />
+            <Route path="/accessories/checkout" element={<AccessCheckoutForm />} />
+            <Route path="/accessories/edit" element={<AccessEditForm />} />
+
+            {/* History */}
+            <Route path="/history" element={<History />} />
+
+            {/* 404 - Catch All */}
+            <Route path="*" element={<h1 className="text-center text-3xl mt-10">404 - Page Not Found</h1>} />
+          </Routes>
+        </Router>
+      </AccessoriesProvider>
+    </EnginesProvider>
   );
 };
 

@@ -1,19 +1,21 @@
-import React from 'react'
-import EngineCard from '../Engines/EngineCard'
+import React from "react";
+import { useEngines } from "../../contexts/EnginesContext";
 
 const Tata = () => {
-  return (
-    <>
-    
-      <h1 id='tata' className="text-3xl font-bold m-6">Tata</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-            <EngineCard image="/Engines-pics/Eicher.webp" title="Eicher" available={10}/>
-            <EngineCard image="/Engines-pics/Tata.webp" title="TATA" available={10} />
-            <EngineCard image="/Engines-pics/Tata.webp" title="TATA" available={10} />
-            <EngineCard image="/Engines-pics/Tata.webp" title="TATA" available={10} />
-      </div>
-    </>
-  )
-}
+  const { engines } = useEngines();
 
-export default Tata
+  return (
+    <div className="p-4">
+      <h2 className="text-2xl font-bold">Tata Engines</h2>
+      <ul>
+        {engines.Tata.map((engine) => (
+          <li key={engine.id} className="p-2 border-b">
+            {engine.name} - ₹{engine.price}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Tata;

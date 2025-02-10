@@ -1,42 +1,29 @@
-import React from 'react';
-import EngineCard from './Engines/EngineCard';
-import AshokLeyland from './Engines/AshokLeyland';
-// import Accessories from './Accessories/Accessories';
-import Tata from './Engines/Tata';
-import BharatBenz from './Engines/BharatBenz';
-import Eicher from './Engines/Eicher';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Accessories from '../components/Accessories/Accessories';
-import AccessCardDetails from '../components/Accessories/AccessCardDetails';
-import { AccessoriesProvider } from '../contexts/AccessoriesContext';
-
-
+import React from "react";
+import { useEngines } from "../contexts/EnginesContext";
+import EngineCard from "./Engines/EngineCard";
+import Accessories from "./Accessories/Accessories";
 
 const AllCards = () => {
+  const { engines } = useEngines();
+
   return (
     <>
-       
       <h1 className="text-3xl font-bold m-6">Engines</h1>
       
-      <AshokLeyland/>
-      <hr />
-      <Tata/>
-      <hr />
-      <BharatBenz/>
-      <hr />
-      <Eicher/>
-      <hr />
-      
+      {Object.entries(engines).map(([brand, brandEngines]) => (
+        <div key={brand}>
+          <h2 className="text-2xl font-semibold m-4">{brand}</h2>
+          <div className="grid grid-cols-2 gap-4">
+            {brandEngines.map((engine) => (
+              <EngineCard key={engine.id} engine={engine} />
+            ))}
+          </div>
+          <hr />
+        </div>
+      ))}
+
       <h1 className="text-3xl font-bold m-6">Accessories</h1>
-      <Accessories/>
-    
-        {/* <Routes>
-          <Route path="/" element={<Accessories />} />
-          <Route path="/details" element={<AccessCardDetails />} />
-        </Routes> */}
-
-
-     
+      <Accessories />
     </>
   );
 };

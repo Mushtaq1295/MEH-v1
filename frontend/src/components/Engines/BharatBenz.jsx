@@ -1,18 +1,21 @@
-import React from 'react'
-import EngineCard from '../Engines/EngineCard'
+import React from "react";
+import { useEngines } from "../../contexts/EnginesContext";
 
 const BharatBenz = () => {
-  return (
-    <>
-      <h1 id='bharatbenz' className="text-3xl font-bold m-6">Bharat Benz</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-            
-            <EngineCard image="/Engines-pics/BharatBenz.webp" title="Bharat-Benz" available={10} bf="Delhi"/>
-            <EngineCard image="/Engines-pics/BS5.webp" title="BS5" available={10} bf="Delhi"/>
-            <EngineCard image="/Engines-pics/BS6.webp" title="BS6" available={10} bf="Delhi"/>
-      </div>
-    </>
-  )
-}
+  const { engines } = useEngines();
 
-export default BharatBenz
+  return (
+    <div className="p-4">
+      <h2 className="text-2xl font-bold">Bharat Benz Engines</h2>
+      <ul>
+        {engines.BharatBenz.map((engine) => (
+          <li key={engine.id} className="p-2 border-b">
+            {engine.name} - ₹{engine.price}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default BharatBenz;
