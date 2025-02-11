@@ -75,64 +75,12 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-
-            {/* Dropdown Menu */}
-            <li className="relative" ref={dropdownRef}>
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                Engines
-              </button>
-
-              {/* Dropdown Items */}
-              {isDropdownOpen && (
-                <div className="absolute left-0 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 mt-2">
-                  <ul className="py-2 text-sm text-gray-700 dark:text-gray-400">
-                    <li>
-                      <Link
-                        to="/#ashok-leyland"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Ashok Leyland
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/#tata"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        TATA
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/#bharatbenz"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Bharat-Benz
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/#eicher"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                      >
-                        Eicher
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </li>
-
-            {/* Accessories Link */}
             <li>
               <NavLink
-                to="/#accessories"
+                to=""
                 className="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500"
               >
-                Accessories
+                Exchange
               </NavLink>
             </li>
 

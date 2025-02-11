@@ -107,6 +107,25 @@ const EditForm = () => {
                       </form>
                     </div>
 
+                    <div className="mt-4">
+                            <label htmlFor="engineBrand" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                              Select Pay Mode:
+                            </label>
+                            <select
+                              // id="engineBrand"
+                              // name="engineBrand"
+                              // value={engineBrand}
+                              // onChange={(e) => setEngineBrand(e.target.value)}
+                              required
+                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                            >
+                              <option value="">Select Mode </option>
+                              <option value="Ashok Leyland">Cash</option>
+                              <option value="Tata">Phone Pay</option>
+                              <option value="Eicher">Google Pay</option>
+                              <option value="Bharat Benz">Others</option>
+                            </select>
+                </div>
 
                       <div className='mt-3'>
                           <label htmlFor="number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
