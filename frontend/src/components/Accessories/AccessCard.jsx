@@ -13,7 +13,7 @@ const AccessCard = ({ accessory }) => {
   };
   return (
     <div 
-      className="max-w-sm dark:bg-zinc-900 border border-gray-200 rounded-lg shadow-sm transition-transform transform hover:scale-105 cursor-pointer"
+      className="max-w-sm dark:bg-gray-900 border border-gray-200 rounded-lg shadow-sm transition-transform transform hover:scale-105 cursor-pointer"
       onClick={handleClick}
     >
       <img 
