@@ -9,13 +9,14 @@ const AccessCard = ({ accessory }) => {
 
   const handleClick = () => {
     // Navigate to the details page and pass the accessory data
-    navigate('/details', { state: { accessory } });
+    navigate(`accessories/${accessory._id}`, { state: { accessory } });
   };
   return (
     <div 
       className="max-w-sm dark:bg-gray-900 border border-gray-200 rounded-lg shadow-sm transition-transform transform hover:scale-105 cursor-pointer"
       onClick={handleClick}
     >
+
       <img 
         className="rounded-t-lg w-full h-60 object-cover" 
         src={accessory.image_url} 
@@ -28,6 +29,9 @@ const AccessCard = ({ accessory }) => {
         <p className="mb-3 text-lg">
           Available: {accessory.available}
         </p>
+        {/* <p className="mb-3 text-lg">
+          id: {accessory._id}
+        </p> */}
       </div>
     </div>
   );

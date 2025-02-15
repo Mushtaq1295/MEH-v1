@@ -18,7 +18,7 @@ const EngineCategories = () => {
       {categories.map((category, index) => (
         <div
           key={category}
-          className="p-6 dark:bg-gray-900 rounded-lg shadow-md text-center cursor-pointer hover:bg-gray-200 transition"
+          className="p-6 dark:bg-gray-900 rounded-lg shadow-md text-center cursor-pointer"
           onClick={() => handleCategorySelect(category)}
         >
           <h2 className="text-xl p-2 font-semibold">{category}</h2>

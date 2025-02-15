@@ -2,8 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useEngines } from "../../contexts/EnginesContext";
 
+
 const EngineCard = ({ engine }) => {
-  const { setSelectedEngine } = useEngines();
+  const { selectedCategory,setSelectedEngine } = useEngines();
   const navigate = useNavigate();
 
   // Default values to prevent crashes
@@ -13,7 +14,7 @@ const EngineCard = ({ engine }) => {
 
   const handleSelect = () => {
     setSelectedEngine(engine);
-    navigate(`/engine/details`);
+    navigate(`/engines/${selectedCategory}/${engine._id}`);
   };
   
   

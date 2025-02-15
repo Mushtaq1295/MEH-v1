@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { NavLink, useLocation } from 'react-router-dom';
 
 const EngineCardDetails = () => {
-  const { engines, selectedEngine, setSelectedEngine } = useEngines();
+  const { engines, selectedEngine, setSelectedEngine, selectedCategory } = useEngines();
   const { brand } = useParams(); // Get the category from URL
 
   useEffect(() => {
@@ -41,13 +41,14 @@ const EngineCardDetails = () => {
             </ul>
             <div className="mt-6 flex space-x-2">
         <NavLink 
-          to="/details/engineedit" 
+          to={`/engines/${selectedCategory}/${selectedEngine._id}/engineedit`} 
+          // /engines/${selectedCategory}/${engine._id}
           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-sm md:text-base"
         >
           Edit
         </NavLink>
         <NavLink
-          to="/details/enginecheckout"
+          to={`/engines/${selectedCategory}/${selectedEngine._id}/enginecheckout`}
           className="px-4 py-2 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm md:text-base"
         >
           Checkout

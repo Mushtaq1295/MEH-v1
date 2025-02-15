@@ -29,7 +29,7 @@ const AccessCardDetails = () => {
           <strong className="text-lg">Title: </strong> 
           {accessory.title.replace("-", " ")}
         </li>
-        <li>
+      <li>
           <strong className="text-lg">Price: </strong>
           ₹ {accessory.price}
         </li>
@@ -40,13 +40,14 @@ const AccessCardDetails = () => {
       </ul>
       <div className="mt-6 flex space-x-2">
         <NavLink 
-          to="/details/accessedit" 
+          to= {`/accessories/${accessory._id}/accessedit`}
           className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 text-sm md:text-base"
         >
           Edit
         </NavLink>
+        {/* <a href="/listings/<%= listing._id %>/edit" class="btn edit-btn">Edit</a> */}
         <NavLink
-          to="/details/accesscheckout"
+          to={`/accessories/${accessory._id}/accesscheckout`}
           className="px-4 py-2 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm md:text-base"
         >
           Checkout

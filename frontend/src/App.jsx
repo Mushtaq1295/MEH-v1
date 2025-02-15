@@ -21,14 +21,17 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<AllCards />} />
+
             <Route path="/engines/:brand" element={<EnginesList />} />
-            <Route path="/engine/details" element={<EngineCardDetails />} />
-            <Route path="/details/enginecheckout" element={<EngineCheckoutForm />} />
-            <Route path="/details/accesscheckout" element={<AccessCheckoutForm />} />
-            <Route path="/details/engineedit" element={<EngineEditForm />} />
-            <Route path="/details/accessedit" element={<AccessEditForm />} />
+            <Route path="/engines/:brand/:id" element={<EngineCardDetails />} />
+            <Route path="/engines/:brand/:id/enginecheckout" element={<EngineCheckoutForm />} />
+            <Route path="/engines/:brand/:id/engineedit" element={<EngineEditForm />} />
+            
+            <Route path="accessories/:id" element={<AccessCardDetails />} />
+            <Route path="/accessories/:id/accessedit" element={<AccessEditForm />} />
+            <Route path="/accessories/:id/accesscheckout" element={<AccessCheckoutForm />} />
+            
             <Route path="/history" element={<History />} />
-            <Route path="/details" element={<AccessCardDetails />} />
           </Routes>
         </Router>
       </AccessoriesProvider>
