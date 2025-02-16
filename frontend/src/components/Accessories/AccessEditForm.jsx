@@ -1,9 +1,49 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useAccessories } from "../../contexts/AccessoriesContext";
+import axios from "axios";
+
 
 const EditForm = () => {
-  
+  const {id} = useParams();
+  const {accessories, setselectedAccessory} = useAccessories();
+  const navigate = useNavigate();
+  const backend_url = import.meta.env.VITE_BACKEND_URL;
+
+  const selectedAccessory = accessories.find(accessory => accessory._id === id);
+
+  const [formData, setFormData] = useState({
+    title: "",
+    image_url: "",
+    price: "",
+    available: "",
+  });
+
+  useEffect(() =>{
+    if(selectedAccessory){
+      setFormData({
+        title: selectedAccessory.title || "",
+        image_url: selectedAccessory.image_url || "",
+        price: selectedAccessory.price || "",
+        available: selectedAccessory.available || "",
+      });
+    }
+  },[selectedAccessory]);
+
+  const handleChange = (e) =>{
+    setFormData({...formData, [e.target.name]: e.target.value});
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      await axios.put(`${backend_url}/accessories/${id}`,formData);
+    }catch(error){
+      console.error("Error updating Accessory:", error);
+    }
+  }
+
+
   return (
     <>
       <section className="min-h-screen bg-blue-600 dark:bg-gray-900">
@@ -15,28 +55,30 @@ const EditForm = () => {
             </h1>
             <form 
               className="space-y-4" 
-              method='POST'
-              action=''
-              enctype="application/x-www-form-urlencoded"
-              novalidate
-
+              onSubmit={handleSubmit}
             >
               <div>
-                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Title :
                 </label>
-                <input type="text" name="name" id="name" required 
+                <input 
+                  type="text" 
+                  name="title" 
+                  value={formData.title} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                 />
               </div>
               <div>
-                <label htmlFor="file" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Upload Image :
+                <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Image_url :
                 </label>
                 <input
-                  type="file"
-                  id="fileUpload"
-                  accept="image/*"
+                  type="text"
+                  name="image_url"
+                  value={formData.image_url}
+                  onChange={handleChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                 />
               </div>
@@ -44,7 +86,12 @@ const EditForm = () => {
                 <label htmlFor="number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Price Range (in  ₹) :
                 </label>
-                <input type="number" name="number" id="number" required 
+                <input 
+                  type="number" 
+                  name="price" 
+                  value={formData.price}
+                  onChange={handleChange}
+                  required 
                   className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                 />
               </div>
@@ -52,7 +99,12 @@ const EditForm = () => {
                 <label htmlFor="number" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                  Count (Available) :
                 </label>
-                <input type="number" name="number" id="number" required 
+                <input 
+                  type="number" 
+                  name="count" 
+                  value={formData.available}
+                  onChange={handleChange}
+                  required 
                   className="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                 />
               </div>
