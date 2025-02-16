@@ -12,6 +12,7 @@ import AccessCardDetails from "./components/Accessories/AccessCardDetails";
 import EnginesList from "./components/Engines/EnginesList";
 import { EnginesProvider } from "./contexts/EnginesContext";
 import { AccessoriesProvider } from "./contexts/AccessoriesContext";
+import HistoryAllCards from "./components/History/HistoryAllCards";
 
 const App = () => {
   return (
@@ -31,7 +32,7 @@ const App = () => {
             <Route path="/accessories/:id/accessedit" element={<AccessEditForm />} />
             <Route path="/accessories/:id/accesscheckout" element={<AccessCheckoutForm />} />
             
-            <Route path="/history" element={<History />} />
+            <Route path="/history" element={<HistoryAllCards />} />
           </Routes>
         </Router>
       </AccessoriesProvider>
