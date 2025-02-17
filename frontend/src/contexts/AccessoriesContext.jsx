@@ -22,7 +22,14 @@ export const AccessoriesProvider = ({ children }) => {
   };
 
   return (
-    <AccessoriesContext.Provider value={{ accessories, selectedAccessory, setSelectedAccessory }}>
+    <AccessoriesContext.Provider
+      value={{
+        accessories,
+        setAccessories,
+        selectedAccessory,
+        setSelectedAccessory,
+      }}
+    >
       {children}
     </AccessoriesContext.Provider>
   );
