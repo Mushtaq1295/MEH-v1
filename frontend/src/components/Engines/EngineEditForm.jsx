@@ -15,6 +15,7 @@ const EngineEditForm = () => {
   // Form state
   const [formData, setFormData] = useState({
     title: "",
+    image_url: "",
     category: "",
     price: "",
     available: "",
@@ -27,6 +28,7 @@ const EngineEditForm = () => {
     if (selectedEngine) {
       setFormData({
         title: selectedEngine.title || "",
+        image_url: selectedEngine.image_url || "",
         category: selectedEngine.category || "",
         price: selectedEngine.price || "",
         available: selectedEngine.available || "",
@@ -45,10 +47,21 @@ const EngineEditForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`${backend_url}/engines/${id}`, formData);
-      alert("Engine details updated successfully!");
-      setSelectedEngine(formData); // Update the context
-      navigate(`/engines/${selectedEngine.category}/${id}`);
+      // await axios.put(`${backend_url}/engines/${id}`, formData);
+      // alert("Engine details updated successfully!");
+      // setSelectedEngine(formData); // Update the context
+      // navigate(`/engines/${selectedEngine.category}/${id}`);
+      const response = await axios.put(
+        `${backend_url}/engines/${id}`,
+        formData
+      );
+      setSelectedEngine((prevEngines =[]) =>
+        prevEngines.map((engine) =>
+          engine._id === id ? response.data : engine
+        )
+      );
+      console.log("updated successfully and ready to++++++++++")
+      navigate("/");  
     } catch (error) {
       console.error("Error updating engine:", error);
     }
@@ -67,15 +80,37 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Title:
                 </label>
-                <input type="text" name="title" value={formData.title} onChange={handleChange} required 
+                <input 
+                  type="text" 
+                  name="title" 
+                  value={formData.title} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
+              {/* <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Image_url :
+                  </label>
+                  <input
+                    type="text"
+                    name="image_url"
+                    value={formData.image_url}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                  />
+                </div> */}
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Category:
                 </label>
-                <input type="text" name="category" value={formData.category} onChange={handleChange} required 
+                <input 
+                  type="text"
+                  name="category" 
+                  value={formData.category} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -83,7 +118,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Price (₹):
                 </label>
-                <input type="number" name="price" value={formData.price} onChange={handleChange} required 
+                <input 
+                  type="number" 
+                  name="price" 
+                  value={formData.price} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -91,7 +131,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Available:
                 </label>
-                <input type="number" name="available" value={formData.available} onChange={handleChange} required 
+                <input 
+                  type="number" 
+                  name="available" 
+                  value={formData.available} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -99,7 +144,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Model:
                 </label>
-                <input type="text" name="model" value={formData.model} onChange={handleChange} required 
+                <input 
+                  type="text" 
+                  name="model" 
+                  value={formData.model} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -107,7 +157,11 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   From:
                 </label>
-                <input type="text" name="from" value={formData.from} onChange={handleChange}  
+                <input 
+                  type="text" 
+                  name="from" 
+                  value={formData.from} 
+                  onChange={handleChange}  
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>

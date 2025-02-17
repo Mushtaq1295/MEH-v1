@@ -44,6 +44,8 @@ app.get("/accessories", async (req, res) => {
   res.json(accessoryData);
 });
 
+
+//accessories update
 app.put("/accessories/:id", async (req, res) => {
   const { id } = req.params;
   const { title, image_url, price, available } = req.body;
@@ -65,6 +67,26 @@ app.put("/accessories/:id", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
+//engines update
+app.put("/engines/:id",async(req,res) =>{
+  const{id}=req.params;
+  const{title,image_url,category,price,available,model,from}=req.body;
+  try {
+    const updatedEngine = await Engine.findByIdAndUpdate(
+      id,
+      { title, image_url, category, price, available, model, from },
+      { new:true, runValidators:true }
+      );
+      if(!updatedEngine){
+        return res.status(404).json({message:"Engine not found"});
+      }
+      res.json(updatedEngine);
+  }catch(error){
+    console.error("Error updataing Engine:",error);
+    res.status(500).json({message:"Server error"});
+  }
+})
 
 app.listen(port, () => {
   console.log(`server http://localhost:${port}`);

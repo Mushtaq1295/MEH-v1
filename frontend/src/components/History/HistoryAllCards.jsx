@@ -10,13 +10,13 @@ import HistoryEngineCardDetails from "./HistoryEngines/HIstoryEngineCardDetails"
 const HistoryAllCards = () => {
   return (
     <>
-      {/* <h1 className="text-3xl font-bold m-6 text-white">Engines</h1>
+      <h1 className="text-3xl font-bold m-6 text-white">Engines</h1>
         <HistoryEngines/>
         
       <h1 className="text-3xl font-bold m-6 text-white">Accessories</h1>
-      <HistoryAccessories/> */}
-      {/* <HistoryAccessCardDetails/> */}
-      {/* <HistoryEngineCardDetails/> */}
+      <HistoryAccessories/>
+      {/* <HistoryAccessCardDetails/>
+      <HistoryEngineCardDetails/> */}
 
     </>
   );
