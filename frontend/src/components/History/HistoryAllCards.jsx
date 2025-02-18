@@ -11,10 +11,10 @@ const HistoryAllCards = () => {
   return (
     <>
       <h1 className="text-3xl font-bold m-6 text-white">Engines</h1>
-        <HistoryEngines/>
+        {/* <HistoryEngines/> */}
         
       <h1 className="text-3xl font-bold m-6 text-white">Accessories</h1>
-      <HistoryAccessories/>
+      {/* <HistoryAccessories/> */}
       {/* <HistoryAccessCardDetails/>
       <HistoryEngineCardDetails/> */}
 
