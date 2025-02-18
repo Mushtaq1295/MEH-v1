@@ -5,12 +5,12 @@ import axios from "axios";
 
 const EngineEditForm = () => {
   const { id } = useParams(); // Get engine ID from URL
-  const { engines, setSelectedEngine } = useEngines();
+  const { engines, setEngines, getEnginesData } = useEngines();
   const navigate = useNavigate();
   const backend_url = import.meta.env.VITE_BACKEND_URL;
 
   // Find the selected engine by ID
-  const selectedEngine = engines.find(engine => engine._id === id);
+  const selectedEngine = engines.find((engine) => engine._id === id);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -50,16 +50,15 @@ const EngineEditForm = () => {
           const response = await axios.put(
         `${backend_url}/engines/${id}`,
         formData
-      );
+      );  
       console.log(response)
-      setSelectedEngine((prevEngines) =>
+      setEngines((prevEngines) =>
         prevEngines.map((engine) =>
           engine._id === id ? response.data : engine
         )
       );
-      console.log("before navigate")
-      navigate("/");  
-      console.log("After navigate")
+      console.log("Updated successfully and ready to++++++++++");
+      navigate(-2);
     } catch (error) {
       console.error("Error updating engine:", error);
     }

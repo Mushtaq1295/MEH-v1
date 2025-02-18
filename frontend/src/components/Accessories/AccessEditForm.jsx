@@ -50,7 +50,7 @@ const EditForm = () => {
         )
       );
 
-      navigate("/"); // Redirect after update
+      navigate(-2); // Redirect after update
     } catch (error) {
       console.error("Error updating Accessory:", error);
     }

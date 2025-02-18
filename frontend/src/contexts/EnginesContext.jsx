@@ -24,9 +24,13 @@ export const EnginesProvider = ({ children }) => {
 
   return (
     <EnginesContext.Provider value={{ 
-      engines,setEngines, 
-      selectedEngine, setSelectedEngine, 
-      selectedCategory, setSelectedCategory 
+      engines,
+      setEngines, 
+      selectedEngine,
+      setSelectedEngine, 
+      selectedCategory,
+      setSelectedCategory,
+      getEnginesData,
     }}>
       {children}
     </EnginesContext.Provider>
