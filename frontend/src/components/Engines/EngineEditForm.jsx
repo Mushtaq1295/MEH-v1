@@ -5,12 +5,12 @@ import axios from "axios";
 
 const EngineEditForm = () => {
   const { id } = useParams(); // Get engine ID from URL
-  const { engines, setEngines, getEnginesData } = useEngines();
+  const { engines, setSelectedEngine } = useEngines();
   const navigate = useNavigate();
   const backend_url = import.meta.env.VITE_BACKEND_URL;
 
   // Find the selected engine by ID
-  const selectedEngine = engines.find((engine) => engine._id === id);
+  const selectedEngine = engines.find(engine => engine._id === id);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -47,20 +47,19 @@ const EngineEditForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(
+          const response = await axios.put(
         `${backend_url}/engines/${id}`,
         formData
       );
-
-      // Update the engines array
-      setEngines((prevEngines) =>
+      console.log(response)
+      setSelectedEngine((prevEngines) =>
         prevEngines.map((engine) =>
           engine._id === id ? response.data : engine
         )
       );
-
-      console.log("Updated successfully and ready to++++++++++");
-      navigate(-2);
+      console.log("before navigate")
+      navigate("/");  
+      console.log("After navigate")
     } catch (error) {
       console.error("Error updating engine:", error);
     }
@@ -79,12 +78,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Title:
                 </label>
-                <input
-                  type="text"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                  required
+                <input 
+                  type="text" 
+                  name="title" 
+                  value={formData.title} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -104,12 +103,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Category:
                 </label>
-                <input
+                <input 
                   type="text"
-                  name="category"
-                  value={formData.category}
-                  onChange={handleChange}
-                  required
+                  name="category" 
+                  value={formData.category} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -117,12 +116,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Price (₹):
                 </label>
-                <input
-                  type="number"
-                  name="price"
-                  value={formData.price}
-                  onChange={handleChange}
-                  required
+                <input 
+                  type="number" 
+                  name="price" 
+                  value={formData.price} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -130,12 +129,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Available:
                 </label>
-                <input
-                  type="number"
-                  name="available"
-                  value={formData.available}
-                  onChange={handleChange}
-                  required
+                <input 
+                  type="number" 
+                  name="available" 
+                  value={formData.available} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -143,12 +142,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Model:
                 </label>
-                <input
-                  type="text"
-                  name="model"
-                  value={formData.model}
-                  onChange={handleChange}
-                  required
+                <input 
+                  type="text" 
+                  name="model" 
+                  value={formData.model} 
+                  onChange={handleChange} 
+                  required 
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -156,11 +155,11 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   From:
                 </label>
-                <input
-                  type="text"
-                  name="from"
-                  value={formData.from}
-                  onChange={handleChange}
+                <input 
+                  type="text" 
+                  name="from" 
+                  value={formData.from} 
+                  onChange={handleChange}  
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
