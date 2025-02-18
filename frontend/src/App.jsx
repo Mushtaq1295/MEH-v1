@@ -32,7 +32,7 @@ const App = () => {
             <Route path="/accessories/:id/accessedit" element={<AccessEditForm />} />
             <Route path="/accessories/:id/accesscheckout" element={<AccessCheckoutForm />} />
             
-            <Route path="/history" element={<HistoryAllCards />} />
+            {/* <Route path="/history" element={<HistoryAllCards />} /> */}
           </Routes>
         </Router>
       </AccessoriesProvider>
