@@ -47,21 +47,19 @@ const EngineEditForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // await axios.put(`${backend_url}/engines/${id}`, formData);
-      // alert("Engine details updated successfully!");
-      // setSelectedEngine(formData); // Update the context
-      // navigate(`/engines/${selectedEngine.category}/${id}`);
-      const response = await axios.put(
+          const response = await axios.put(
         `${backend_url}/engines/${id}`,
         formData
       );
-      setSelectedEngine((prevEngines =[]) =>
+      console.log(response)
+      setSelectedEngine((prevEngines) =>
         prevEngines.map((engine) =>
           engine._id === id ? response.data : engine
         )
       );
-      console.log("updated successfully and ready to++++++++++")
+      console.log("before navigate")
       navigate("/");  
+      console.log("After navigate")
     } catch (error) {
       console.error("Error updating engine:", error);
     }
