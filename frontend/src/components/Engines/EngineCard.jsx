@@ -23,7 +23,7 @@ const EngineCard = ({ engine }) => {
     <div onClick={handleSelect} className="max-w-sm dark:bg-gray-900 border border-gray-200 rounded-lg shadow-sm transition-transform transform hover:scale-105 cursor-pointer">
       <img className="rounded-t-lg w-full h-60 object-cover" src={safeImage} alt={safeTitle} />
       <div className="p-5 text-white">
-        <h6 className="mb-2 text-xl font-semibold">Name: {safeTitle}</h6>
+        <h6 className="mb-2 text-xl font-semibold"> {safeTitle}</h6>
         <p className="mb-3 text-lg">Available: {safeAvailable}</p>
       </div>
     </div>
