@@ -2,7 +2,7 @@ import React from "react";
 import HistoryEngines from "./HistoryEngines/HistoryEngines";
 import HistoryAccessories from "./HistoryAccessories/HistoryAccessories";
 import HistoryAccessCardDetails from "./HistoryAccessories/HistoryAccessCardDetails";
-import HistoryEngineCardDetails from "./HistoryEngines/HIstoryEngineCardDetails";
+import HistoryEngineCardDetails from "./HistoryEngines/HistoryEngineCardDetails";
 
 
 
