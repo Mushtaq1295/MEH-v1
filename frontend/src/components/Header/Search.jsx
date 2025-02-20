@@ -16,8 +16,8 @@ const Search = () => {
 
   // Filter products based on search query
   const filteredProducts = allProducts
-    .filter((product) => product.title.toLowerCase().includes(query.toLowerCase())
-|| product.category && product.category.toLowerCase().includes(query.toLowerCase()))
+    .filter((product) => product.title.toLowerCase().includes(query.toLowerCase())||
+     product.category && product.category.toLowerCase().includes(query.toLowerCase()))
     .slice(0, 5); // Limit results to 5
 
   const handleSelectProduct = (product) => {
@@ -51,7 +51,7 @@ const Search = () => {
               className="p-2 cursor-pointer hover:bg-gray-200"
               onClick={() => handleSelectProduct(product)}
             >
-              {product.title}, {product.category ? `${product.category}` : ""}
+              {product.title} {product.category ? `,${product.category}` : ""}
             </li>
           ))}
           {filteredProducts.length === 0 && (
