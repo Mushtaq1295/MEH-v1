@@ -92,6 +92,14 @@ const Navbar = () => {
                 History
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/logout"
+                className="block py-2 px-3 text-blue-700 dark:text-blue-500"
+              >
+                Logout
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
