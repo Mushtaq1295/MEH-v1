@@ -29,10 +29,9 @@ const Navbar = () => {
           MEH
         </NavLink>
 
-       <Search/>
-
-
-
+        <div className="flex justify-center md:justify-start">
+          <Search />
+        </div>
 
         {/* Mobile Menu Button */}
         <div className="flex md:order-2">
