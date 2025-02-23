@@ -22,7 +22,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-gray-900 sticky">
+    <nav className="top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-gray-900 sticky shadow-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         {/* Logo */}
         <NavLink to="/" className="text-2xl font-semibold dark:text-white">

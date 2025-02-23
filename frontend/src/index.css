@@ -1,9 +1,9 @@
 @import "tailwindcss";
 .cedarville-cursive-regular {
-    font-family: "Cedarville Cursive", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-body{
-    background-color: rgb(54, 54, 54)
+  font-family: "Cedarville Cursive", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+  background-color: #111827;
 }

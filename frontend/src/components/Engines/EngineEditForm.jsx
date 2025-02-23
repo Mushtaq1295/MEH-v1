@@ -51,15 +51,14 @@ const EngineEditForm = () => {
         `${backend_url}/engines/${id}`,
         formData
       );
-      console.log(response)
-      setSelectedEngine((prevEngines) =>
+      console.log(response);
+      setEngines((prevEngines) =>
         prevEngines.map((engine) =>
           engine._id === id ? response.data : engine
         )
       );
-      console.log("before navigate")
-      navigate("/");  
-      console.log("After navigate")
+      console.log("Updated successfully and ready to++++++++++");
+      navigate(-1);
     } catch (error) {
       console.error("Error updating engine:", error);
     }
