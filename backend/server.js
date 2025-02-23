@@ -9,6 +9,12 @@ const connectDB = require("./config/db");
 const port = process.env.PORT;
 const db_url = process.env.ATLAS_DB_URL;
 
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const multer = require("multer");
+
+const User = require("./models/User");
+
 const Accessory = require("./models/accessoryModel");
 const Engine = require("./models/engineModel");
 
@@ -27,6 +33,8 @@ const corsOptions = {
 };
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 connectDB(db_url);
 
@@ -87,6 +95,90 @@ app.put("/engines/:id",async(req,res) =>{
     res.status(500).json({message:"Server error"});
   }
 })
+
+//Authentication
+// Middleware to Verify Token
+const verifyToken = (req, res, next) => {
+  const token = req.header("Authorization");
+  if (!token) return res.status(401).json({ error: "Access denied" });
+
+  try {
+    const verified = jwt.verify(token.split(" ")[1], process.env.JWT_SECRET);
+    req.user = verified;
+    next();
+  } catch (err) {
+    res.status(400).json({ error: "Invalid token" });
+  }
+};
+
+// Register Route
+app.post("/register", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ error: "Email already in use" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = new User({
+      email,
+      password: hashedPassword,
+    });
+
+    await newUser.save();
+    res.status(201).json({ message: "✅ User registered successfully" });
+  } catch (err) {
+    console.error("❌ Registration Error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Login Route
+app.post("/api/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ error: "Invalid credentials" });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+    res.json({
+      message: "Login successful",
+      token,
+      user: {
+        _id: user._id,
+        email: user.email,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Get User Profile (Protected)
+app.get("/profile", verifyToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+
+
 
 app.listen(port, () => {
   console.log(`server http://localhost:${port}`);
