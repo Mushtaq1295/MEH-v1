@@ -9,7 +9,7 @@ const HistoryAccessCardDetails = () => {
       </h3>
         
         <div className="mt-2 w-full max-w-4xl mx-auto px-4">            
-            <div className="flex flex-col lg:flex-row items-start dark:bg-gray-900 shadow-lg rounded-lg p-4">
+            <div className="flex flex-col lg:flex-row items-start dark:bg-gray-900 shadow-lg rounded-lg p-4 shadow-gray-600">
             <img 
             className="w-full lg:w-[60%] aspect-[4/3] object-cover rounded-lg" 
             src='https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475235/public/Accessories-pics/u7szjpuixit5remhtr9u.webp'

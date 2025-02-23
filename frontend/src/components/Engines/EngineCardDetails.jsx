@@ -25,7 +25,7 @@ const EngineCardDetails = () => {
         Details of {engine.title}
       </h3>
       <div className="mt-2 w-full max-w-4xl mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-start dark:bg-gray-900 shadow-lg rounded-lg p-4">
+        <div className="flex flex-col lg:flex-row items-start dark:bg-gray-900 shadow-lg rounded-lg p-4 shadow-gray-600">
           <img 
             src={engine.image_url} 
             className="w-full lg:w-[60%] aspect-[4/3] object-cover rounded-lg" 

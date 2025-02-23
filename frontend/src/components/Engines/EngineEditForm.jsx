@@ -47,11 +47,11 @@ const EngineEditForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-          const response = await axios.put(
+      const response = await axios.put(
         `${backend_url}/engines/${id}`,
         formData
-      );  
-      console.log(response)
+      );
+      console.log(response);
       setEngines((prevEngines) =>
         prevEngines.map((engine) =>
           engine._id === id ? response.data : engine
@@ -77,12 +77,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Title:
                 </label>
-                <input 
-                  type="text" 
-                  name="title" 
-                  value={formData.title} 
-                  onChange={handleChange} 
-                  required 
+                <input
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                  required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -102,12 +102,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Category:
                 </label>
-                <input 
+                <input
                   type="text"
-                  name="category" 
-                  value={formData.category} 
-                  onChange={handleChange} 
-                  required 
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -115,12 +115,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Price (₹):
                 </label>
-                <input 
-                  type="number" 
-                  name="price" 
-                  value={formData.price} 
-                  onChange={handleChange} 
-                  required 
+                <input
+                  type="number"
+                  name="price"
+                  value={formData.price}
+                  onChange={handleChange}
+                  required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -128,12 +128,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Available:
                 </label>
-                <input 
-                  type="number" 
-                  name="available" 
-                  value={formData.available} 
-                  onChange={handleChange} 
-                  required 
+                <input
+                  type="number"
+                  name="available"
+                  value={formData.available}
+                  onChange={handleChange}
+                  required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -141,12 +141,12 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Model:
                 </label>
-                <input 
-                  type="text" 
-                  name="model" 
-                  value={formData.model} 
-                  onChange={handleChange} 
-                  required 
+                <input
+                  type="text"
+                  name="model"
+                  value={formData.model}
+                  onChange={handleChange}
+                  required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
@@ -154,11 +154,11 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   From:
                 </label>
-                <input 
-                  type="text" 
-                  name="from" 
-                  value={formData.from} 
-                  onChange={handleChange}  
+                <input
+                  type="text"
+                  name="from"
+                  value={formData.from}
+                  onChange={handleChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                 />
               </div>
