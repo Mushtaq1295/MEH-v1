@@ -1,8 +1,9 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useAccessories } from "../../contexts/AccessoriesContext";
 
-const EditForm = () => {
+const AccessCheckoutForm = () => {
     const [category, setCategory] = useState("");
     const [engineBrand, setEngineBrand] = useState("");
     const [exchange, setExchange] = useState("");
@@ -40,6 +41,11 @@ const EditForm = () => {
         setError("");
       }
     }
+    // console.log(accessory.title)
+    const handleCheckoutBtn = () => {
+      
+    }
+
 
   return (
     <>
@@ -134,7 +140,7 @@ const EditForm = () => {
                               onClick={handleIncrement}
                               >
                                 <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M9 1v16M1 9h16"/>
                                 </svg>
                             </button>
                         </div>
@@ -145,18 +151,14 @@ const EditForm = () => {
                               Select Pay Mode:
                             </label>
                             <select
-                              // id="engineBrand"
-                              // name="engineBrand"
-                              // value={engineBrand}
-                              // onChange={(e) => setEngineBrand(e.target.value)}
                               required
                               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                             >
                               <option value="">Select Mode </option>
-                              <option value="Ashok Leyland">Cash</option>
-                              <option value="Tata">Phone Pay</option>
-                              <option value="Eicher">Google Pay</option>
-                              <option value="Bharat Benz">Others</option>
+                              <option value="Cash">Cash</option>
+                              <option value="Phone pay">Phone Pay</option>
+                              <option value="Google Pay">Google Pay</option>
+                              <option value="Others">Others</option>
                             </select>
                 </div>
 
@@ -172,6 +174,7 @@ const EditForm = () => {
                      <button
                         type="submit"
                         className="w-full text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-xl text-base px-6 py-3 text-center shadow-lg transform hover:scale-105 cursor-pointer"
+                        onClick={handleCheckoutBtn}
                         >
                         Checkout
                       </button>
@@ -188,4 +191,4 @@ const EditForm = () => {
 }
 
 
-export default EditForm
+export default AccessCheckoutForm

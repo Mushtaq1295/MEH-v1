@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AllCards from "./components/AllCards";
 import EngineCheckoutForm from "./components/Engines/EngineCheckoutForm";
 import AccessCheckoutForm from "./components/Accessories/AccessCheckoutForm";
@@ -13,53 +13,35 @@ import { EnginesProvider } from "./contexts/EnginesContext";
 import { AccessoriesProvider } from "./contexts/AccessoriesContext";
 import HistoryAllCards from "./components/History/HistoryAllCards";
 import DateFilter from "./components/Header/DateFilter";
-import { AuthContext } from "./contexts/AuthContext";  
-import Register from "./pages/Register";
-import Login from "./pages/Login";
+// import { AuthContext } from "./contexts/AuthContext";
 
-// Protected Route Component
-const PrivateRoute = ({ element }) => {
-  const { currentUser } = useContext(AuthContext);
-  return currentUser ? element : <Navigate to="/login" />;
-};
 
-// Navbar Visibility Control
-const Layout = ({ children }) => {
-  const location = useLocation();
-  const hideNavbar = ["/login", "/register"].includes(location.pathname);
-  return (
-    <>
-      {!hideNavbar && <Navbar />}
-      {children}
-    </>
-  );
-};
 
 const App = () => {
+  
+  // const { currentUser } = useContext(AuthContext);
+  
+
   return (
     <EnginesProvider>
       <AccessoriesProvider>
         <Router>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<AllCards />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<AllCards />} />
 
-              {/* Protected Routes */}
-              <Route path="/engines/:brand" element={<PrivateRoute element={<EnginesList />} />} />
-              <Route path="/engines/:brand/:id/enginecheckout" element={<PrivateRoute element={<EngineCheckoutForm />} />} />
-              <Route path="/engines/:brand/:id/engineedit" element={<PrivateRoute element={<EngineEditForm />} />} />
-              <Route path="/engines/:brand/:id" element={<PrivateRoute element={<EngineCardDetails />} />} />
-
-              <Route path="/accessories/:id/accessedit" element={<PrivateRoute element={<AccessEditForm />} />} />
-              <Route path="/accessories/:id/accesscheckout" element={<PrivateRoute element={<AccessCheckoutForm />} />} />
-              <Route path="/accessories/:id" element={<PrivateRoute element={<AccessCardDetails />} />} />
-
-              <Route path="/history/datefilter" element={<PrivateRoute element={<DateFilter />} />} />
-              <Route path="/history" element={<PrivateRoute element={<HistoryAllCards />} />} />
-            </Routes>
-          </Layout>
+            <Route path="/engines/:brand" element={<EnginesList />} />
+            <Route path="/engines/:brand/:id" element={<EngineCardDetails />} />
+            <Route path="/engines/:brand/:id/enginecheckout" element={<EngineCheckoutForm />} />
+            <Route path="/engines/:brand/:id/engineedit" element={<EngineEditForm />} />
+            
+            <Route path="accessories/:id" element={<AccessCardDetails />} />
+            <Route path="/accessories/:id/accessedit" element={<AccessEditForm />} />
+            <Route path="/accessories/:id/accesscheckout" element={<AccessCheckoutForm />} />
+            
+            <Route path="/history" element={<HistoryAllCards />} />
+            <Route path="/history/datefilter" element={<DateFilter/>}/>
+          </Routes>
         </Router>
       </AccessoriesProvider>
     </EnginesProvider>
