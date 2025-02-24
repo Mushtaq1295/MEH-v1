@@ -63,47 +63,56 @@ const App = () => {
           <Layout>
             <Routes>
               <Route path="/" element={<AllCards />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
+              {/* <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} /> */}
 
               {/* Protected Routes */}
               <Route
                 path="/engines/:brand"
-                element={<PrivateRoute element={<EnginesList />} />}
+                // element={<PrivateRoute element={<EnginesList />} />}
+                element={<EnginesList />}
               />
               <Route
                 path="/engines/:brand/:id/enginecheckout"
-                element={<PrivateRoute element={<EngineCheckoutForm />} />}
+                // element={<PrivateRoute element={<EngineCheckoutForm />} />}
+                element={<EngineCheckoutForm />}
               />
               <Route
                 path="/engines/:brand/:id/engineedit"
-                element={<PrivateRoute element={<EngineEditForm />} />}
+                // element={<PrivateRoute element={<EngineEditForm />} />}
+                element={<EngineEditForm />}
               />
               <Route
                 path="/engines/:brand/:id"
-                element={<PrivateRoute element={<EngineCardDetails />} />}
+                // element={<PrivateRoute element={<EngineCardDetails />} />}
+                element={<EngineCardDetails />}
               />
 
               <Route
                 path="/accessories/:id/accessedit"
-                element={<PrivateRoute element={<AccessEditForm />} />}
+                // element={<PrivateRoute element={<AccessEditForm />} />}
+                element={<AccessEditForm />}
               />
               <Route
                 path="/accessories/:id/accesscheckout"
-                element={<PrivateRoute element={<AccessCheckoutForm />} />}
+                // element={<PrivateRoute element={<AccessCheckoutForm />} />}
+                element={<AccessCheckoutForm />} 
               />
               <Route
                 path="/accessories/:id"
-                element={<PrivateRoute element={<AccessCardDetails />} />}
+                // element={<PrivateRoute element={<AccessCardDetails />} />}
+                element={<AccessCardDetails />}
               />
 
               <Route
                 path="/history/datefilter"
-                element={<PrivateRoute element={<DateFilter />} />}
+                // element={<PrivateRoute element={<DateFilter />} />}
+                element={<DateFilter />}
               />
               <Route
                 path="/history"
-                element={<PrivateRoute element={<HistoryAllCards />} />}
+                // element={<PrivateRoute element={<HistoryAllCards />} />}
+                element={<HistoryAllCards />}
               />
             </Routes>
           </Layout>

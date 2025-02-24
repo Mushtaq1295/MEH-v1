@@ -8,12 +8,12 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider> {/* ✅ Authentication context */}
+    {/* <AuthProvider>  */}
       <EnginesProvider> 
         <AccessoriesProvider>
           <App />
         </AccessoriesProvider>
       </EnginesProvider>
-    </AuthProvider>
+    {/* </AuthProvider> */}
   </React.StrictMode>
 );

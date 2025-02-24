@@ -24,7 +24,7 @@ const HistoryAccessCard = ({ accessory }) => {
           <strong>Name:</strong> {accessory.customer_name}
         </p>
         <p className="mb-2 text-lg">
-          <strong>Phone:</strong> {accessory.phone_number}
+          <strong>Phone:</strong> {accessory.title}
         </p>
         <p className="mb-2 text-lg">
           <strong>Price:</strong> ${accessory.price}

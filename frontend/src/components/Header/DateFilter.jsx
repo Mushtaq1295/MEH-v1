@@ -37,7 +37,7 @@ const DateFilter = () => {
           </div>
 
           <button
-            type="submit"
+            // type="submit"
             className="w-full text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out focus:ring-4 focus:ring-blue-300 font-semibold rounded-lg text-lg px-6 py-3 shadow-lg transform hover:scale-105 cursor-pointer"
           >
             Search
