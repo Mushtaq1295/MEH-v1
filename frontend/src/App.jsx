@@ -1,3 +1,4 @@
+
 import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
@@ -24,13 +25,25 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 
+// Protected Route Component
+const PrivateRoute = ({ element }) => {
+  const { currentUser } = useContext(AuthContext);
+  return currentUser ? element : <Navigate to="/login" />;
+};
 
+// Navbar Visibility Control
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const hideNavbar = ["/login", "/register"].includes(location.pathname);
+  return (
+    <>
+      {!hideNavbar && <Navbar />}
+      {children}
+    </>
+  );
+};
 
 const App = () => {
-  
-  // const { currentUser } = useContext(AuthContext);
-  
-
   return (
     <EnginesProvider>
       <AccessoriesProvider>
