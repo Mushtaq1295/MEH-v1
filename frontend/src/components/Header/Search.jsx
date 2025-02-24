@@ -30,7 +30,7 @@ const Search = () => {
   };
 
   return (
-    <div className="relative w-full max-w-xs md:max-w-sm">
+    <div className="relative w-full max-w-xs md:max-w-sm pl-3 pr-2">
       <div className="relative">
         <input
           type="text"
