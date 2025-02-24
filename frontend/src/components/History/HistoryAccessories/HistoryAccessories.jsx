@@ -3,9 +3,10 @@ import HistoryAccessCard from "./HistoryAccessCard";
 
 const HistoryAccessories = () => {
   const [accessories, setAccessories] = useState([]);
+  const backend_url = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
-    fetch("http://localhost:8080/history/accessories")
+    fetch(`${backend_url}/history/accessories`)
       .then((res) => res.json())
       .then((data) => setAccessories(data))
       .catch((err) => console.error(err));

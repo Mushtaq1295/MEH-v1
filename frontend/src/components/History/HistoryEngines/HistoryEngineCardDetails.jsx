@@ -1,89 +1,88 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
-const HistoryEngineCardDetails = ({ engine, exchangeData }) => {
+const HistoryEngineCardDetails = () => {
+  const location = useLocation();
+  const { engine } = location.state || {};
+
+  if (!engine) {
+    return (
+      <div className="text-white text-center mt-10">
+        No engine details available.
+      </div>
+    );
+  }
+
   return (
     <>
       <h3 className="text-white text-center text-2xl font-semibold mt-5 ml-4 sm:text-xl md:text-2xl lg:text-3xl">
-        Details of
-        {/* {accessory.title.charAt(0).toUpperCase() + accessory.title.slice(1).replace("-", " ")} */}
+        Details of {engine.customer_name}
       </h3>
 
       <div className="mt-2 w-full max-w-4xl mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-start dark:bg-gray-900 shadow-lg rounded-lg p-4 shadow-gray-600">
           <img
             className="w-full lg:w-[60%] aspect-[4/3] object-cover rounded-lg"
-            src="https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475227/public/Engines-pics/AshokLeyland/mbcxrmt5qty3zgv6rbeu.webp"
-            // src={accessory.image_url}
-            // alt={accessory.title}
+            src={
+              engine.image_url ||
+              "https://via.placeholder.com/400x300?text=No+Image"
+            }
+            alt="Engine"
           />
           <div className="mt-4 lg:mt-0 lg:ml-7 flex-1">
             <ul className="space-y-4 text-lg sm:text-base md:text-xl text-white">
               <li>
-                <strong className="text-lg">Date of Sold: DD/MMMM/YYYY</strong>
+                <strong className="text-lg">Date of Sold:</strong>{" "}
+                {engine.createdAt &&
+                  new Date(engine.createdAt).toLocaleDateString()}
               </li>
               <li>
-                <strong className="text-lg">Title: </strong>
-                {/* {engine.title.replace("-", " ")} */}
+                <strong className="text-lg">Customer Name:</strong>{" "}
+                {engine.customer_name}
               </li>
               <li>
-                <strong className="text-lg">Sold To (Customer Name) : </strong>
-                {/* {engine.available} */}
+                <strong className="text-lg">Phone Number:</strong>{" "}
+                {engine.phone_number}
               </li>
               <li>
-                <strong className="text-lg">Phone Number : </strong>
-                {/* {engine.available} */}
+                <strong className="text-lg">Quantity:</strong>{" "}
+                {engine.available}
               </li>
               <li>
-                <strong className="text-lg">Quantity : </strong>
-                {/* ₹ {engine.price} */}
+                <strong className="text-lg">Pay Mode:</strong> {engine.pay_mode}
               </li>
               <li>
-                <strong className="text-lg">Pay Mode : </strong>
-                {/* ₹ {engine.price} */}
+                <strong className="text-lg">Sold Price:</strong> ₹{engine.price}
               </li>
-              <li>
-                <strong className="text-lg">Sold Price : </strong>
-                {/* ₹ {engine.price} */}
-              </li>
-
-              {/* Exchange Option (Conditional Rendering) */}
-              {exchangeData?.exchange === "yes" && (
+              {/* If exchange is true and additional exchange-related fields exist, display them */}
+              {engine.exchange && (
                 <>
                   <li>
-                    <strong className="text-lg">Exchange Category : </strong>
-                    {/* {exchangeData.category} */}
+                    <strong className="text-lg">Exchange:</strong> Yes
                   </li>
-
-                  {exchangeData.category === "Accessories" ? (
+                  {engine.category && (
                     <li>
-                      <strong className="text-lg">Accessory Name : </strong>
-                      {/* {exchangeData.name} */}
+                      <strong className="text-lg">Exchange Category:</strong>{" "}
+                      {engine.category}
                     </li>
-                  ) : (
-                    exchangeData.category === "Engines" && (
-                      <>
-                        <li>
-                          <strong className="text-lg">Engine Name : </strong>
-                          {/* {exchangeData.name} */}
-                        </li>
-                        <li>
-                          <strong className="text-lg">Engine Brand : </strong>
-                          {/* {exchangeData.brand} */}
-                        </li>
-                        <li>
-                          <strong className="text-lg">Model : </strong>
-                          {/* {exchangeData.model} */}
-                        </li>
-                        <li>
-                          <strong className="text-lg">Image : </strong>
-                          <img
-                            // src={exchangeData.image_url}
-                            // alt={exchangeData.name}
-                            className="w-32 h-32 object-cover"
-                          />
-                        </li>
-                      </>
-                    )
+                  )}
+                  {engine.category === "Accessories" && engine.item_name && (
+                    <li>
+                      <strong className="text-lg">Accessory Name:</strong>{" "}
+                      {engine.item_name}
+                    </li>
+                  )}
+                  {engine.category === "Engines" && (
+                    <>
+                      <li>
+                        <strong className="text-lg">Engine Brand:</strong>{" "}
+                        {engine.engine_brand}
+                      </li>
+                      <li>
+                        <strong className="text-lg">Model:</strong>{" "}
+                        {engine.model}
+                      </li>
+                    </>
                   )}
                 </>
               )}
