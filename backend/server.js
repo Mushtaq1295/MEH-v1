@@ -12,6 +12,7 @@ const User = require("./models/User");
 const Accessory = require("./models/accessoryModel");
 const Engine = require("./models/engineModel");
 const CheckoutAccessory = require("./models/checkoutAccessoryModel");
+const CheckoutEngine = require("./models/checkoutEngineModel");
 
 const port = process.env.PORT;
 const db_url = process.env.ATLAS_DB_URL;
@@ -98,17 +99,89 @@ app.post("/accessories/:id", async (req, res) => {
       accessory_id: req.params.id,
       ...req.body,
     }).save();
-    res
-      .status(201)
-      .json({
-        success: true,
-        accessory: updateAccessory,
-        message: "Checkout successful",
-      });
+    res.status(201).json({
+      success: true,
+      accessory: updateAccessory,
+      message: "Checkout successful",
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
+
+app.post("/engines/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      customer_name,
+      phone_number,
+      available, // quantity to checkout
+      exchange,
+      category,
+      engine_brand,
+      image_url,
+      model,
+      item_name, // only required if category is "Accessories"
+      pay_mode,
+      price,
+    } = req.body;
+
+    // Validate common required fields
+    if (!customer_name || !phone_number || !available || !pay_mode || !price) {
+      return res
+        .status(400)
+        .json({ success: false, message: "All fields are required" });
+    }
+
+    // Update the engine's availability by decrementing the available quantity
+    const updatedEngine = await Engine.findByIdAndUpdate(
+      id,
+      { $inc: { available: -available } },
+      { new: true }
+    );
+
+    if (!updatedEngine) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Engine not found" });
+    }
+
+    // Create a new checkout record for the engine.
+    // The CheckoutEngine schema will handle conditional required fields based on exchange and category.
+    await new CheckoutEngine({
+      customer_name,
+      phone_number,
+      available,
+      exchange,
+      category,
+      engine_brand,
+      image_url,
+      model,
+      item_name,
+      pay_mode,
+      price,
+      // Optionally, if you want a custom field for engine reference, you can add:
+      engine_id: id,
+    }).save();
+
+    res.status(201).json({
+      success: true,
+      engine: updatedEngine,
+      message: "Engine checkout successful",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+app.get("/history/accessories", async (req, res) =>
+  res.json(await CheckoutAccessory.find())
+);
+
+app.get("/history/engines", async (req, res) =>
+  res.json(await CheckoutEngine.find())
+);
 
 // Authentication Middleware
 const verifyToken = (req, res, next) => {
@@ -149,7 +222,7 @@ app.post("/api/login", async (req, res) => {
       return res.status(400).json({ error: "Invalid credentials" });
     }
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "24h",
     });
     res.json({
       message: "Login successful",
