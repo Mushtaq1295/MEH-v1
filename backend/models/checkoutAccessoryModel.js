@@ -11,7 +11,7 @@ const checkoutAccessorySchema = new mongoose.Schema(
       required: true,
     },
     price: { type: Number, required: true },
-    accessory: { type: mongoose.Schema.Types.ObjectId, ref: "Accessory", required: true }, // Reference to Accessory
+    // accessory: { type: mongoose.Schema.Types.ObjectId, ref: "Accessory", required: true }, // Reference to Accessory
   },
   { timestamps: true }
 );

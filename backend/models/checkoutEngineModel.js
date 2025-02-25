@@ -51,7 +51,7 @@ const checkoutEngineSchema = new mongoose.Schema(
       required: true,
     },
     price: { type: Number, required: true },
-    engine: {type: mongoose.Schema.Types.ObjectId, ref:"Engine",required:true},
+    // engine: {type: mongoose.Schema.Types.ObjectId, ref:"Engine",required:true},
   },
   { timestamps: true }
 );
