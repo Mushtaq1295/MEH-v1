@@ -183,6 +183,37 @@ app.get("/history/engines", async (req, res) =>
   res.json(await CheckoutEngine.find())
 );
 
+// Delete Engine by ID
+app.delete("/engines/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deletedEngine = await Engine.findByIdAndDelete(id);
+    if (!deletedEngine) {
+      return res.status(404).json({ success: false, message: "Engine not found" });
+    }
+    res.status(200).json({ success: true, message: "Engine deleted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+// Delete Accessory by ID
+app.delete("/accessories/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deletedAccessory = await Accessory.findByIdAndDelete(id);
+    if (!deletedAccessory) {
+      return res.status(404).json({ success: false, message: "Accessory not found" });
+    }
+    res.status(200).json({ success: true, message: "Accessory deleted" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+
 // Authentication Middleware
 const verifyToken = (req, res, next) => {
   const token = req.header("Authorization");

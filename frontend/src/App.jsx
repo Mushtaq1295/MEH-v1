@@ -24,6 +24,8 @@ import { AuthContext } from "./contexts/AuthContext";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
+import HistoryAccessCardDetails from "./components/History/HistoryAccessories/HistoryAccessCardDetails";
+import HistoryEngineCardDetails from "./components/History/HistoryEngines/HistoryEngineCardDetails";
 
 // Protected Route Component
 const PrivateRoute = ({ element }) => {
@@ -67,15 +69,16 @@ const App = () => {
               <Route path="/login" element={<Login />} /> */}
 
               {/* Protected Routes */}
+              //Engines
               <Route
                 path="/engines/:brand"
                 // element={<PrivateRoute element={<EnginesList />} />}
                 element={<EnginesList />}
               />
-              <Route
-                path="/engines/:brand/:id/enginecheckout"
-                // element={<PrivateRoute element={<EngineCheckoutForm />} />}
-                element={<EngineCheckoutForm />}
+               <Route
+                path="/engines/:brand/:id"
+                // element={<PrivateRoute element={<EngineCardDetails />} />}
+                element={<EngineCardDetails />}
               />
               <Route
                 path="/engines/:brand/:id/engineedit"
@@ -83,11 +86,25 @@ const App = () => {
                 element={<EngineEditForm />}
               />
               <Route
-                path="/engines/:brand/:id"
-                // element={<PrivateRoute element={<EngineCardDetails />} />}
-                element={<EngineCardDetails />}
+                path="/engines/:brand/:id/enginecheckout"
+                // element={<PrivateRoute element={<EngineCheckoutForm />} />}
+                element={<EngineCheckoutForm />}
               />
+              <Route
+                path="/history/engines/:id"
+                // element={<PrivateRoute element={<EngineHistory />} />}
+                element={<HistoryEngineCardDetails/>}
+              />
+              
+             
 
+
+              //Accessories
+              <Route
+                path="/accessories/:id"
+                // element={<PrivateRoute element={<AccessCardDetails />} />}
+                element={<AccessCardDetails />}
+              />
               <Route
                 path="/accessories/:id/accessedit"
                 // element={<PrivateRoute element={<AccessEditForm />} />}
@@ -98,22 +115,24 @@ const App = () => {
                 // element={<PrivateRoute element={<AccessCheckoutForm />} />}
                 element={<AccessCheckoutForm />} 
               />
-              <Route
-                path="/accessories/:id"
-                // element={<PrivateRoute element={<AccessCardDetails />} />}
-                element={<AccessCardDetails />}
+               <Route
+                path="/history"
+                // element={<PrivateRoute element={<HistoryAllCards />} />}
+                element={<HistoryAllCards />}
               />
+              <Route
+                 path="/history/accessories/:id"
+                 // element={<PrivateRoute element={<HistoryAccessCardDetails />} />}
+                 element={<HistoryAccessCardDetails/>}
+              />
+
 
               <Route
                 path="/history/datefilter"
                 // element={<PrivateRoute element={<DateFilter />} />}
                 element={<DateFilter />}
               />
-              <Route
-                path="/history"
-                // element={<PrivateRoute element={<HistoryAllCards />} />}
-                element={<HistoryAllCards />}
-              />
+             
             </Routes>
           </Layout>
         </Router>

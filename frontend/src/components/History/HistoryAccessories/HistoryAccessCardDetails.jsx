@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const HistoryAccessCardDetails = () => {
   const location = useLocation();
@@ -8,6 +9,18 @@ const HistoryAccessCardDetails = () => {
   if (!accessory) {
     return <div>No accessory details available</div>;
   }
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`http://localhost:5173/accessories/${accessory._id}`);
+      if (response.data.success) {
+        alert("Accessory deleted successfully!");
+        navigate("/history"); // Redirect after deletion
+      }
+    } catch (error) {
+      console.error("Error deleting accessory:", error);
+      alert("Failed to delete accessory.");
+    }
+  };
 
   return (
     <>
@@ -51,6 +64,15 @@ const HistoryAccessCardDetails = () => {
                 {accessory.price}
               </li>
             </ul>
+            <div className="mt-6 flex space-x-2">
+            <NavLink
+              onClick={handleDelete}
+              className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+              Delete
+            </NavLink>
+             
+            </div>
           </div>
         </div>
       </div>
