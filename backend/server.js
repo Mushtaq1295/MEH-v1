@@ -184,10 +184,10 @@ app.get("/history/engines", async (req, res) =>
 );
 
 // Delete Engine by ID
-app.delete("/engines/:id", async (req, res) => {
+app.delete("/history/engines/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const deletedEngine = await Engine.findByIdAndDelete(id);
+    const deletedEngine = await CheckoutEngine.findByIdAndDelete(id);
     if (!deletedEngine) {
       return res.status(404).json({ success: false, message: "Engine not found" });
     }
@@ -199,10 +199,10 @@ app.delete("/engines/:id", async (req, res) => {
 });
 
 // Delete Accessory by ID
-app.delete("/accessories/:id", async (req, res) => {
+app.delete("/history/accessories/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const deletedAccessory = await Accessory.findByIdAndDelete(id);
+    const deletedAccessory = await CheckoutAccessory.findByIdAndDelete(id);
     if (!deletedAccessory) {
       return res.status(404).json({ success: false, message: "Accessory not found" });
     }

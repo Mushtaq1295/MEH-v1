@@ -21,6 +21,24 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/logout", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      // Clear user data on logout
+      setCurrentUser(null);
+      setToken(null);
+      localStorage.removeItem("token"); // Ensure token is removed from storage
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
     <nav className="top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-gray-900 sticky shadow-gray-600">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4 md:flex-nowrap">
@@ -95,6 +113,7 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/logout"
+                onClick={handleLogout}
                 className="block py-2 px-3 text-blue-700 dark:text-blue-500"
               >
                 Logout

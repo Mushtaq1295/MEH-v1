@@ -1,6 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const HistoryEngineCardDetails = () => {
   const location = useLocation();
@@ -15,10 +17,10 @@ const HistoryEngineCardDetails = () => {
   }
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:5000/engines/${engine._id}`);
+      const response = await axios.delete(`http://localhost:8080/history/engines/${engine._id}`);
       if (response.data.success) {
         alert("Engine deleted successfully!");
-        navigate("/history"); // Redirect after deletion
+        Navigate("/history"); // Redirect after deletion
       }
     } catch (error) {
       console.error("Error deleting engine:", error);

@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const HistoryAccessCardDetails = () => {
   const location = useLocation();
@@ -11,7 +12,7 @@ const HistoryAccessCardDetails = () => {
   }
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:5173/accessories/${accessory._id}`);
+      const response = await axios.delete(`http://localhost:8080/history/accessories/${accessory._id}`);
       if (response.data.success) {
         alert("Accessory deleted successfully!");
         navigate("/history"); // Redirect after deletion
