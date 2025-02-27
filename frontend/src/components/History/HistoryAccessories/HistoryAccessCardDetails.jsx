@@ -45,6 +45,10 @@ const HistoryAccessCardDetails = () => {
                   : "DD/MMMM/YYYY"}
               </li>
               <li>
+                <strong className="text-lg">Title: </strong>
+                {}
+              </li>
+              <li>
                 <strong className="text-lg">Customer Name: </strong>
                 {accessory.customer_name}
               </li>

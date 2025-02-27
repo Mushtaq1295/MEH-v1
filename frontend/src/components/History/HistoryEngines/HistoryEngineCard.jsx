@@ -26,7 +26,7 @@ const HistoryEngineCard = ({ engine }) => {
           <strong>Customer:</strong> {engine.customer_name}
         </p>
         <p className="mb-2 text-lg">
-          <strong>Phone:</strong> {engine.phone_number}
+          <strong>Title:</strong> {}
         </p>
         <p className="mb-2 text-lg">
           <strong>Price:</strong> ₹{engine.price}

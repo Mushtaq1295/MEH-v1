@@ -54,6 +54,10 @@ const HistoryEngineCardDetails = () => {
                   new Date(engine.createdAt).toLocaleDateString()}
               </li>
               <li>
+                <strong className="text-lg">Title: </strong>
+                {}
+              </li>
+              <li>
                 <strong className="text-lg">Customer Name:</strong>{" "}
                 {engine.customer_name}
               </li>
