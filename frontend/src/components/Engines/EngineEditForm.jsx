@@ -57,7 +57,6 @@ const EngineEditForm = () => {
           engine._id === id ? response.data : engine
         )
       );
-      console.log("Updated successfully and ready to++++++++++");
       navigate(-1);
     } catch (error) {
       console.error("Error updating engine:", error);

@@ -21,7 +21,7 @@ const EditForm = () => {
   });
   const backend_url = import.meta.env.VITE_BACKEND_URL;
   const { id } = useParams();
-  const { setEngines } = useEngines();
+  const { engines,setEngines } = useEngines();
   const [error, setError] = useState("");
 
   const handleIncrement = () => {
@@ -56,7 +56,7 @@ const EditForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
     const payload = {
       customer_name: formData.customerName,
@@ -85,12 +85,25 @@ const EditForm = () => {
           },
         }
       );
-
+    
+      // Find available quantity once
+      const engine = engines.find(engine => engine._id === id);
+      const availableQuantity = engine ? engine.available : 0;
+    
+      if (availableQuantity < formData.quantity) {
+        toast.warning(`Only ${availableQuantity} available`);
+        return;
+      }
+    
       if (data.success) {
         toast.success("Engine checkout successful!");
-        setEngines((prevEngine) =>
-          prevEngine.map((engine) => (engine._id === id ? data.engine : engine))
+        
+        setEngines((prevEngines) =>
+          prevEngines.map((engine) => 
+            engine._id === id ? data.engine : engine
+          )
         );
+    
         navigate(-1);
       } else {
         toast.error(`Checkout error: ${data.message}`);
@@ -99,7 +112,7 @@ const EditForm = () => {
       toast.error("Internal server error");
       console.error("Internal server error:", error);
     }
-  };
+};  
 
   return (
     <section className="min-h-screen bg-blue-600 dark:bg-gray-900">
@@ -406,6 +419,7 @@ const EditForm = () => {
               <button
                 type="submit"
                 className="w-full text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-xl text-base px-6 py-3 text-center shadow-lg transform hover:scale-105 cursor-pointer"
+                // onClick={handleCheckout}
               >
                 Checkout
               </button>

@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
 import { useEngines } from "../../contexts/EnginesContext";
-import { useParams } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import { NavLink, useLocation } from 'react-router-dom';
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const EngineCardDetails = () => {
   const { category, id } = useParams(); // Get engine ID & category from URL
   const { engines } = useEngines(); // Get all engine products from context
   const [engine, setEngine] = useState(null);
 
+  const navigate = useNavigate();
+
+  
   // Fetch the engine data when ID changes
   useEffect(() => {
     const selectedEngine = engines.find((item) => item._id === id);
@@ -18,6 +22,16 @@ const EngineCardDetails = () => {
   if (!engine) {
     return <div className="text-white text-center mt-5">No engine data found.</div>;
   }
+
+  const handleCheckout = () =>{
+    const availableQuantity = engine.available;
+    if(availableQuantity <= 0){
+      toast.warning(`only ${availableQuantity} available`);
+      return
+    }
+    navigate(`/engines/${engine}/${engine._id}/enginecheckout`)
+  }
+
 
   return (
     <div>
@@ -48,12 +62,13 @@ const EngineCardDetails = () => {
         >
           Edit
         </NavLink>
-        <NavLink
-          to={`/engines/${engine}/${engine._id}/enginecheckout`}
+        <button
+          // to={`/engines/${engine}/${engine._id}/enginecheckout`}
           className="px-4 py-2 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm md:text-base"
+          onClick={handleCheckout}
         >
           Checkout
-        </NavLink>
+        </button>
       </div>
           </div>
         </div>

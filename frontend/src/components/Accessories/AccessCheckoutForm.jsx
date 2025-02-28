@@ -18,6 +18,11 @@ const AccessCheckoutForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const findAvailableById = (id) => {
+    const item = accessories.find(accessory => accessory._id === id);
+    return item ? item.available : 'ID not found';
+  };
+  
   const handleIncrement = () => {
     setQuantity((prev) => prev + 1);
   };
@@ -29,7 +34,11 @@ const AccessCheckoutForm = () => {
   };
 
   const handleCheckout = async () => {
-    if (!customerName || !phone || !payMode || !price) {
+    if(findAvailableById(id) < quantity){
+      toast.warning(`only ${findAvailableById(id)} available`);
+      return;
+    }
+    else if (!customerName || !phone || !payMode || !price) {
       toast.warning("Please fill all fields!");
       return;
     }
@@ -41,7 +50,9 @@ const AccessCheckoutForm = () => {
         available: quantity,
         pay_mode: payMode,
         price: price,
+        
       });
+
 
       setAccessories((prevAccessories) =>
         prevAccessories.map((accessory) =>

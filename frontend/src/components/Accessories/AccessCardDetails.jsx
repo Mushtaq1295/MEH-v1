@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { useNavigate, NavLink, useParams } from "react-router-dom";
 import { useAccessories } from "../../contexts/AccessoriesContext";
+import { toast } from "react-toastify";
+
 
 const AccessCardDetails = () => {
   const { id } = useParams(); // Get accessory ID from URL
   const { accessories } = useAccessories(); // Get accessories data from context
+  const navigate = useNavigate(); // Correct way to navigate
   
   // Find the accessory with the matching ID
   const accessory = accessories.find((item) => item._id === id);
@@ -12,9 +15,18 @@ const AccessCardDetails = () => {
   if (!accessory) {
     return <div className="text-white text-center mt-5">No accessory data found.</div>;
   }
-  
 
+ 
+  const handleCheckout =  () => {
+    const availableQuantity = accessory.available;
+    if(availableQuantity <= 0){
+      toast.warning(`Only ${availableQuantity} available`);
+      return;
+    }
 
+    navigate(`/accessories/${accessory._id}/accesscheckout`); // Corrected navigation
+  };
+      
   return (
     <>
       <h3 className="text-white text-center text-2xl font-semibold mt-5 ml-4 sm:text-xl md:texcet-2xl lg:text-3xl">
@@ -50,13 +62,12 @@ const AccessCardDetails = () => {
               >
                 Edit
               </NavLink>
-              <NavLink
-                to={`/accessories/${accessory._id}/accesscheckout`}
+              <button
                 className="px-4 py-2 text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm md:text-base"
-                
+                onClick={handleCheckout}
               >
                 Checkout
-              </NavLink>
+              </button>
             </div>
           </div>
         </div>
