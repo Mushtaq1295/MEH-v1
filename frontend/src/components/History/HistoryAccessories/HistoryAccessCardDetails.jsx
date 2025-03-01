@@ -65,7 +65,7 @@ const HistoryAccessCardDetails = () => {
                 {accessory.pay_mode}
               </li>
               <li>
-                <strong className="text-lg">Sold Price: </strong>$
+                <strong className="text-lg">Sold Price: </strong>₹
                 {accessory.price}
               </li>
             </ul>

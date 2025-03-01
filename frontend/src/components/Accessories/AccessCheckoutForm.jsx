@@ -18,27 +18,22 @@ const AccessCheckoutForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const findAvailableById = (id) => {
-    const item = accessories.find(accessory => accessory._id === id);
-    return item ? item.available : 'ID not found';
-  };
-  
-  const handleIncrement = () => {
-    setQuantity((prev) => prev + 1);
-  };
+  // Find available quantity
+  const accessory = accessories.find(accessory => accessory._id === id);
+  const availableQuantity = accessory ? accessory.available : 0;
 
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity((prev) => prev - 1);
-    }
-  };
+  // Handle quantity increment/decrement
+  const handleIncrement = () => setQuantity(prev => prev + 1);
+  const handleDecrement = () => quantity > 1 && setQuantity(prev => prev - 1);
+
 
   const handleCheckout = async () => {
-    if(findAvailableById(id) < quantity){
-      toast.warning(`only ${findAvailableById(id)} available`);
+    if (availableQuantity < quantity) {
+      toast.warning(`Only ${availableQuantity} available`);
       return;
-    }
-    else if (!customerName || !phone || !payMode || !price) {
+    } 
+    
+    if (!customerName || !phone || !payMode || !price) {
       toast.warning("Please fill all fields!");
       return;
     }
@@ -62,10 +57,9 @@ const AccessCheckoutForm = () => {
 
       if (response.data.success) {
         toast.success("Checkout successful!");
-        navigate(-1);
+        navigate(-1);      
       }
 
-      console.log(response.data);
     } catch (e) {
       toast.error("Checkout failed! Please try again.");
       console.error("ERROR", e);
