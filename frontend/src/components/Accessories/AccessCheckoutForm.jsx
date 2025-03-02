@@ -29,7 +29,7 @@ const AccessCheckoutForm = () => {
 
   const handleCheckout = async () => {
     if (availableQuantity < quantity) {
-      toast.warning(`Only ${availableQuantity} available`);
+      toast.warning(`Insufficient stock. Only ${availableQuantity} available`);
       return;
     } 
     

@@ -91,7 +91,7 @@ const EditForm = () => {
       const availableQuantity = engine ? engine.available : 0;
     
       if (availableQuantity < formData.quantity) {
-        toast.warning(`Only ${availableQuantity} available`);
+        toast.warning(`Insufficient stock. Only ${availableQuantity} available`);
         return;
       }
     

@@ -20,7 +20,7 @@ const AccessCardDetails = () => {
   const handleCheckout =  () => {
     const availableQuantity = accessory.available;
     if(availableQuantity <= 0){
-      toast.warning(`Only ${availableQuantity} available`);
+      toast.warning(`Insufficient stock. Only ${availableQuantity} available`);
       return;
     }
 

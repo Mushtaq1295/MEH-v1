@@ -19,13 +19,7 @@ const db_url = process.env.ATLAS_DB_URL;
 const app = express();
 
 // Middleware
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -68,6 +62,7 @@ app.put("/engines/:id", async (req, res) => {
   }
 });
 
+// Checkout for accessoried
 app.post("/accessories/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -77,6 +72,15 @@ app.post("/accessories/:id", async (req, res) => {
       return res
         .status(400)
         .json({ success: false, message: "All fields are required" });
+    }
+
+    const accessory = await Accessory.findById(id);
+
+    if (accessory.available < avail) {
+      return res.status(400).json({
+        success: "false",
+        message: `Insufficient Stock. Only ${accessory.available} left`,
+      });
     }
     const updateAccessory = await Accessory.findByIdAndUpdate(
       id,
@@ -102,13 +106,14 @@ app.post("/accessories/:id", async (req, res) => {
     res.status(201).json({
       success: true,
       accessory: updateAccessory,
-      message: "Checkout successful",
+      message: "Accessory Checkout successful",
     });
   } catch (error) {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
 
+// Checkout for engines
 app.post("/engines/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -133,6 +138,14 @@ app.post("/engines/:id", async (req, res) => {
         .json({ success: false, message: "All fields are required" });
     }
 
+    const engine = await Engine.findById(id);
+
+    if (engine.available < available) {
+      return res.status(400).json({
+        success: "false",
+        message: `Insufficient Stock. Only ${engine.available} left`,
+      });
+    }
     // Update the engine's availability by decrementing the available quantity
     const updatedEngine = await Engine.findByIdAndUpdate(
       id,
@@ -189,7 +202,9 @@ app.delete("/history/engines/:id", async (req, res) => {
     const id = req.params.id;
     const deletedEngine = await CheckoutEngine.findByIdAndDelete(id);
     if (!deletedEngine) {
-      return res.status(404).json({ success: false, message: "Engine not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Engine not found" });
     }
     res.status(200).json({ success: true, message: "Engine deleted" });
   } catch (error) {
@@ -204,7 +219,9 @@ app.delete("/history/accessories/:id", async (req, res) => {
     const id = req.params.id;
     const deletedAccessory = await CheckoutAccessory.findByIdAndDelete(id);
     if (!deletedAccessory) {
-      return res.status(404).json({ success: false, message: "Accessory not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Accessory not found" });
     }
     res.status(200).json({ success: true, message: "Accessory deleted" });
   } catch (error) {
@@ -212,7 +229,6 @@ app.delete("/history/accessories/:id", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
-
 
 // Authentication Middleware
 const verifyToken = (req, res, next) => {

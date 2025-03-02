@@ -26,7 +26,7 @@ const EngineCardDetails = () => {
   const handleCheckout = () =>{
     const availableQuantity = engine.available;
     if(availableQuantity <= 0){
-      toast.warning(`only ${availableQuantity} available`);
+      toast.warning(`Insufficient stock.${availableQuantity} available`);
       return
     }
     navigate(`/engines/${engine}/${engine._id}/enginecheckout`)

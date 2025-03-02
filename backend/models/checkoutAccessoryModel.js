@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const checkoutAccessorySchema = new mongoose.Schema(
   {
+    title: { type: String, required: true },
+    image: { type: String },
     customer_name: { type: String, required: true },
     phone_number: { type: Number, required: true },
     available: { type: Number, required: true }, // Quantity
@@ -16,5 +18,8 @@ const checkoutAccessorySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const CheckoutAccessory = mongoose.model("CheckoutAccessory", checkoutAccessorySchema);
+const CheckoutAccessory = mongoose.model(
+  "CheckoutAccessory",
+  checkoutAccessorySchema
+);
 module.exports = CheckoutAccessory;
