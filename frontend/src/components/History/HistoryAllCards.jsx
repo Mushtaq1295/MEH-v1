@@ -27,25 +27,41 @@ const HistoryAllCards = () => {
   //     return total + (item.price || 0); // Ensure `price` is valid
   //   }, 0);
   // };
+  let total = 100000;
   
   return (
-    <>
-    <h4 className="ml-6 mt-3 text-3xl font-bold  text-white">Total </h4>
-      <div className="flex flex-row justify-between items-center m-6">
-      <h1 className="text-3xl font-bold  text-white">Engines </h1>  
-      <NavLink
-        className="cursor-pointer text-3xl text-white fa-solid fa-calendar"
-        to="/history/datefilter"
+    <div className="p-4">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row justify-between items-center m-4 gap-2">
+        <h4 className="text-xl sm:text-3xl font-bold text-white">
+          Total: {total.toLocaleString('en-IN')}
+        </h4>
+        <NavLink
+          className="cursor-pointer text-2xl sm:text-3xl mt-3 text-white fa-solid fa-calendar"
+          to="/history/datefilter"
         />
       </div>
-        <HistoryEngines/>
-        
-      <h1 className="text-3xl font-bold m-6 text-white">Accessories</h1>
-      <HistoryAccessories/>
 
+      {/* Engines Section */}
+      <div className="flex flex-col md:flex-row justify-between items-center m-4 gap-2">
+        <h1 className="text-lg sm:text-2xl font-bold text-white">Engines</h1>
+        <h4 className="text-sm sm:text-lg font-bold text-white">
+          Total: {total.toLocaleString('en-IN')}
+        </h4>
+      </div>
+      <HistoryEngines />
 
-    </>
+      {/* Accessories Section */}
+      <div className="flex flex-col md:flex-row justify-between items-center m-4 gap-2">
+        <h1 className="text-lg sm:text-2xl font-bold text-white">Accessories</h1>
+        <h4 className="text-sm sm:text-lg font-bold text-white">
+          Total: {total.toLocaleString('en-IN')}
+        </h4>
+      </div>
+      <HistoryAccessories />
+    </div>
   );
 };
+
 
 export default HistoryAllCards;

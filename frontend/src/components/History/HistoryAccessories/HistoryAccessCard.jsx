@@ -1,12 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAccessories } from "../../../contexts/AccessoriesContext";
+// import { useAccessories } from "../../contexts/AccessoriesContext";
 
 const HistoryAccessCard = ({ accessory }) => {
+  const {id} = useParams();
+  const { accessories } = useAccessories();
   const navigate = useNavigate();
 
+  
   const handleClick = () => {
     // Navigate to the details page and pass the accessory data
     navigate(`/history/accessories/${accessory._id}`, { state: { accessory } });
+
   };
 
   return (
@@ -21,10 +27,10 @@ const HistoryAccessCard = ({ accessory }) => {
       </p>
       <div className="p-2 mt-4 text-white">
         <p className="mb-2 text-lg">
-          <strong>Name:</strong> {accessory.customer_name}
+          <strong>Title:</strong> {}
         </p>
         <p className="mb-2 text-lg">
-          <strong>Title:</strong> {}
+          <strong>Name:</strong> {accessory.customer_name}
         </p>
         <p className="mb-2 text-lg">
           <strong>Price:</strong> ₹{accessory.price}

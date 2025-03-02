@@ -58,6 +58,14 @@ const HistoryEngineCardDetails = () => {
                 {}
               </li>
               <li>
+                <strong className="text-lg">Category: </strong>
+                {}
+              </li>
+              <li>
+                <strong className="text-lg">Model: </strong>
+                {}
+              </li>
+              <li>
                 <strong className="text-lg">Customer Name:</strong>{" "}
                 {engine.customer_name}
               </li>
