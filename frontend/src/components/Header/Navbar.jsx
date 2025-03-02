@@ -5,6 +5,7 @@ import Search from "./Search";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const menuRef = useRef(null);
   const dropdownRef = useRef(null);
 
   // Close dropdown when clicking outside
@@ -38,12 +39,29 @@ const Navbar = () => {
       console.error("Logout failed:", error);
     }
   };
+   // Close menu when clicking outside
+   useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-gray-900 sticky shadow-gray-600">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4 md:flex-nowrap">
         {/* Logo */}
         <NavLink to="/" className="text-2xl font-semibold dark:text-white">
+        {/* font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 drop-shadow-lg animate-pulse */}
           MEH
         </NavLink>
 
@@ -78,10 +96,12 @@ const Navbar = () => {
         </div>
         {/* Navbar Links */}
         <div
-          className={`items-center justify-between ${
-            isMenuOpen ? "block" : "hidden"
-          } w-full md:flex md:w-auto md:order-1`}
-        >
+  ref={menuRef}
+  className={`absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-900 shadow-md rounded-lg md:relative md:w-auto md:flex md:items-center md:space-x-8 ${
+    isMenuOpen ? "block" : "hidden"
+  }`}
+>
+
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900">
             {/* Home Link */}
             <li>
