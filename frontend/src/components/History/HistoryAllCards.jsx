@@ -27,20 +27,29 @@ const HistoryAllCards = () => {
   //     return total + (item.price || 0); // Ensure `price` is valid
   //   }, 0);
   // };
+  let total = 1000000;
   
   return (
     <>
-    <h4 className="ml-6 mt-3 text-3xl font-bold  text-white">Total </h4>
-      <div className="flex flex-row justify-between items-center m-6">
-      <h1 className="text-3xl font-bold  text-white">Engines </h1>  
+    <div className="flex flex-row justify-between items-center m-4">
+      <h4 className="mt-1 text-2xl font-bold  text-white">Total: {total.toLocaleString('en-IN')} </h4>
       <NavLink
         className="cursor-pointer text-3xl text-white fa-solid fa-calendar"
         to="/history/datefilter"
         />
       </div>
+      <div className="flex flex-row justify-between items-center m-5">
+      <h1 className="text-3xl font-bold  text-white">Engines </h1>  
+      <h4 className="text-[14px] font-bold  text-white">Total: {total.toLocaleString('en-IN')} </h4>
+      </div>
+      
+     
         <HistoryEngines/>
         
-      <h1 className="text-3xl font-bold m-6 text-white">Accessories</h1>
+        <div className="flex flex-row justify-between items-center m-4">
+      <h1 className="text-3xl font-bold  text-white">Accessories </h1>  
+      <h4 className="text-[14px] font-bold  text-white">Total: {total.toLocaleString('en-IN')} </h4>
+      </div>
       <HistoryAccessories/>
 
 

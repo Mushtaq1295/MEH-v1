@@ -23,10 +23,13 @@ const HistoryEngineCard = ({ engine }) => {
 
       <div className="p-2 mt-5 text-white">
         <p className="mb-2 text-lg">
-          <strong>Customer:</strong> {engine.customer_name}
+          <strong>Title:</strong> {}
+        </p>
+        <p className="mb-1 text-sm">
+          <h5>Category:</h5> {}
         </p>
         <p className="mb-2 text-lg">
-          <strong>Title:</strong> {}
+          <strong>Customer:</strong> {engine.customer_name}
         </p>
         <p className="mb-2 text-lg">
           <strong>Price:</strong> ₹{engine.price}
