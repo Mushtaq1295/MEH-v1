@@ -26,6 +26,7 @@ import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import HistoryAccessCardDetails from "./components/History/HistoryAccessories/HistoryAccessCardDetails";
 import HistoryEngineCardDetails from "./components/History/HistoryEngines/HistoryEngineCardDetails";
+import { HistoryAccessoriesProvider } from "./contexts/HistoryAccessoriesContext";
 
 // Protected Route Component
 const PrivateRoute = ({ element }) => {
@@ -47,7 +48,8 @@ const Layout = ({ children }) => {
 
 const App = () => {
   return (
-    <EnginesProvider>
+    <HistoryAccessoriesProvider>
+      <EnginesProvider>
       <AccessoriesProvider>
         <ToastContainer
           position="top-right"
@@ -138,6 +140,7 @@ const App = () => {
         </Router>
       </AccessoriesProvider>
     </EnginesProvider>
+    </HistoryAccessoriesProvider>
   );
 };
 
