@@ -1,4 +1,3 @@
-
 import React, { useContext } from "react";
 import {
   BrowserRouter as Router,
@@ -35,13 +34,15 @@ const PrivateRoute = ({ element }) => {
 };
 
 // Navbar Visibility Control
-const Layout = ({ children }) => {
+import { Outlet } from "react-router-dom";
+
+const Layout = () => {
   const location = useLocation();
   const hideNavbar = ["/login", "/register"].includes(location.pathname);
   return (
     <>
       {!hideNavbar && <Navbar />}
-      {children}
+      <Outlet /> {/* ✅ This ensures child routes are displayed */}
     </>
   );
 };
@@ -50,94 +51,65 @@ const App = () => {
   return (
     <HistoryAccessoriesProvider>
       <EnginesProvider>
-      <AccessoriesProvider>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
-        <Router>
-          <Layout>
+        <AccessoriesProvider>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            theme="colored"
+            pauseOnFocusLoss={false}
+            newestOnTop={true}
+          />
+          <Router>
             <Routes>
-              <Route path="/" element={<AllCards />} />
-              {/* <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} /> */}
+              <Route element={<Layout />}>
+                <Route path="/" element={<AllCards />} />
 
-              {/* Protected Routes */}
-              //Engines
-              <Route
-                path="/engines/:brand"
-                // element={<PrivateRoute element={<EnginesList />} />}
-                element={<EnginesList />}
-              />
-               <Route
-                path="/engines/:brand/:id"
-                // element={<PrivateRoute element={<EngineCardDetails />} />}
-                element={<EngineCardDetails />}
-              />
-              <Route
-                path="/engines/:brand/:id/engineedit"
-                // element={<PrivateRoute element={<EngineEditForm />} />}
-                element={<EngineEditForm />}
-              />
-              <Route
-                path="/engines/:brand/:id/enginecheckout"
-                // element={<PrivateRoute element={<EngineCheckoutForm />} />}
-                element={<EngineCheckoutForm />}
-              />
-              <Route
-                path="/history/engines/:id"
-                // element={<PrivateRoute element={<EngineHistory />} />}
-                element={<HistoryEngineCardDetails/>}
-              />
-              
-              //Accessories
-              <Route
-                path="/accessories/:id"
-                // element={<PrivateRoute element={<AccessCardDetails />} />}
-                element={<AccessCardDetails />}
-              />
-              <Route
-                path="/accessories/:id/accessedit"
-                // element={<PrivateRoute element={<AccessEditForm />} />}
-                element={<AccessEditForm />}
-              />
-              <Route
-                path="/accessories/:id/accesscheckout"
-                // element={<PrivateRoute element={<AccessCheckoutForm />} />}
-                element={<AccessCheckoutForm />} 
-              />
-              
-               <Route
-                path="/history"
-                // element={<PrivateRoute element={<HistoryAllCards />} />}
-                element={<HistoryAllCards />}
-              />
-              <Route
-                 path="/history/accessories/:id"
-                 // element={<PrivateRoute element={<HistoryAccessCardDetails />} />}
-                 element={<HistoryAccessCardDetails/>}
-              />
+                {/* Authentication Routes */}
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
 
+                {/* Engines Routes */}
+                <Route path="/engines">
+                  <Route path=":brand" element={<EnginesList />} />
+                  <Route path=":brand/:id" element={<EngineCardDetails />} />
+                  <Route
+                    path=":brand/:id/engineedit"
+                    element={<EngineEditForm />}
+                  />
+                  <Route
+                    path=":brand/:id/enginecheckout"
+                    element={<EngineCheckoutForm />}
+                  />
+                </Route>
 
-              <Route
-                path="/history/datefilter"
-                // element={<PrivateRoute element={<DateFilter />} />}
-                element={<DateFilter />}
-              />
-             
+                {/* Accessories Routes */}
+                <Route path="/accessories">
+                  <Route path=":id" element={<AccessCardDetails />} />
+                  <Route path=":id/accessedit" element={<AccessEditForm />} />
+                  <Route
+                    path=":id/accesscheckout"
+                    element={<AccessCheckoutForm />}
+                  />
+                </Route>
+
+                {/* History Routes */}
+                <Route path="/history">
+                  <Route path="" element={<HistoryAllCards />} />
+                  <Route
+                    path="engines/:id"
+                    element={<HistoryEngineCardDetails />}
+                  />
+                  <Route
+                    path="accessories/:id"
+                    element={<HistoryAccessCardDetails />}
+                  />
+                  <Route path="datefilter" element={<DateFilter />} />
+                </Route>
+              </Route>
             </Routes>
-          </Layout>
-        </Router>
-      </AccessoriesProvider>
-    </EnginesProvider>
+          </Router>
+        </AccessoriesProvider>
+      </EnginesProvider>
     </HistoryAccessoriesProvider>
   );
 };
