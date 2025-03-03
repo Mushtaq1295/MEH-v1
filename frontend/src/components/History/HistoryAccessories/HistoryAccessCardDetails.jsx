@@ -1,10 +1,11 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const HistoryAccessCardDetails = () => {
   const location = useLocation();
+  const navigate = useNavigate(); 
   const { accessory } = location.state || {};
 
   if (!accessory) {
@@ -12,7 +13,9 @@ const HistoryAccessCardDetails = () => {
   }
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`http://localhost:8080/history/accessories/${accessory._id}`);
+      const response = await axios.delete(
+        `import.meta.env.VITE_BACKEND_URL/history/accessories/${accessory._id}`
+      );
       if (response.data.success) {
         alert("Accessory deleted successfully!");
         navigate("/history"); // Redirect after deletion
@@ -70,13 +73,12 @@ const HistoryAccessCardDetails = () => {
               </li>
             </ul>
             <div className="mt-6 flex space-x-2">
-            <NavLink
-              onClick={handleDelete}
-              className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-            >
-              Delete
-            </NavLink>
-             
+              <NavLink
+                onClick={handleDelete}
+                className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+              >
+                Delete
+              </NavLink>
             </div>
           </div>
         </div>

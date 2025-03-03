@@ -19,20 +19,14 @@ const AccessCheckoutForm = () => {
   const [success, setSuccess] = useState("");
 
   // Find available quantity
-  const accessory = accessories.find(accessory => accessory._id === id);
+  const accessory = accessories.find((accessory) => accessory._id === id);
   const availableQuantity = accessory ? accessory.available : 0;
 
   // Handle quantity increment/decrement
-  const handleIncrement = () => setQuantity(prev => prev + 1);
-  const handleDecrement = () => quantity > 1 && setQuantity(prev => prev - 1);
-
+  const handleIncrement = () => setQuantity((prev) => prev + 1);
+  const handleDecrement = () => quantity > 1 && setQuantity((prev) => prev - 1);
 
   const handleCheckout = async () => {
-    if (availableQuantity < quantity) {
-      toast.warning(`Insufficient stock. Only ${availableQuantity} available`);
-      return;
-    } 
-    
     if (!customerName || !phone || !payMode || !price) {
       toast.warning("Please fill all fields!");
       return;
@@ -45,9 +39,7 @@ const AccessCheckoutForm = () => {
         available: quantity,
         pay_mode: payMode,
         price: price,
-        
       });
-
 
       setAccessories((prevAccessories) =>
         prevAccessories.map((accessory) =>
@@ -57,11 +49,12 @@ const AccessCheckoutForm = () => {
 
       if (response.data.success) {
         toast.success("Checkout successful!");
-        navigate(-1);      
+        navigate(-1);
       }
-
     } catch (e) {
-      toast.error("Checkout failed! Please try again.");
+      toast.error(
+        e.response.data.message || "Checkout failed! Please try again."
+      );
       console.error("ERROR", e);
     }
   };

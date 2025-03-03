@@ -76,7 +76,7 @@ app.post("/accessories/:id", async (req, res) => {
 
     const accessory = await Accessory.findById(id);
 
-    if (accessory.available < avail) {
+    if (accessory.available < available) {
       return res.status(400).json({
         success: "false",
         message: `Insufficient Stock. Only ${accessory.available} left`,
@@ -109,6 +109,7 @@ app.post("/accessories/:id", async (req, res) => {
       message: "Accessory Checkout successful",
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });

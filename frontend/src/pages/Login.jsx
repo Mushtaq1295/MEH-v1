@@ -12,18 +12,22 @@ const Login = () => {
 
   const { login } = useContext(AuthContext);
 
-
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent page reload
 
     try {
-      const response = await fetch("http://localhost:8080/api/login", { // ✅ Port updated to 8080
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `import.meta.env.VITE_BACKEND_URL/api/login`,
+        `import.meta.env.VITE_BACKEND_URL/api/login`,
+        {
+          // ✅ Port updated to 8080
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await response.json();
 
@@ -31,8 +35,7 @@ const Login = () => {
         localStorage.setItem("token", data.token);
         login(data.user, data.token); // Use the login function instead of setCurrentUser
         navigate("/");
-      }
-       else {
+      } else {
         setError(data.message || "Invalid credentials");
       }
     } catch (error) {
@@ -48,7 +51,8 @@ const Login = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Sign in to your account
             </h1>
-            {error && <p className="text-red-500">{error}</p>} {/* 🔴 Show error message */}
+            {error && <p className="text-red-500">{error}</p>}{" "}
+            {/* 🔴 Show error message */}
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
@@ -76,7 +80,7 @@ const Login = () => {
                   Password
                 </label>
                 <input
-                  type={showPassword ? "text" : "password"} 
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   id="password"
                   value={password}
@@ -106,7 +110,10 @@ const Login = () => {
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?{" "}
-                <NavLink to="/register" className="font-medium text-primary-600 hover:underline">
+                <NavLink
+                  to="/register"
+                  className="font-medium text-primary-600 hover:underline"
+                >
                   Sign Up
                 </NavLink>
               </p>

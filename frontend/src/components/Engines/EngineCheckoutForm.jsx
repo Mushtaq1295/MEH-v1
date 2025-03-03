@@ -21,7 +21,7 @@ const EditForm = () => {
   });
   const backend_url = import.meta.env.VITE_BACKEND_URL;
   const { id } = useParams();
-  const { engines,setEngines } = useEngines();
+  const { engines, setEngines } = useEngines();
   const [error, setError] = useState("");
 
   const handleIncrement = () => {
@@ -56,7 +56,7 @@ const EditForm = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
     const payload = {
       customer_name: formData.customerName,
@@ -85,34 +85,36 @@ const EditForm = () => {
           },
         }
       );
-    
+
       // Find available quantity once
-      const engine = engines.find(engine => engine._id === id);
+      const engine = engines.find((engine) => engine._id === id);
       const availableQuantity = engine ? engine.available : 0;
-    
+
       if (availableQuantity < formData.quantity) {
-        toast.warning(`Insufficient stock. Only ${availableQuantity} available`);
+        toast.warning(
+          `Insufficient stock. Only ${availableQuantity} available`
+        );
         return;
       }
-    
+
       if (data.success) {
         toast.success("Engine checkout successful!");
-        
+
         setEngines((prevEngines) =>
-          prevEngines.map((engine) => 
+          prevEngines.map((engine) =>
             engine._id === id ? data.engine : engine
           )
         );
-    
+
         navigate(-1);
       } else {
         toast.error(`Checkout error: ${data.message}`);
       }
     } catch (error) {
-      toast.error("Internal server error");
+      toast.error(error.response?.data.message || "Internal server error");
       console.error("Internal server error:", error);
     }
-};  
+  };
 
   return (
     <section className="min-h-screen bg-blue-600 dark:bg-gray-900">

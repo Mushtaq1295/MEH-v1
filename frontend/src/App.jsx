@@ -98,9 +98,6 @@ const App = () => {
                 element={<HistoryEngineCardDetails/>}
               />
               
-             
-
-
               //Accessories
               <Route
                 path="/accessories/:id"
@@ -117,6 +114,7 @@ const App = () => {
                 // element={<PrivateRoute element={<AccessCheckoutForm />} />}
                 element={<AccessCheckoutForm />} 
               />
+              
                <Route
                 path="/history"
                 // element={<PrivateRoute element={<HistoryAllCards />} />}

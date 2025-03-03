@@ -17,13 +17,16 @@ const Register = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `import.meta.env.VITE_BACKEND_URL/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
 
@@ -92,7 +95,10 @@ const Register = () => {
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{" "}
-                <NavLink to="/login" className="font-medium text-primary-600 hover:underline">
+                <NavLink
+                  to="/login"
+                  className="font-medium text-primary-600 hover:underline"
+                >
                   Sign in
                 </NavLink>
               </p>
