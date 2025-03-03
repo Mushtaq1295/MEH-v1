@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAccessories } from "../../contexts/AccessoriesContext";
@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 const AccessCheckoutForm = () => {
   const navigate = useNavigate();
   const backend_url = import.meta.env.VITE_BACKEND_URL;
-  const { accessories, setAccessories } = useAccessories();
+  const { accessories, setAccessories, getAccessoriesData } = useAccessories();
   const { id } = useParams();
   const [customerName, setCustomerName] = useState("");
   const [phone, setPhone] = useState("");
@@ -18,9 +18,15 @@ const AccessCheckoutForm = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  useEffect(() => {
+    if (!accessories.length) {
+      // Refetch accessories if empty
+      getAccessoriesData();
+    }
+  }, []);
+
   // Find available quantity
-  const accessory = accessories.find((accessory) => accessory._id === id);
-  const availableQuantity = accessory ? accessory.available : 0;
+  const accessory = accessories?.find((accessory) => accessory._id === id);
 
   // Handle quantity increment/decrement
   const handleIncrement = () => setQuantity((prev) => prev + 1);
@@ -32,8 +38,16 @@ const AccessCheckoutForm = () => {
       return;
     }
 
+    // Prevent checkout if accessory is undefined
+    if (!accessory) {
+      toast.error("Accessory data is not available!");
+      return;
+    }
+
     try {
       const response = await axios.post(`${backend_url}/accessories/${id}`, {
+        title: accessory.title, // ❌ ERROR occurs here if accessory is undefined
+        image_url: accessory.image_url,
         customer_name: customerName,
         phone_number: phone,
         available: quantity,
@@ -42,8 +56,8 @@ const AccessCheckoutForm = () => {
       });
 
       setAccessories((prevAccessories) =>
-        prevAccessories.map((accessory) =>
-          accessory._id === id ? response.data.accessory : accessory
+        prevAccessories.map((acc) =>
+          acc._id === id ? response.data.accessory : acc
         )
       );
 
@@ -53,7 +67,7 @@ const AccessCheckoutForm = () => {
       }
     } catch (e) {
       toast.error(
-        e.response.data.message || "Checkout failed! Please try again."
+        e.response?.data.message || "Checkout failed! Please try again."
       );
       console.error("ERROR", e);
     }

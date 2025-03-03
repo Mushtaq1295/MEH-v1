@@ -13,6 +13,7 @@ const Accessory = require("./models/accessoryModel");
 const Engine = require("./models/engineModel");
 const CheckoutAccessory = require("./models/checkoutAccessoryModel");
 const CheckoutEngine = require("./models/checkoutEngineModel");
+const mongoose = require("mongoose");
 
 const port = process.env.PORT;
 const db_url = process.env.ATLAS_DB_URL;
@@ -41,7 +42,11 @@ app.put("/accessories/:id", async (req, res) => {
     );
     if (!updatedAccessory)
       return res.status(404).json({ message: "Accessory not found" });
-    res.json(updatedAccessory);
+    res.status(200).json({
+      success: "true",
+      message: "Accessory data updated successfully",
+      updatedAccessory,
+    });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
@@ -56,66 +61,106 @@ app.put("/engines/:id", async (req, res) => {
     );
     if (!updatedEngine)
       return res.status(404).json({ message: "Engine not found" });
-    res.json(updatedEngine);
+    res.status(200).json({
+      success: "true",
+      message: "Engine data updated successfully",
+      updatedEngine,
+    });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
 });
 
-// Checkout for accessoried
 app.post("/accessories/:id", async (req, res) => {
+  const session = await mongoose.startSession(); // Start a session
+  session.startTransaction(); // Start a transaction
+
   try {
     const { id } = req.params;
-    const { customer_name, phone_number, available, pay_mode, price } =
-      req.body;
-    if (!customer_name || !phone_number || !available || !pay_mode || !price) {
+    const {
+      title,
+      image_url,
+      customer_name,
+      phone_number,
+      available,
+      pay_mode,
+      price,
+    } = req.body;
+
+    // Validate input
+    if (
+      !title ||
+      !image_url ||
+      !customer_name ||
+      !phone_number ||
+      !available ||
+      !pay_mode ||
+      !price
+    ) {
       return res
         .status(400)
         .json({ success: false, message: "All fields are required" });
     }
 
-    const accessory = await Accessory.findById(id);
+    // Find the accessory
+    const accessory = await Accessory.findById(id).session(session);
+    if (!accessory) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Accessory not found" });
+    }
 
+    // Check stock availability
     if (accessory.available < available) {
       return res.status(400).json({
-        success: "false",
+        success: false,
         message: `Insufficient Stock. Only ${accessory.available} left`,
       });
     }
-    const updateAccessory = await Accessory.findByIdAndUpdate(
+
+    // Reduce the available stock (but within the transaction)
+    const updatedAccessory = await Accessory.findByIdAndUpdate(
       id,
-      {
-        $inc: { available: -available },
-      },
-      { new: true }
+      { $inc: { available: -available } },
+      { new: true, session }
     );
 
-    console.log(updateAccessory);
+    // Create checkout entry (if this fails, the transaction will roll back)
+    const checkout = new CheckoutAccessory({
+      title,
+      image_url,
+      accessory_id: id,
+      customer_name,
+      phone_number,
+      available,
+      pay_mode,
+      price,
+    });
 
-    if (!updateAccessory) {
-      return res.status(404).json({
-        success: false,
-        message: "Accessory not found",
-      });
-    }
+    await checkout.save({ session });
 
-    await new CheckoutAccessory({
-      accessory_id: req.params.id,
-      ...req.body,
-    }).save();
+    // ✅ Commit transaction (both stock update & checkout success)
+    await session.commitTransaction();
+    session.endSession();
+
     res.status(201).json({
       success: true,
-      accessory: updateAccessory,
+      accessory: updatedAccessory,
       message: "Accessory Checkout successful",
     });
   } catch (error) {
-    console.log(error);
+    await session.abortTransaction(); // ❌ Rollback transaction on error
+    session.endSession();
+
+    console.log("Checkout failed:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
 
-// Checkout for engines
 app.post("/engines/:id", async (req, res) => {
+  const session = await mongoose.startSession();
+  session.startTransaction();
+
   try {
     const { id } = req.params;
     const {
@@ -132,37 +177,38 @@ app.post("/engines/:id", async (req, res) => {
       price,
     } = req.body;
 
-    // Validate common required fields
+    // Validate required fields
     if (!customer_name || !phone_number || !available || !pay_mode || !price) {
       return res
         .status(400)
         .json({ success: false, message: "All fields are required" });
     }
 
-    const engine = await Engine.findById(id);
-
-    if (engine.available < available) {
-      return res.status(400).json({
-        success: "false",
-        message: `Insufficient Stock. Only ${engine.available} left`,
-      });
-    }
-    // Update the engine's availability by decrementing the available quantity
-    const updatedEngine = await Engine.findByIdAndUpdate(
-      id,
-      { $inc: { available: -available } },
-      { new: true }
-    );
-
-    if (!updatedEngine) {
+    // Find the engine inside the transaction
+    const engine = await Engine.findById(id).session(session);
+    if (!engine) {
       return res
         .status(404)
         .json({ success: false, message: "Engine not found" });
     }
 
-    // Create a new checkout record for the engine.
-    // The CheckoutEngine schema will handle conditional required fields based on exchange and category.
-    await new CheckoutEngine({
+    // Check stock availability
+    if (engine.available < available) {
+      return res.status(400).json({
+        success: false,
+        message: `Insufficient Stock. Only ${engine.available} left`,
+      });
+    }
+
+    // Reduce the available stock (but within the transaction)
+    const updatedEngine = await Engine.findByIdAndUpdate(
+      id,
+      { $inc: { available: -available } },
+      { new: true, session }
+    );
+
+    // Create checkout entry (if this fails, the transaction will roll back)
+    const checkout = new CheckoutEngine({
       customer_name,
       phone_number,
       available,
@@ -174,9 +220,14 @@ app.post("/engines/:id", async (req, res) => {
       item_name,
       pay_mode,
       price,
-      // Optionally, if you want a custom field for engine reference, you can add:
       engine_id: id,
-    }).save();
+    });
+
+    await checkout.save({ session });
+
+    // ✅ Commit transaction (both stock update & checkout success)
+    await session.commitTransaction();
+    session.endSession();
 
     res.status(201).json({
       success: true,
@@ -184,7 +235,10 @@ app.post("/engines/:id", async (req, res) => {
       message: "Engine checkout successful",
     });
   } catch (error) {
-    console.error(error);
+    await session.abortTransaction(); // ❌ Rollback transaction on error
+    session.endSession();
+
+    console.error("Checkout failed:", error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
