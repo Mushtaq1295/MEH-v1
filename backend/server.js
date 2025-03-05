@@ -164,6 +164,8 @@ app.post("/engines/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const {
+      title,
+      image_url_main,
       customer_name,
       phone_number,
       available, // quantity to checkout
@@ -178,7 +180,15 @@ app.post("/engines/:id", async (req, res) => {
     } = req.body;
 
     // Validate required fields
-    if (!customer_name || !phone_number || !available || !pay_mode || !price) {
+    if (
+      !title ||
+      !image_url_main ||
+      !customer_name ||
+      !phone_number ||
+      !available ||
+      !pay_mode ||
+      !price
+    ) {
       return res
         .status(400)
         .json({ success: false, message: "All fields are required" });
@@ -209,6 +219,8 @@ app.post("/engines/:id", async (req, res) => {
 
     // Create checkout entry (if this fails, the transaction will roll back)
     const checkout = new CheckoutEngine({
+      title,
+      image_url_main,
       customer_name,
       phone_number,
       available,

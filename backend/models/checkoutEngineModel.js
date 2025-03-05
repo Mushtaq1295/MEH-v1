@@ -31,6 +31,10 @@ const checkoutEngineSchema = new mongoose.Schema(
         return !this.exchange && this.category === "Engines";
       },
     },
+    image_url_main: {
+      type: String,
+      required: true,
+    },
     image_url: {
       type: String,
       required: function () {

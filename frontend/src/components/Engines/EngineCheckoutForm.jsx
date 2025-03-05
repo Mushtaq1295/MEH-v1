@@ -22,6 +22,7 @@ const EditForm = () => {
   const backend_url = import.meta.env.VITE_BACKEND_URL;
   const { id } = useParams();
   const { engines, setEngines } = useEngines();
+  const engine = engines.find((item) => item._id === id);
   const [error, setError] = useState("");
 
   const handleIncrement = () => {
@@ -59,6 +60,8 @@ const EditForm = () => {
     e.preventDefault();
 
     const payload = {
+      title: engine.title,
+      image_url_main: engine.image_url,
       customer_name: formData.customerName,
       phone_number: Number(formData.phone),
       available: formData.quantity,
