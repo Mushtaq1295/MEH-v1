@@ -25,7 +25,7 @@ import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import HistoryAccessCardDetails from "./components/History/HistoryAccessories/HistoryAccessCardDetails";
 import HistoryEngineCardDetails from "./components/History/HistoryEngines/HistoryEngineCardDetails";
-import { HistoryAccessoriesProvider } from "./contexts/HistoryAccessoriesContext";
+import { HistoryProvider } from "./contexts/HistoryContext";
 
 // Protected Route Component
 const PrivateRoute = ({ element }) => {
@@ -49,7 +49,7 @@ const Layout = () => {
 
 const App = () => {
   return (
-    <HistoryAccessoriesProvider>
+    <HistoryProvider>
       <EnginesProvider>
         <AccessoriesProvider>
           <ToastContainer
@@ -110,7 +110,7 @@ const App = () => {
           </Router>
         </AccessoriesProvider>
       </EnginesProvider>
-    </HistoryAccessoriesProvider>
+    </HistoryProvider>
   );
 };
 
