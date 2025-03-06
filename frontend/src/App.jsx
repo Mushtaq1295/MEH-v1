@@ -17,14 +17,10 @@ import AccessCardDetails from "./components/Accessories/AccessCardDetails";
 import EnginesList from "./components/Engines/EnginesList";
 import { EnginesProvider } from "./contexts/EnginesContext";
 import { AccessoriesProvider } from "./contexts/AccessoriesContext";
-import HistoryAllCards from "./components/History/HistoryAllCards";
-import DateFilter from "./components/Header/DateFilter";
 import { AuthContext } from "./contexts/AuthContext";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
-import HistoryAccessCardDetails from "./components/History/HistoryAccessories/HistoryAccessCardDetails";
-import HistoryEngineCardDetails from "./components/History/HistoryEngines/HistoryEngineCardDetails";
 import { HistoryProvider } from "./contexts/HistoryContext";
 
 // Protected Route Component
@@ -35,6 +31,7 @@ const PrivateRoute = ({ element }) => {
 
 // Navbar Visibility Control
 import { Outlet } from "react-router-dom";
+import { History } from "./components/History/History";
 
 const Layout = () => {
   const location = useLocation();
@@ -94,16 +91,7 @@ const App = () => {
 
                 {/* History Routes */}
                 <Route path="/history">
-                  <Route path="" element={<HistoryAllCards />} />
-                  <Route
-                    path="engines/:id"
-                    element={<HistoryEngineCardDetails />}
-                  />
-                  <Route
-                    path="accessories/:id"
-                    element={<HistoryAccessCardDetails />}
-                  />
-                  <Route path="datefilter" element={<DateFilter />} />
+                  <Route path="" element={<History />} />
                 </Route>
               </Route>
             </Routes>
