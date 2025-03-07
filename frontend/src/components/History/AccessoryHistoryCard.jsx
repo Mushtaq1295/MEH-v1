@@ -24,13 +24,13 @@ export const AccessoryHistoryCard = ({ accessory }) => {
         <p className="mb-2 text-lg">
           <strong>Price:</strong> ₹{accessory.price}
         </p>
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <img
             src={accessory.image_url}
             alt={accessory.title}
             className="rounded-lg w-full h-60 object-cover"
           />
-        </div>
+        </div> */}
         <div className="flex">
           <button
             type="button"

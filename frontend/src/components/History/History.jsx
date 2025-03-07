@@ -85,19 +85,21 @@ const HistoryFilters = ({
               Today
             </button>
             <div className="w-full sm:w-auto flex items-center justify-center">
-              <div className="flex flex-row space-x-2">
+              <div className="flex flex-col space-x-2 md:flex-row">
+                <div className="w-full">
                 <input
                   type="date"
                   value={customStart}
                   onChange={(e) => setCustomStart(e.target.value)}
-                  className="border rounded p-1 text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="border rounded mx-2 p-1 w-full text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <input
                   type="date"
                   value={customEnd}
                   onChange={(e) => setCustomEnd(e.target.value)}
-                  className="border rounded p-1 text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="border rounded mx-2 p-1 w-full text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+                </div>
                 <button
                   onClick={() => setFilterType("custom")}
                   className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"

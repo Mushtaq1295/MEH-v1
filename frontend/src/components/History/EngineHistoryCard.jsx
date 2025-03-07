@@ -10,7 +10,7 @@ export const EngineHistoryCard = ({ engine }) => {
 
   return (
     <div className="border border-white rounded-lg">
-      <p className="absolute top-2 right-4 text-[13px] text-gray-400 sm:text-base md:text-lg lg:text-xl">
+      <p className="flex justify-end mt-2 mr-4 text-[13px] text-gray-400 sm:text-base md:text-lg lg:text-xl">
         {engine.createdAt
           ? new Date(engine.createdAt).toLocaleDateString()
           : "DD/MM/YYYY"}
@@ -25,7 +25,7 @@ export const EngineHistoryCard = ({ engine }) => {
         <p className="mb-2 text-lg">
           <strong>Price:</strong> ₹{engine.price}
         </p>
-        <div className="flex justify-center p-1">
+        {/* <div className="flex justify-center p-1">
           {engine.exchange ? (
             <img
               src={engine.image_url}
@@ -39,7 +39,7 @@ export const EngineHistoryCard = ({ engine }) => {
               className="rounded-lg w-full h-60 object-cover"
             />
           )}
-        </div>
+        </div> */}
         <div className="flex">
           <button
             type="button"
