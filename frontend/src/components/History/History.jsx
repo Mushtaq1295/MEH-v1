@@ -84,29 +84,27 @@ const HistoryFilters = ({
             >
               Today
             </button>
-            <div className="w-full sm:w-auto flex items-center justify-center">
-              <div className="flex flex-col space-x-2 md:flex-row">
-                <div className="w-full">
+            <div className="w-full flex-col md:flex-row sm:w-auto flex items-center justify-center">
+              <div className="flex flex-col md:flex-row gap-4 w-full m-3">
                 <input
                   type="date"
                   value={customStart}
                   onChange={(e) => setCustomStart(e.target.value)}
-                  className="border rounded mx-2 p-1 w-full text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="border rounded w-full p-2 text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <input
                   type="date"
                   value={customEnd}
                   onChange={(e) => setCustomEnd(e.target.value)}
-                  className="border rounded mx-2 p-1 w-full text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="border rounded w-full p-2 text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                </div>
-                <button
-                  onClick={() => setFilterType("custom")}
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-                >
-                  Apply
-                </button>
               </div>
+              <button
+                onClick={() => setFilterType("custom")}
+                className="px-4 py-2 w-full bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              >
+                Apply
+              </button>
             </div>
             <button
               onClick={() => setFilterType("all")}
