@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const checkoutEngineSchema = new mongoose.Schema(
   {
+    title: { type: String, required: true },
     customer_name: { type: String, required: true },
     phone_number: { type: Number, required: true },
     available: { type: Number, required: true }, //quantity
-
     exchange: { type: Boolean, required: true }, // true -> Yes, false -> No
     category: {
       type: String,
@@ -30,6 +30,10 @@ const checkoutEngineSchema = new mongoose.Schema(
       required: function () {
         return !this.exchange && this.category === "Engines";
       },
+    },
+    image_url_main: {
+      type: String,
+      required: true,
     },
     image_url: {
       type: String,
