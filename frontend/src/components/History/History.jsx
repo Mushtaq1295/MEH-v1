@@ -158,28 +158,41 @@ export const History = () => {
       {/* Cards Row */}
       <div className="m-4">
         {/* Engines Cards */}
-        <h1 className="text-xl text-white mb-4">Engines</h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredEngines.length > 0 ? (
-            filteredEngines.map((engine) => (
-              <EngineHistoryCard key={engine._id} engine={engine} />
-            ))
-          ) : (
-            <p className="text-white">No engine history found.</p>
-          )}
-        </div>
+        <h1 className="text-3xl text-white mb-4 text-center font-bold">
+          Engines
+        </h1>
+        {filteredAccessories.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {filteredEngines.length > 0 &&
+              filteredEngines.map((engine) => (
+                <EngineHistoryCard key={engine._id} engine={engine} />
+              ))}
+          </div>
+        ) : (
+          <p className="text-red-500 text-xl text-center">
+            No engine history found for the selected criteria.
+          </p>
+        )}
 
         {/* Accessories Cards */}
-        <h1 className="text-xl text-white mt-8 mb-4">Accessories</h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredAccessories.length > 0 ? (
-            filteredAccessories.map((accessory) => (
-              <AccessoryHistoryCard key={accessory._id} accessory={accessory} />
-            ))
-          ) : (
-            <p className="text-white">No accessories history found.</p>
-          )}
-        </div>
+        <h1 className="text-3xl text-white mt-8 mb-4 text-center font-bold">
+          Accessories
+        </h1>
+        {filteredAccessories.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {filteredAccessories.length > 0 &&
+              filteredAccessories.map((accessory) => (
+                <AccessoryHistoryCard
+                  key={accessory._id}
+                  accessory={accessory}
+                />
+              ))}
+          </div>
+        ) : (
+          <p className="text-red-500 text-xl text-center">
+            No accessories history found for the selected criteria.
+          </p>
+        )}
       </div>
     </div>
   );
