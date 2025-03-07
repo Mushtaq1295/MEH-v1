@@ -5,11 +5,11 @@ export const EngineHistoryCard = ({ engine }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/history/engines/${engine._id}`, { state: { engine } });
+    navigate(`/history/engine/${engine._id}`);
   };
 
   return (
-    <div className="border border-white rounded-lg" onClick={handleClick}>
+    <div className="border border-white rounded-lg">
       <p className="absolute top-2 right-4 text-[13px] text-gray-400 sm:text-base md:text-lg lg:text-xl">
         {engine.createdAt
           ? new Date(engine.createdAt).toLocaleDateString()
@@ -30,27 +30,28 @@ export const EngineHistoryCard = ({ engine }) => {
             <img
               src={engine.image_url}
               alt={engine.title}
-              className="rounded-t-lg w-full h-60 object-cover"
+              className="rounded-lg w-full h-60 object-cover"
             />
           ) : (
             <img
               src={engine.image_url_main}
               alt={engine.title}
-              className="rounded-t-lg w-full h-60 object-cover"
+              className="rounded-lg w-full h-60 object-cover"
             />
           )}
         </div>
+        <div className="flex">
+          <button
+            type="button"
+            className="w-full my-4 p-3 rounded-lg bg-blue-600 hover:bg-blue-500 flex cursor-pointer"
+            onClick={() => {
+              handleClick();
+            }}
+          >
+            View More
+          </button>
+        </div>
       </div>
-      <button
-        type="button"
-        className="cursor-pointer ml-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-[12px] px-2 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-        onClick={(e) => {
-          e.stopPropagation();
-          handleClick();
-        }}
-      >
-        View More
-      </button>
     </div>
   );
 };

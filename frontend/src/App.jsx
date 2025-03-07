@@ -32,6 +32,8 @@ const PrivateRoute = ({ element }) => {
 // Navbar Visibility Control
 import { Outlet } from "react-router-dom";
 import { History } from "./components/History/History";
+import AccessoryHistoryDetails from "./components/History/AccessoryHistoryDetails";
+import EngineHistoryDetails from "./components/History/EngineHistoryDetails";
 
 const Layout = () => {
   const location = useLocation();
@@ -92,6 +94,14 @@ const App = () => {
                 {/* History Routes */}
                 <Route path="/history">
                   <Route path="" element={<History />} />
+                  <Route
+                    path="accessory/:id"
+                    element={<AccessoryHistoryDetails />}
+                  />
+                  <Route
+                    path="engine/:id"
+                    element={<EngineHistoryDetails />}
+                  />
                 </Route>
               </Route>
             </Routes>
