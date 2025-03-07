@@ -3,35 +3,31 @@ import { useNavigate, NavLink, useParams } from "react-router-dom";
 import { useAccessories } from "../../contexts/AccessoriesContext";
 import { toast } from "react-toastify";
 
-
 const AccessCardDetails = () => {
-  const { id } = useParams(); // Get accessory ID from URL
-  const { accessories } = useAccessories(); // Get accessories data from context
-  const navigate = useNavigate(); // Correct way to navigate
-  
+  const { id } = useParams();
+  const { accessories } = useAccessories();
+  const navigate = useNavigate();
   // Find the accessory with the matching ID
   const accessory = accessories.find((item) => item._id === id);
-  
+
   if (!accessory) {
-    return <div className="text-white text-center mt-5">No accessory data found.</div>;
+    return (
+      <div className="text-white text-center mt-5">
+        No accessory data found.
+      </div>
+    );
   }
 
- 
-  const handleCheckout =  () => {
-    console.log(accessory._id)
-    const availableQuantity = accessory.available;
-    if(availableQuantity <= 0){
-      toast.warning(`Only ${availableQuantity} available`);
-      return;
-    }
-
-    navigate(`/accessories/${accessory._id}/accesscheckout`); // Corrected navigation
+  const handleCheckout = () => {
+    navigate(`/accessories/${id}/accesscheckout`); // Corrected navigation
   };
-      
+
   return (
     <>
       <h3 className="text-white text-center text-2xl font-semibold mt-5 ml-4 sm:text-xl md:texcet-2xl lg:text-3xl">
-        Details of {accessory.title.charAt(0).toUpperCase() + accessory.title.slice(1).replace("-", " ")}
+        Details of{" "}
+        {accessory.title.charAt(0).toUpperCase() +
+          accessory.title.slice(1).replace("-", " ")}
       </h3>
 
       <div className="mt-2 w-full max-w-4xl mx-auto px-4">
@@ -48,8 +44,7 @@ const AccessCardDetails = () => {
                 {accessory.title.replace("-", " ")}
               </li>
               <li>
-                <strong className="text-lg">Price: </strong>
-                ₹ {accessory.price}
+                <strong className="text-lg">Price: </strong>₹ {accessory.price}
               </li>
               <li>
                 <strong className="text-lg">Available: </strong>

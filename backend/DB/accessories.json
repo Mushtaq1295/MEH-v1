@@ -1,0 +1,194 @@
+[
+  {
+    "_id": "67a86a4df85fefc88f5a96b7",
+    "title": "black",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475228/public/Accessories-pics/m7gebv5igv5bnk0a8u0t.jpg",
+    "price": 19599,
+    "available": 3,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96b9",
+    "title": "connecting rod",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475234/public/Accessories-pics/fxdi5ay6ppnjqho5dnnk.jpg",
+    "price": 1000,
+    "available": 68,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96bb",
+    "title": "crank",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475236/public/Accessories-pics/hqzccrcepafjp4xsik2e.jpg",
+    "price": 120,
+    "available": 100,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96bd",
+    "title": "Diesel Filter ",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475233/public/Accessories-pics/xrudpauxaky7oxjbisud.jpg",
+    "price": 119034234,
+    "available": 35,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96bf",
+    "title": "Dynamo",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475236/public/Accessories-pics/zeye3wfosqii3ryimdcm.webp",
+    "price": 740,
+    "available": 26,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96c1",
+    "title": "ECM-box",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475229/public/Accessories-pics/qarc3mydbu1tiwvqx7yp.jpg",
+    "price": 9600,
+    "available": 25,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96c3",
+    "title": "ECR-wall",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475229/public/Accessories-pics/la7hdgvyebjhxoqhxlm5.jpg",
+    "price": 345,
+    "available": 23,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96c5",
+    "title": "engineoil-filter",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475230/public/Accessories-pics/hpqgaed6slbcuyrt5sxv.jpg",
+    "price": 117,
+    "available": 16,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96c7",
+    "title": "engine-pipes",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475229/public/Accessories-pics/dtdw9rqopy8xcz027jtq.jpg",
+    "price": 149,
+    "available": 18,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96c9",
+    "title": "fan",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475234/public/Accessories-pics/y2mtxc1j6h7gfogh6vmd.jpg",
+    "price": 31,
+    "available": 29,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96cb",
+    "title": "gearbox",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475231/public/Accessories-pics/hmey5vshyyhhz9snasxk.jpg",
+    "price": 48,
+    "available": 32,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96cd",
+    "title": "Gear Rod ",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475230/public/Accessories-pics/pdgu0vpuiyqbitwesp0c.jpg",
+    "price": 135,
+    "available": 39,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96cf",
+    "title": "Head.   To be changed",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475235/public/Accessories-pics/egthbfs5jm1mmbnwdah6.webp",
+    "price": 70,
+    "available": 6,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96d1",
+    "title": "Injection-pump",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475235/public/Accessories-pics/hoclzaxesfcsq8gfurl9.png",
+    "price": 72,
+    "available": 35,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96d3",
+    "title": "manifold",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475232/public/Accessories-pics/freiqgqr6vvdmm97wrek.jpg",
+    "price": 70,
+    "available": 21,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96d5",
+    "title": "mount",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475233/public/Accessories-pics/c9jgrvx0gnsl08pd30f7.jpg",
+    "price": 137,
+    "available": 25,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4df85fefc88f5a96d7",
+    "title": "nozzle.    To be add more types",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475231/public/Accessories-pics/o17nycjg0adwa4cv2nae.jpg",
+    "price": 53,
+    "available": 25,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4ef85fefc88f5a96d9",
+    "title": "nozzle-pipes. More types to be added",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475231/public/Accessories-pics/uhi6h9skrh5vmf1u7mun.jpg",
+    "price": 148,
+    "available": 31,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4ef85fefc88f5a96db",
+    "title": "pulley.   To be changed ",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475235/public/Accessories-pics/u7szjpuixit5remhtr9u.webp",
+    "price": 49,
+    "available": 28,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4ef85fefc88f5a96dd",
+    "title": "self-motor",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475235/public/Accessories-pics/wz8wxeeo7bfilsqojki0.jpg",
+    "price": 64,
+    "available": 29,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4ef85fefc88f5a96df",
+    "title": "spingeret",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475232/public/Accessories-pics/w1kkph0sibvqc3rzxfzo.jpg",
+    "price": 125,
+    "available": 19,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4ef85fefc88f5a96e1",
+    "title": "sump    to be changed, more types ",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475234/public/Accessories-pics/dahtmswubcttit7sm1n9.jpg",
+    "price": 87,
+    "available": 10,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4ef85fefc88f5a96e3",
+    "title": "turbo.   More types",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475232/public/Accessories-pics/sxazbza0zccblmfa2to5.jpg",
+    "price": 92,
+    "available": 19,
+    "__v": 0
+  },
+  {
+    "_id": "67a86a4ef85fefc88f5a96e5",
+    "title": "walldoor",
+    "image_url": "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1738475233/public/Accessories-pics/s6eynlrlkzopv9mkumnz.jpg",
+    "price": 47,
+    "available": 27,
+    "__v": 0
+  }
+]

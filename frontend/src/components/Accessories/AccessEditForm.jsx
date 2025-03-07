@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAccessories } from "../../contexts/AccessoriesContext";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 const EditForm = () => {
@@ -46,11 +47,14 @@ const EditForm = () => {
       // ✅ Update the context with the new edited accessory
       setAccessories((prevAccessories) =>
         prevAccessories.map((accessory) =>
-          accessory._id === id ? response.data : accessory
+          accessory._id === id ? response.data.updatedAccessory : accessory
         )
       );
-
-      navigate(-2); // Redirect after update
+      console.log(response);
+      if (response.data.success) {
+        toast.success (response.data.message);
+      }
+      navigate(-1); // Redirect after update
     } catch (error) {
       console.error("Error updating Accessory:", error);
     }

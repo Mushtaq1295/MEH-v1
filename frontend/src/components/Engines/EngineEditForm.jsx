@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEngines } from "../../contexts/EnginesContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const EngineEditForm = () => {
   const { id } = useParams(); // Get engine ID from URL
-  const { engines, setEngines, getEnginesData } = useEngines();
+  const { engines, setEngines } = useEngines();
   const navigate = useNavigate();
   const backend_url = import.meta.env.VITE_BACKEND_URL;
 
@@ -54,11 +55,13 @@ const EngineEditForm = () => {
       console.log(response);
       setEngines((prevEngines) =>
         prevEngines.map((engine) =>
-          engine._id === id ? response.data : engine
+          engine._id === id ? response.data.updatedEngine : engine
         )
       );
+      toast.success(response.data.message);
       navigate(-1);
     } catch (error) {
+      toast.error(error.response?.data.message || "Some Error Occured");
       console.error("Error updating engine:", error);
     }
   };
@@ -101,15 +104,26 @@ const EngineEditForm = () => {
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Category:
                 </label>
-                <input
-                  type="text"
+                <select
                   name="category"
                   value={formData.category}
                   onChange={handleChange}
                   required
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                />
+                >
+                  <option value="" disabled>
+                    Select a category
+                  </option>
+                  {["TATA", "ASHOK LEYLAND", "BHARAT BENZ", "EICHER"].map(
+                    (option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    )
+                  )}
+                </select>
               </div>
+
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Price (₹):

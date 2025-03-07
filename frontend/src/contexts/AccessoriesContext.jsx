@@ -25,6 +25,7 @@ export const AccessoriesProvider = ({ children }) => {
     <AccessoriesContext.Provider
       value={{
         accessories,
+        getAccessoriesData,
         setAccessories,
         selectedAccessory,
         setSelectedAccessory,
