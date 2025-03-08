@@ -8,7 +8,7 @@ export const AccessoryHistoryCard = ({ accessory }) => {
   };
 
   return (
-    <div className="border border-white rounded-lg">
+    <div className="border border-white rounded-lg ">
       <p className="flex justify-end mt-2 mr-4 text-[13px] text-gray-400 sm:text-base md:text-lg lg:text-xl">
         {accessory.createdAt
           ? new Date(accessory.createdAt).toLocaleDateString()
@@ -22,7 +22,7 @@ export const AccessoryHistoryCard = ({ accessory }) => {
           <strong>Name:</strong> {accessory.customer_name}
         </p>
         <p className="mb-2 text-lg">
-          <strong>Price:</strong> ₹{accessory.price}
+          <strong>Price:</strong> ₹{accessory.price.toLocaleString("en-IN")}
         </p>
         {/* <div className="flex justify-center">
           <img
@@ -31,17 +31,18 @@ export const AccessoryHistoryCard = ({ accessory }) => {
             className="rounded-lg w-full h-60 object-cover"
           />
         </div> */}
-        <div className="flex">
-          <button
-            type="button"
-            className="w-full my-4 p-3 rounded-lg bg-blue-600 hover:bg-blue-500 flex cursor-pointer"
-            onClick={() => {
-              handleClick();
-            }}
-          >
-            View More
-          </button>
-        </div>
+        <div className="flex justify-start">
+  <button
+    type="button"
+    className="w-auto px-4 py-2 my-4 rounded-lg bg-blue-600 hover:bg-blue-500 cursor-pointer text-white"
+    onClick={() => {
+      handleClick();
+    }}
+  >
+    View More
+  </button>
+</div>
+
       </div>
     </div>
   );

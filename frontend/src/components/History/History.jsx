@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { EngineHistoryCard } from "./EngineHistoryCard";
 import { AccessoryHistoryCard } from "./AccessoryHistoryCard";
 import { useHistoryContext } from "../../contexts/HistoryContext";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
+
 
 // Collapsible filters component for mobile
 const HistoryFilters = ({
@@ -17,6 +20,31 @@ const HistoryFilters = ({
 }) => {
   const [revenueCollapsed, setRevenueCollapsed] = useState(true);
   const [dateFilterCollapsed, setDateFilterCollapsed] = useState(true);
+  // Animated values for revenue
+  const [displayTotal, setDisplayTotal] = useState(0);
+  const [displayEngines, setDisplayEngines] = useState(0);
+  const [displayAccessories, setDisplayAccessories] = useState(0);
+
+  useEffect(() => {
+    const animateValue = (start, end, setter) => {
+      let startTime;
+      const duration = 1500; // Animation duration in ms (1.5s)
+
+      const step = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        setter(Math.floor(progress * (end - start) + start)); // Calculate value
+        if (progress < 1) requestAnimationFrame(step);
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    animateValue(0, totalRevenue, setDisplayTotal);
+    animateValue(0, enginesRevenue, setDisplayEngines);
+    animateValue(0, accessoriesRevenue, setDisplayAccessories);
+  }, [totalRevenue, enginesRevenue, accessoriesRevenue]);
+  
 
   return (
     <>
@@ -37,21 +65,36 @@ const HistoryFilters = ({
           <div className="flex flex-col sm:flex-row justify-around items-center text-center">
             <div className="mb-4 sm:mb-0">
               <h3 className="text-white text-xl">Total Revenue</h3>
-              <p className="text-green-500 text-2xl font-bold">
-                ₹{totalRevenue}
-              </p>
+              <motion.p
+                className="text-green-500 text-2xl font-bold"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+              >
+                ₹{displayTotal.toLocaleString("en-IN")}
+              </motion.p>
             </div>
             <div className="mb-4 sm:mb-0">
               <h3 className="text-white text-xl">Engines Revenue</h3>
-              <p className="text-green-500 text-2xl font-bold">
-                ₹{enginesRevenue}
-              </p>
+              <motion.p
+                className="text-green-500 text-2xl font-bold"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.3 }}
+              >
+                ₹{displayEngines.toLocaleString("en-IN")}
+              </motion.p>
             </div>
             <div>
               <h3 className="text-white text-xl">Accessories Revenue</h3>
-              <p className="text-green-500 text-2xl font-bold">
-                ₹{accessoriesRevenue}
-              </p>
+              <motion.p
+                className="text-green-500 text-2xl font-bold"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.6 }}
+              >
+                ₹{displayAccessories.toLocaleString("en-IN")}
+              </motion.p>
             </div>
           </div>
         </div>
@@ -90,13 +133,15 @@ const HistoryFilters = ({
                   type="date"
                   value={customStart}
                   onChange={(e) => setCustomStart(e.target.value)}
-                  className="border rounded w-full p-2 text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="border rounded w-full p-2 text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 "
+                  placeholder="DD-MM-YYYY"
                 />
                 <input
                   type="date"
                   value={customEnd}
                   onChange={(e) => setCustomEnd(e.target.value)}
                   className="border rounded w-full p-2 text-white bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="DD-MM-YYYY"
                 />
               </div>
               <button
@@ -162,7 +207,7 @@ export const History = () => {
           Engines
         </h1>
         {filteredAccessories.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {filteredEngines.length > 0 &&
               filteredEngines.map((engine) => (
                 <EngineHistoryCard key={engine._id} engine={engine} />
@@ -179,7 +224,7 @@ export const History = () => {
           Accessories
         </h1>
         {filteredAccessories.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {filteredAccessories.length > 0 &&
               filteredAccessories.map((accessory) => (
                 <AccessoryHistoryCard

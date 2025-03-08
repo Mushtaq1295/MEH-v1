@@ -23,7 +23,7 @@ export const EngineHistoryCard = ({ engine }) => {
           <strong>Customer:</strong> {engine.customer_name}
         </p>
         <p className="mb-2 text-lg">
-          <strong>Price:</strong> ₹{engine.price}
+          <strong>Price:</strong> ₹{engine.price.toLocaleString("en-IN")}
         </p>
         {/* <div className="flex justify-center p-1">
           {engine.exchange ? (
@@ -40,17 +40,17 @@ export const EngineHistoryCard = ({ engine }) => {
             />
           )}
         </div> */}
-        <div className="flex">
-          <button
-            type="button"
-            className="w-full my-4 p-3 rounded-lg bg-blue-600 hover:bg-blue-500 flex cursor-pointer"
-            onClick={() => {
-              handleClick();
-            }}
-          >
-            View More
-          </button>
-        </div>
+        <div className="flex justify-start">
+        <button
+          type="button"
+          className="w-auto px-4 py-2 my-4 rounded-lg bg-blue-600 hover:bg-blue-500 cursor-pointer text-white"
+          onClick={() => {
+            handleClick();
+          }}
+        >
+          View More
+        </button>
+      </div>
       </div>
     </div>
   );

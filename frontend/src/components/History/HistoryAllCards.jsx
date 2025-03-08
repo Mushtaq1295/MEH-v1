@@ -5,13 +5,6 @@ import { Navigate, NavLink } from "react-router-dom";
 import { useHistoryAccessories } from "../../contexts/HistoryAccessoriesContext";
 
 const HistoryAllCards = () => {
-  // const { HistoryAccessories } = useHistoryAccessories(); // Get data from context
-
-  // // Calculate total price of all accessories
-  // const totalValue = HistoryAccessories.reduce((total, item) => {
-  //   return total + (item.price || 0); // Ensure price is valid
-  // }, 0);
-  
   return (
     <>
     <div className="flex flex-row justify-between items-center m-4">
@@ -28,20 +21,20 @@ const HistoryAllCards = () => {
       <h4 className="text-[14px] font-bold  text-white">Total: 
         {/* {total.toLocaleString('en-IN')} */}
          </h4>
-      </div>
-      
-     
+      </div>   
         <HistoryEngines/>
-        
         <div className="flex flex-row justify-between items-center m-4">
       <h1 className="text-3xl font-bold  text-white">Accessories </h1>  
       <h4 className="text-[14px] font-bold  text-white">Total: 
         {/* {total.toLocaleString('en-IN')} */}
          </h4>
       </div>
+      <div className="px-4 sm:px-1">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <HistoryAccessories/>
-
-
+      </div>
+      </div>
+      
     </>
   );
 };
