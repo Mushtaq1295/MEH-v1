@@ -12,7 +12,7 @@ export const EngineHistoryCard = ({ engine }) => {
     <div className="border border-white rounded-lg">
       <p className="flex justify-end mt-2 mr-4 text-[13px] text-gray-400 sm:text-base md:text-lg lg:text-xl">
         {engine.createdAt
-          ? new Date(engine.createdAt).toLocaleDateString()
+          ? new Date(engine.createdAt).toLocaleDateString("en-GB")
           : "DD/MM/YYYY"}
       </p>
       <div className="p-2 mt-5 text-white">

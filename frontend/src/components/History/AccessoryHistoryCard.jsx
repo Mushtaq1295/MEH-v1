@@ -11,7 +11,7 @@ export const AccessoryHistoryCard = ({ accessory }) => {
     <div className="border border-white rounded-lg ">
       <p className="flex justify-end mt-2 mr-4 text-[13px] text-gray-400 sm:text-base md:text-lg lg:text-xl">
         {accessory.createdAt
-          ? new Date(accessory.createdAt).toLocaleDateString()
+          ? new Date(accessory.createdAt).toLocaleDateString("en-GB")
           : "DD/MM/YYYY"}
       </p>
       <div className="p-2 mt-4 text-white">

@@ -44,7 +44,12 @@ const HistoryFilters = ({
     animateValue(0, enginesRevenue, setDisplayEngines);
     animateValue(0, accessoriesRevenue, setDisplayAccessories);
   }, [totalRevenue, enginesRevenue, accessoriesRevenue]);
-  
+   
+  const handleAll = () =>{
+    setFilterType("all");
+    setCustomStart('');
+    setCustomEnd('');
+  }
 
   return (
     <>
@@ -114,7 +119,7 @@ const HistoryFilters = ({
         </div>
         {/* Content: always visible on larger screens, collapsible on mobile */}
         <div className={`${dateFilterCollapsed ? "hidden" : "block"} sm:block`}>
-          <div className="flex flex-col sm:flex-row justify-around items-center text-center space-y-2 sm:space-y-0">
+          <div className="flex flex-col sm:flex-row justify-around items-center text-center space-y-2 sm:space-y-0 mt-3">
             <button
               onClick={() => setFilterType("yesterday")}
               className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
@@ -152,7 +157,7 @@ const HistoryFilters = ({
               </button>
             </div>
             <button
-              onClick={() => setFilterType("all")}
+              onClick={handleAll}
               className="w-full sm:w-auto px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
             >
               All
