@@ -336,10 +336,14 @@ const EditForm = () => {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                       >
                         <option value="">Select Brand</option>
+                        <option value="Ashok Leyland Hino">Ashok Leyland Hino</option>
                         <option value="Ashok Leyland">Ashok Leyland</option>
-                        <option value="Tata">Tata</option>
-                        <option value="Eicher">Eicher</option>
+                        <option value="Tata Cummins">Tata Cummins</option>
+                        <option value="Tata TCIC">Tata TCIC</option>
                         <option value="Bharat Benz">Bharat Benz</option>
+                        <option value="Mahindra">Mahindra</option>
+                        <option value="Eicher">Eicher</option>
+                        <option value="MAN">MAN</option>
                       </select>
                       <div className="mt-4">
                         <label

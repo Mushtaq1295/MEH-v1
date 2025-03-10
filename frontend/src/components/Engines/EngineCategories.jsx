@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useEngines } from "../../contexts/EnginesContext";
 
-const categories = ["ASHOK LEYLAND", "TATA", "BHARAT BENZ", "EICHER"];
+const categories = ["ASHOK LEYLAND HINO","ASHOK LEYLAND", "TATA CUMMINS","TATA TCIC", "BHARAT BENZ","MAHINDRA", "EICHER","MAN"];
 
 const EngineCategories = () => {
   const { setSelectedCategory } = useEngines();

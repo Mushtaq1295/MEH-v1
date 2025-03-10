@@ -26,7 +26,7 @@ const checkoutEngineSchema = new mongoose.Schema(
     // Fields required only if category is "Engines"
     engine_brand: {
       type: String,
-      enum: ["Ashok Leyland", "Tata", "Eicher", "Bharat Benz"],
+      enum: ["ASHOK LEYLAND HINO","ASHOK LEYLAND", "TATA CUMMINS","TATA TCIC", "BHARAT BENZ","MAHINDRA", "EICHER","MAN"],
       required: function () {
         return !this.exchange && this.category === "Engines";
       },

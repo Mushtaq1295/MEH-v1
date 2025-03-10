@@ -1,32 +1,45 @@
-<div className="mt-4 lg:mt-0 lg:ml-7 flex-1">
-                <ul className="space-y-4 text-lg sm:text-base md:text-xl text-white">
-                <li>
-                <strong className='text-lg'>Date of Sold: DD/MMMM/YYYY</strong>
-                    {/* {engine.title.replace("-", " ")} */}
-                    </li>
-                    <li>
-                    <strong className="text-lg">Title: </strong> 
-                    {/* {engine.title.replace("-", " ")} */}
-                    </li>
-                    <li>
-                    <strong className="text-lg">Sold To (Customer Name): </strong> 
-                    {/* {engine.available} */}
-                    </li>
-                    <li>
-                    <strong className="text-lg">Phone Number: </strong> 
-                    {/* {engine.available} */}
-                    </li>
-                    <li>
-                    <strong className="text-lg">Quantity: </strong>
-                    {/* ₹ {engine.price} */}
-                    </li>
-                    <li>
-                    <strong className="text-lg">Pay Mode: </strong>
-                    {/* ₹ {engine.price} */}
-                    </li>
-                    <li>
-                    <strong className="text-lg">Sold Price: </strong>
-                    {/* ₹ {engine.price} */}
-                    </li>
-                </ul>
-</div>
+/*
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/black.jpeg
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/connecting-rod.jpeg 
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/crank.jpg
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/Diesel-filter.jpeg  
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/Dynamo.webp
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/ECM-box.jpeg        
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/ECR-wall.jpeg       
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/engine-pipes.jpeg   
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/engineoil-filter.jpeg
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/fan.jpeg
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/gear-rod.jpeg       
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/gearbox.jpeg        
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/Head.webp
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/injection-pump.png  
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/manifold.jpeg       
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/mount.jpeg
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/nozzle-pipes.jpeg   
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/nozzle.jpeg
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/pulley.webp
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/self-motor.jpeg     
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/spingerkit.jpeg     
+
+https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/sump.jpeg
+*/

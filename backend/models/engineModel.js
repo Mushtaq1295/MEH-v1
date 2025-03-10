@@ -6,7 +6,7 @@ const engineSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ["TATA", "ASHOK LEYLAND", "BHARAT BENZ", "EICHER"],
+    enum: ["ASHOK LEYLAND HINO","ASHOK LEYLAND", "TATA CUMMINS","TATA TCIC", "BHARAT BENZ","MAHINDRA", "EICHER","MAN"],
     trim: true,
   },
   price: { type: Number, required: true },

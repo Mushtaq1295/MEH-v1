@@ -11,7 +11,8 @@ const EnginesPage = () => {
     <div className="p-4">
       <h1 className="text-3xl font-bold">Engines</h1>
       <div className="flex space-x-4 mt-4">
-        <button onClick={() => setSelectedEngine("ashokLeyland")}>Ashok Leyland</button>
+        <button onClick={() => setSelectedEngine("ashokLeyland")}>Ashok Leyland</button>jk
+        <button onClick={() => setSelectedEngine("ashokLeyland")}>Ashok Leyland Hino</button>
         <button onClick={() => setSelectedEngine("tata")}>Tata</button>
         <button onClick={() => setSelectedEngine("eicher")}>Eicher</button>
         <button onClick={() => setSelectedEngine("bharatBenz")}>BharatBenz</button>
