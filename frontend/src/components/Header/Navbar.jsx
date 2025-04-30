@@ -68,11 +68,11 @@ const Navbar = () => {
         display: inline-block;
         color: white;
         font-weight: 800;
-        font-size: clamp(1.75rem, 6vw, 2.5rem);
+        font-size: clamp(2rem, 8vw, 2.5rem);
         white-space: nowrap;
-        overflow: hidden;
+        overflow: visible; /* allow full text */
         line-height: 1.2;
-        padding-right: 0.2rem;
+        padding: 0 0.25rem; /* left-right padding */
       }
 
       .highlight-text::before {
