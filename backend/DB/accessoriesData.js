@@ -1,7 +1,7 @@
 const accessoriesData = [
   {
     title: "black",
-    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/black.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1744862711/public-v1/black.jpg",
     price: 104,
     available: 9,
   },
@@ -31,19 +31,19 @@ const accessoriesData = [
   },
   {
     title: "ECM-box",
-    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/ECM-box.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1744863158/public-v1/ECM-box.jpg",
     price: 96,
     available: 25,
   },
   {
     title: "ECR-wall",
-    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/ECR-wall.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1744860493/public-v1/ECR-wall.jpg",
     price: 34,
     available: 23,
   },
   {
     title: "engine-pipes",
-    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/engine-pipes.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1744860492/public-v1/Engine-pipes.jpg",
     price: 149,
     available: 18,
   },
@@ -91,19 +91,19 @@ const accessoriesData = [
   },
   {
     title: "mount",
-    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/mount.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1744860078/public-v1/mount.jpg",
     price: 137,
     available: 25,
   },
   {
     title: "nozzle-pipes",
-    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/nozzle-pipes.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1744862711/public-v1/nozzle-pipes.jpg",
     price: 148,
     available: 31,
   },
   {
     title: "nozzle",
-    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/nozzle.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1744862713/public-v1/nozzle.jpg",
     price: 53,
     available: 25,
   },
@@ -121,7 +121,7 @@ const accessoriesData = [
   },
   {
     title: "spingeret",
-    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/spingerkit.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1744862712/public-v1/springerkit.jpg",
     price: 125,
     available: 19,
   },
@@ -139,7 +139,7 @@ const accessoriesData = [
   },
   {
     title: "walldoor",
-    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/public-v1/walldoor.jpeg",
+    image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1744860502/public-v1/walldoor.jpg",
     price: 47,
     available: 27,
   },
