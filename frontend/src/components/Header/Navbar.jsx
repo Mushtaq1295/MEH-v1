@@ -60,14 +60,17 @@ const Navbar = () => {
     <nav className="top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-gray-900 sticky shadow-gray-600">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4 md:flex-nowrap">
         {/* Logo */}
-        <style>
+        <>
+  <style>
     {`
       .highlight-text {
         position: relative;
         display: inline-block;
         color: white;
         overflow: hidden;
-        font-size: clamp(1.5rem, 5vw, 2rem); /* Responsive font size */
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        white-space: nowrap;
+        min-width: 3rem;
       }
 
       .highlight-text::before {
@@ -92,9 +95,11 @@ const Navbar = () => {
     `}
   </style>
 
-  <NavLink to="/" className="font-extrabold highlight-text">
+  <NavLink to="/" className="highlight-text font-extrabold">
     MEH
   </NavLink>
+</>
+
 
         <div className="flex justify-center md:justify-start">
           <Search />
