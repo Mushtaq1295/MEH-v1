@@ -67,10 +67,12 @@ const Navbar = () => {
         position: relative;
         display: inline-block;
         color: white;
-        overflow: hidden;
-        font-size: clamp(1.5rem, 5vw, 2rem);
+        font-weight: 800;
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
         white-space: nowrap;
-        min-width: 3rem;
+        overflow: hidden;
+        line-height: 1.2;
+        padding-right: 0.2rem;
       }
 
       .highlight-text::before {
@@ -95,7 +97,7 @@ const Navbar = () => {
     `}
   </style>
 
-  <NavLink to="/" className="highlight-text font-extrabold">
+  <NavLink to="/" className="highlight-text">
     MEH
   </NavLink>
 </>
