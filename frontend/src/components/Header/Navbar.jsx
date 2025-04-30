@@ -60,43 +60,41 @@ const Navbar = () => {
     <nav className="top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-gray-900 sticky shadow-gray-600">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4 md:flex-nowrap">
         {/* Logo */}
-        <>
-  <style>
+        <style>
     {`
       .highlight-text {
         position: relative;
         display: inline-block;
-        color: white; /* or any solid color */
+        color: white;
         overflow: hidden;
+        font-size: clamp(1.5rem, 5vw, 2rem); /* Responsive font size */
       }
 
       .highlight-text::before {
         content: '';
         position: absolute;
         top: 0;
-        left: -75%;
+        left: -100%;
         width: 50%;
         height: 100%;
-        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
-        animation: shimmer 2s infinite;
+        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+        animation: shimmer 2.5s infinite;
       }
 
       @keyframes shimmer {
         0% {
-          left: -75%;
+          left: -100%;
         }
         100% {
-          left: 125%;
+          left: 100%;
         }
       }
     `}
   </style>
 
-  <NavLink to="/" className="text-2xl font-extrabold highlight-text">
+  <NavLink to="/" className="font-extrabold highlight-text">
     MEH
   </NavLink>
-</>
-
 
         <div className="flex justify-center md:justify-start">
           <Search />
