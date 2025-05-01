@@ -7,46 +7,46 @@ const checkoutEngineSchema = new mongoose.Schema(
     phone_number: { type: Number, required: true },
     available: { type: Number, required: true }, //quantity
     exchange: { type: Boolean, required: true }, // true -> Yes, false -> No
-    category: {
-      type: String,
-      enum: ["Engines", "Accessories"],
-      required: function () {
-        return this.exchange;
-      },
-    },
+    // category: {
+    //   type: String,
+    //   enum: ["Engines", "Accessories"],
+    //   required: function () {
+    //     return this.exchange;
+    //   },
+    // },
 
     // Fields required only if category is "Accessories"
-    item_name: {
-      type: String,
-      required: function () {
-        return !this.exchange && this.category === "Accessories";
-      },
-    },
+    // item_name: {
+    //   type: String,
+    //   required: function () {
+    //     return !this.exchange && this.category === "Accessories";
+    //   },
+    // },
 
     // Fields required only if category is "Engines"
-    engine_brand: {
-      type: String,
-      enum: ["ASHOK LEYLAND HINO","ASHOK LEYLAND", "TATA CUMMINS","TATA TCIC", "BHARAT BENZ","MAHINDRA", "EICHER","MAN"],
-      required: function () {
-        return !this.exchange && this.category === "Engines";
-      },
-    },
-    image_url_main: {
-      type: String,
-      required: true,
-    },
-    image_url: {
-      type: String,
-      required: function () {
-        return !this.exchange && this.category === "Engines";
-      },
-    },
-    model: {
-      type: Number,
-      required: function () {
-        return !this.exchange && this.category === "Engines";
-      },
-    },
+    // engine_brand: {
+    //   type: String,
+    //   enum: ["ASHOK LEYLAND HINO","ASHOK LEYLAND", "TATA CUMMINS","TATA TCIC", "BHARAT BENZ","MAHINDRA", "EICHER","MAN"],
+    //   required: function () {
+    //     return !this.exchange && this.category === "Engines";
+    //   },
+    // },
+    // image_url_main: {
+    //   type: String,
+    //   required: true,
+    // },
+    // image_url: {
+    //   type: String,
+    //   required: function () {
+    //     return !this.exchange && this.category === "Engines";
+    //   },
+    // },
+    // model: {
+    //   type: Number,
+    //   required: function () {
+    //     return !this.exchange && this.category === "Engines";
+    //   },
+    // },
 
     // Common fields for all categories
     pay_mode: {

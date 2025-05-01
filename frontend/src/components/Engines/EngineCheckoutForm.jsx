@@ -11,11 +11,11 @@ const EditForm = () => {
     phone: "",
     quantity: 1,
     exchange: "",
-    category: "",
-    name: "",
-    engineBrand: "",
-    imageFile: null,
-    model: "",
+    // category: "",
+    // name: "",
+    // engineBrand: "",
+    // imageFile: null,
+    // model: "",
     payMode: "",
     total: "",
   });
@@ -66,14 +66,14 @@ const EditForm = () => {
       phone_number: Number(formData.phone),
       available: formData.quantity,
       exchange: formData.exchange === "yes", // convert to Boolean
-      category: formData.exchange === "yes" ? formData.category : undefined,
-      engine_brand:
-        formData.category === "Engines" ? formData.engineBrand : undefined,
-      image_url: formData.imageFile ? "uploaded_image_url_here" : undefined,
-      model:
-        formData.category === "Engines" ? Number(formData.model) : undefined,
-      item_name:
-        formData.category === "Accessories" ? formData.name : undefined,
+      // category: formData.exchange === "yes" ? formData.category : undefined,
+      // engine_brand:
+      //   formData.category === "Engines" ? formData.engineBrand : undefined,
+      // image_url: formData.imageFile ? "uploaded_image_url_here" : undefined,
+      // model:
+      //   formData.category === "Engines" ? Number(formData.model) : undefined,
+      // item_name:
+      //   formData.category === "Accessories" ? formData.name : undefined,
       pay_mode: formData.payMode,
       price: Number(formData.total),
     };
@@ -280,7 +280,7 @@ const EditForm = () => {
                 </div>
               </div>
               {/* Conditional Fields for Exchange Yes */}
-              {formData.exchange === "yes" && (
+              {/* {formData.exchange === "yes" && (
                 <>
                   <div className="mt-4">
                     <label
@@ -383,7 +383,7 @@ const EditForm = () => {
                     </div>
                   )}
                 </>
-              )}
+              )} */}
               {/* Pay Mode */}
               <div className="mt-4">
                 <label

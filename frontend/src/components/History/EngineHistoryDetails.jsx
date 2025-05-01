@@ -3,14 +3,16 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useHistoryContext } from "../../contexts/HistoryContext"; // Adjust the path as needed
 
+
 const EngineHistoryDetails = () => {
   const { id } = useParams(); // get the engine id from the URL
   const navigate = useNavigate();
   const { enginesHistory, refreshHistory } = useHistoryContext();
-
+  
   // Find the engine in the history using its id
   const engine = enginesHistory.find((item) => item._id === id);
-
+ 
+  
   if (!engine) {
     return (
       <div className="text-white text-center mt-10">
@@ -92,8 +94,11 @@ const EngineHistoryDetails = () => {
               <li>
                 <strong className="text-lg">Sold Price: </strong>₹{engine.price}
               </li>
+              <li>
+                <strong className="text-lg">Exchange: </strong>{engine.exchange}
+              </li>
               {/* Display exchange details if applicable */}
-              {engine.exchange && (
+              {/* {engine.exchange && (
                 <>
                   <li>
                     <strong className="text-lg">Exchange: </strong>Yes
@@ -127,7 +132,7 @@ const EngineHistoryDetails = () => {
                     </>
                   )}
                 </>
-              )}
+              )} */}
             </ul>
             <div className="mt-6 flex space-x-2">
               <button
