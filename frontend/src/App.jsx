@@ -69,38 +69,58 @@ const App = () => {
 
                 {/* Engines Routes */}
                 <Route path="/engines">
-                  <Route path=":brand" element={<EnginesList />} />
-                  <Route path=":brand/:id" element={<EngineCardDetails />} />
+                  <Route path=":brand" 
+                      element={<PrivateRoute element={<EnginesList />} />}
+                      // element={<EnginesList />} 
+                   />
+                  <Route path=":brand/:id" 
+                    element={<PrivateRoute element={<EngineCardDetails />} />}
+                    // element={<EngineCardDetails />} 
+                    />
                   <Route
                     path=":brand/:id/engineedit"
-                    element={<EngineEditForm />}
+                    element={<PrivateRoute element={<EngineEditForm />} />}
+                    // element={<EngineEditForm />}
                   />
                   <Route
                     path=":brand/:id/enginecheckout"
-                    element={<EngineCheckoutForm />}
+                    element={<PrivateRoute element={<EngineCheckoutForm />} />}
+                    // element={<EngineCheckoutForm />}
                   />
                 </Route>
 
                 {/* Accessories Routes */}
                 <Route path="/accessories">
-                  <Route path=":id" element={<AccessCardDetails />} />
-                  <Route path=":id/accessedit" element={<AccessEditForm />} />
+                  <Route path=":id" 
+                    element={<PrivateRoute element={<AccessCardDetails />} />}
+                    // element={<AccessCardDetails />} 
+                    />
+                  <Route path=":id/accessedit" 
+                    element={<PrivateRoute element={<AccessEditForm />} />}
+                    // element={<AccessEditForm />} 
+                    />
                   <Route
                     path=":id/accesscheckout"
-                    element={<AccessCheckoutForm />}
+                    element={<PrivateRoute element={<AccessCheckoutForm />} />}
+                    // element={<AccessCheckoutForm />}
                   />
                 </Route>
 
                 {/* History Routes */}
                 <Route path="/history">
-                  <Route path="" element={<History />} />
+                  <Route path="" 
+                    element={<PrivateRoute element={<History />} />}
+                    // element={<History />} 
+                    />
                   <Route
                     path="accessory/:id"
-                    element={<AccessoryHistoryDetails />}
+                    element={<PrivateRoute element={<AccessoryHistoryDetails />} />}
+                    // element={<AccessoryHistoryDetails />}
                   />
                   <Route
                     path="engine/:id"
-                    element={<EngineHistoryDetails />}
+                    element={<PrivateRoute element={<EngineHistoryDetails />} />}
+                    // element={<EngineHistoryDetails />}
                   />
                 </Route>
               </Route>

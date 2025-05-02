@@ -18,7 +18,7 @@ const Register = () => {
 
     try {
       const response = await fetch(
-        `import.meta.env.VITE_BACKEND_URL/register`,
+        `${import.meta.env.VITE_BACKEND_URL}/register`,
         {
           method: "POST",
           headers: {

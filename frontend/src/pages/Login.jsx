@@ -17,7 +17,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        `import.meta.env.VITE_BACKEND_URL/api/login`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         {
           // ✅ Port updated to 8080
           method: "POST",

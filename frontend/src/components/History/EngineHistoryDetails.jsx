@@ -95,7 +95,7 @@ const EngineHistoryDetails = () => {
                 <strong className="text-lg">Sold Price: </strong>₹{engine.price}
               </li>
               <li>
-                <strong className="text-lg">Exchange: </strong>{engine.exchange}
+                <strong className="text-lg">Exchange: </strong>{engine.exchange ? "Yes" : "No"}
               </li>
               {/* Display exchange details if applicable */}
               {/* {engine.exchange && (

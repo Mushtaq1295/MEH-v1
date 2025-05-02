@@ -4,11 +4,16 @@ import App from "./App";
 import { AccessoriesProvider } from "./contexts/AccessoriesContext";
 import { EnginesProvider } from "./contexts/EnginesContext";
 import "./index.css";
+import { AuthProvider } from "./contexts/AuthContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <EnginesProvider>
-    <AccessoriesProvider>
-      <App />
-    </AccessoriesProvider>
-  </EnginesProvider>
+  <React.StrictMode>
+    <AuthProvider>
+      <EnginesProvider>
+        <AccessoriesProvider>
+          <App />
+        </AccessoriesProvider>
+      </EnginesProvider>
+    </AuthProvider>
+  </React.StrictMode>
 );

@@ -1,8 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { Link, Navigate, NavLink } from "react-router-dom";
 import Search from "./Search";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+const {logout} = useContext(AuthContext);
+
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const menuRef = useRef(null);
@@ -27,14 +34,17 @@ const Navbar = () => {
       await fetch("/api/logout", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
+      logout();
+      navigate("/login")
+
       // Clear user data on logout
-      setCurrentUser(null);
-      setToken(null);
-      localStorage.removeItem("token"); // Ensure token is removed from storage
+      // setCurrentUser(null);
+      // setToken(null);
+      // localStorage.removeItem("token"); // Ensure token is removed from storage
     } catch (error) {
       console.error("Logout failed:", error);
     }
