@@ -184,8 +184,13 @@ export const History = () => {
   const [showAllEngines, setShowAllEngines] = useState(false);
   const [showAllAccessories, setShowAllAccessories] = useState(false);
 
-  const enginesToShow = showAllEngines ? filteredEngines : filteredEngines.slice(0, 6);
-  const accessoriesToShow = showAllAccessories ? filteredAccessories : filteredAccessories.slice(0, 6);
+  const enginesToShow = showAllEngines
+  ? [...filteredEngines].reverse()
+  : [...filteredEngines].reverse().slice(0, 6);
+
+const accessoriesToShow = showAllAccessories
+  ? [...filteredAccessories].reverse()
+  : [...filteredAccessories].reverse().slice(0, 6);
 
 
 
