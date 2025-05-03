@@ -32,7 +32,7 @@ class AccessoryContorller {
       res.status(200).json({
         success: true,
         message: "Accessory updated successfully",
-        accessory,
+        updatedAccessory:accessory,
       });
     } catch (error) {
       res.status(500).json({ message: "Server Error" });

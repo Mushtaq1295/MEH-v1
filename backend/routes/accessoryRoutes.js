@@ -1,6 +1,6 @@
 const express = require("express");
 const AccessoryController = require("../controllers/accessoryController");
-const { verifyToken } = require("../middleware/auth");
+const { verifyToken, requireRole } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -9,8 +9,23 @@ router.get("/", AccessoryController.getAllAccessories);
 router.get("/history/all", AccessoryController.getAccessoryHistory);
 
 // Protected routes
-router.put("/:id", verifyToken, AccessoryController.updateAccessory);
-router.post("/:id", verifyToken, AccessoryController.checkoutAccessory);
-router.delete("/history/:id", verifyToken, AccessoryController.deleteAccessoryHistory);
+router.post(
+  "/:id",
+  verifyToken,
+  requireRole(["user", "admin"]),
+  AccessoryController.checkoutAccessory
+);
+router.put(
+  "/:id",
+  verifyToken,
+  requireRole(["admin"]),
+  AccessoryController.updateAccessory
+);
+router.delete(
+  "/history/:id",
+  verifyToken,
+  requireRole(["admin"]),
+  AccessoryController.deleteAccessoryHistory
+);
 
 module.exports = router;

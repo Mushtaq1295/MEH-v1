@@ -1,18 +1,16 @@
-// middleware/auth.js
 const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
-  const authHeader = req.header("Authorization");
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  const accessToken = req.cookies.accessToken;
+  if (!accessToken) {
     return res
       .status(401)
       .json({ success: false, message: "Access denied: No token provided" });
   }
 
-  const token = authHeader.split(" ")[1];
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // { id: user._id }
+    const decoded = jwt.verify(accessToken, process.env.JWT_SECRET);
+    req.user = decoded; // { id: user._id, role: user.role }
     next();
   } catch (error) {
     if (error.name === "TokenExpiredError") {
@@ -27,4 +25,15 @@ const verifyToken = (req, res, next) => {
   }
 };
 
-module.exports = { verifyToken };
+const requireRole = (roles) => (req, res, next) => {
+  console.log(req.user);
+  if (!req.user || !roles.includes(req.user.role)) {
+    return res.status(403).json({
+      success: false,
+      message: "Access denied: Insufficient permissions",
+    });
+  }
+  next();
+};
+
+module.exports = { verifyToken, requireRole };

@@ -5,7 +5,6 @@ import { useHistoryContext } from "../../contexts/HistoryContext";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 
-
 // Collapsible filters component for mobile
 const HistoryFilters = ({
   totalRevenue,
@@ -44,12 +43,12 @@ const HistoryFilters = ({
     animateValue(0, enginesRevenue, setDisplayEngines);
     animateValue(0, accessoriesRevenue, setDisplayAccessories);
   }, [totalRevenue, enginesRevenue, accessoriesRevenue]);
-   
-  const handleAll = () =>{
+
+  const handleAll = () => {
     setFilterType("all");
-    setCustomStart('');
-    setCustomEnd('');
-  }
+    setCustomStart("");
+    setCustomEnd("");
+  };
 
   return (
     <>
@@ -181,6 +180,17 @@ export const History = () => {
     setCustomEnd,
   } = useHistoryContext();
 
+  const [showAllEngines, setShowAllEngines] = useState(false);
+  const [showAllAccessories, setShowAllAccessories] = useState(false);
+
+  const enginesToShow = showAllEngines
+    ? [...filteredEngines].reverse()
+    : [...filteredEngines].reverse().slice(0, 6);
+
+  const accessoriesToShow = showAllAccessories
+    ? [...filteredAccessories].reverse()
+    : [...filteredAccessories].reverse().slice(0, 6);
+
   // Compute revenue totals
   const enginesRevenue = filteredEngines.reduce(
     (acc, item) => acc + item.price,
@@ -205,43 +215,59 @@ export const History = () => {
         customEnd={customEnd}
         setCustomEnd={setCustomEnd}
       />
+
       {/* Cards Row */}
       <div className="m-4">
         {/* Engines Cards */}
         <h1 className="text-3xl text-white mb-4 text-center font-bold">
           Engines
         </h1>
-        {filteredAccessories.length > 0 ? (
+        {enginesToShow.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filteredEngines.length > 0 &&
-              filteredEngines.map((engine) => (
-                <EngineHistoryCard key={engine._id} engine={engine} />
-              ))}
+            {enginesToShow.map((engine) => (
+              <EngineHistoryCard key={engine._id} engine={engine} />
+            ))}
           </div>
         ) : (
           <p className="text-red-500 text-xl text-center">
             No engine history found for the selected criteria.
           </p>
         )}
+        {filteredEngines.length > 6 && (
+          <div className="text-center mt-4">
+            <button
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              onClick={() => setShowAllEngines(!showAllEngines)}
+            >
+              {showAllEngines ? "View Less" : "View More"}
+            </button>
+          </div>
+        )}
 
         {/* Accessories Cards */}
         <h1 className="text-3xl text-white mt-8 mb-4 text-center font-bold">
           Accessories
         </h1>
-        {filteredAccessories.length > 0 ? (
+        {accessoriesToShow.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filteredAccessories.length > 0 &&
-              filteredAccessories.map((accessory) => (
-                <AccessoryHistoryCard
-                  key={accessory._id}
-                  accessory={accessory}
-                />
-              ))}
+            {accessoriesToShow.map((accessory) => (
+              <AccessoryHistoryCard key={accessory._id} accessory={accessory} />
+            ))}
           </div>
         ) : (
           <p className="text-red-500 text-xl text-center">
             No accessories history found for the selected criteria.
           </p>
+        )}
+        {filteredAccessories.length > 6 && (
+          <div className="text-center mt-4">
+            <button
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              onClick={() => setShowAllAccessories(!showAllAccessories)}
+            >
+              {showAllAccessories ? "View Less" : "View More"}
+            </button>
+          </div>
         )}
       </div>
     </div>

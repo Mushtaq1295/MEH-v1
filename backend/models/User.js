@@ -1,10 +1,10 @@
-// models/User.js (assumed based on your code)
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  refreshToken: { type: String }, // Store refresh token
+  role: { type: String, enum: ["user", "admin"], default: "user" },
+  refreshToken: { type: String },
 });
 
 module.exports = mongoose.model("User", userSchema);

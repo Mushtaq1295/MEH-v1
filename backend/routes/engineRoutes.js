@@ -1,6 +1,6 @@
 const express = require("express");
 const EngineController = require("../controllers/engineController");
-const { verifyToken } = require("../middleware/auth");
+const { verifyToken, requireRole } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -9,11 +9,22 @@ router.get("/", EngineController.getAllEngines);
 router.get("/history/all", EngineController.getEngineHistory);
 
 // Protected routes
-router.put("/:id", verifyToken, EngineController.updateEngine);
-router.post("/:id", verifyToken, EngineController.checkoutEngine);
+router.post(
+  "/:id",
+  verifyToken,
+  requireRole(["user", "admin"]),
+  EngineController.checkoutEngine
+);
+router.put(
+  "/:id",
+  verifyToken,
+  requireRole(["admin"]),
+  EngineController.updateEngine
+);
 router.delete(
   "/history/:id",
   verifyToken,
+  requireRole(["admin"]),
   EngineController.deleteEngineHistory
 );
 

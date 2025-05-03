@@ -28,7 +28,7 @@ class EngineController {
       res.status(200).json({
         success: true,
         message: "Engine updated successfully",
-        engine,
+        updatedEngine: engine,
       });
     } catch (error) {
       res.status(500).json({ message: "Server Error" });
