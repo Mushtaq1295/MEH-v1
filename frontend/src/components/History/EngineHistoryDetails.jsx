@@ -97,7 +97,7 @@ const EngineHistoryDetails = () => {
                 <strong className="text-lg">Exchange: </strong>
                 {engine.exchange ? "Yes" : "No"}
               </li>
-              {engine.exchange && (
+              {/* {engine.exchange && (
                 <>
                   {engine.category && (
                     <li>
@@ -128,7 +128,7 @@ const EngineHistoryDetails = () => {
                     </>
                   )}
                 </>
-              )} */}
+              )} */} 
             </ul>
             <div className="mt-6 flex space-x-2">
               <button
