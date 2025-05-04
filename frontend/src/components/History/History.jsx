@@ -5,7 +5,6 @@ import { useHistoryContext } from "../../contexts/HistoryContext";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 
-
 // Collapsible filters component for mobile
 const HistoryFilters = ({
   totalRevenue,
@@ -44,12 +43,12 @@ const HistoryFilters = ({
     animateValue(0, enginesRevenue, setDisplayEngines);
     animateValue(0, accessoriesRevenue, setDisplayAccessories);
   }, [totalRevenue, enginesRevenue, accessoriesRevenue]);
-   
-  const handleAll = () =>{
+
+  const handleAll = () => {
     setFilterType("all");
-    setCustomStart('');
-    setCustomEnd('');
-  }
+    setCustomStart("");
+    setCustomEnd("");
+  };
 
   return (
     <>
@@ -185,14 +184,12 @@ export const History = () => {
   const [showAllAccessories, setShowAllAccessories] = useState(false);
 
   const enginesToShow = showAllEngines
-  ? [...filteredEngines].reverse()
-  : [...filteredEngines].reverse().slice(0, 6);
+    ? [...filteredEngines].reverse()
+    : [...filteredEngines].reverse().slice(0, 6);
 
-const accessoriesToShow = showAllAccessories
-  ? [...filteredAccessories].reverse()
-  : [...filteredAccessories].reverse().slice(0, 6);
-
-
+  const accessoriesToShow = showAllAccessories
+    ? [...filteredAccessories].reverse()
+    : [...filteredAccessories].reverse().slice(0, 6);
 
   // Compute revenue totals
   const enginesRevenue = filteredEngines.reduce(
@@ -221,8 +218,10 @@ const accessoriesToShow = showAllAccessories
 
       {/* Cards Row */}
       <div className="m-4">
-       {/* Engines Cards */}
-        <h1 className="text-3xl text-white mb-4 text-center font-bold">Engines</h1>
+        {/* Engines Cards */}
+        <h1 className="text-3xl text-white mb-4 text-center font-bold">
+          Engines
+        </h1>
         {enginesToShow.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {enginesToShow.map((engine) => (
@@ -245,8 +244,10 @@ const accessoriesToShow = showAllAccessories
           </div>
         )}
 
-         {/* Accessories Cards */}
-         <h1 className="text-3xl text-white mt-8 mb-4 text-center font-bold">Accessories</h1>
+        {/* Accessories Cards */}
+        <h1 className="text-3xl text-white mt-8 mb-4 text-center font-bold">
+          Accessories
+        </h1>
         {accessoriesToShow.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {accessoriesToShow.map((accessory) => (

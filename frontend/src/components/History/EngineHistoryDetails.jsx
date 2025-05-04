@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../api"; // Adjust the path as needed
 import { useHistoryContext } from "../../contexts/HistoryContext"; // Adjust the path as needed
 
 
@@ -23,17 +23,17 @@ const EngineHistoryDetails = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/history/engines/${engine._id}`
+      const response = await api.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/engines/history/${engine._id}`
       );
       if (response.data.success) {
         alert("Engine deleted successfully!");
         refreshHistory();
-        navigate("/history"); // Redirect after deletion
+        navigate("/history");
       }
     } catch (error) {
       console.error("Error deleting engine:", error);
-      alert("Failed to delete engine.");
+      alert(error.response?.data?.message || "Failed to delete engine.");
     }
   };
 
@@ -62,7 +62,6 @@ const EngineHistoryDetails = () => {
                 <strong className="text-lg">Title: </strong>
                 {engine.title}
               </li>
-              {/* If available, display category and model */}
               {engine.category && (
                 <li>
                   <strong className="text-lg">Category: </strong>
@@ -95,14 +94,11 @@ const EngineHistoryDetails = () => {
                 <strong className="text-lg">Sold Price: </strong>₹{engine.price}
               </li>
               <li>
-                <strong className="text-lg">Exchange: </strong>{engine.exchange ? "Yes" : "No"}
+                <strong className="text-lg">Exchange: </strong>
+                {engine.exchange ? "Yes" : "No"}
               </li>
-              {/* Display exchange details if applicable */}
-              {/* {engine.exchange && (
+              {engine.exchange && (
                 <>
-                  <li>
-                    <strong className="text-lg">Exchange: </strong>Yes
-                  </li>
                   {engine.category && (
                     <li>
                       <strong className="text-lg">Exchange Category: </strong>

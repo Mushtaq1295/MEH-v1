@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEngines } from "../../contexts/EnginesContext";
-import axios from "axios";
+import { useHistoryContext } from "../../contexts/HistoryContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
+import api from "../../api";
 
 const EngineCheckoutForm = () => {
   const navigate = useNavigate();
+  const { refreshHistory } = useHistoryContext();
+  const { isAuthenticated } = useAuth();
+  const { id } = useParams();
+  const { engines, setEngines } = useEngines();
+  const engine = engines.find((item) => item._id === id);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     customerName: "",
     phone: "",
@@ -19,11 +27,6 @@ const EngineCheckoutForm = () => {
     payMode: "",
     total: "",
   });
-  const backend_url = import.meta.env.VITE_BACKEND_URL;
-  const { id } = useParams();
-  const { engines, setEngines } = useEngines();
-  const engine = engines.find((item) => item._id === id);
-  const [error, setError] = useState("");
 
   const handleIncrement = () => {
     setFormData({ ...formData, quantity: formData.quantity + 1 });
@@ -58,64 +61,54 @@ const EngineCheckoutForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const payload = {
-      title: engine.title,
-      image_url_main: engine.image_url,
-      customer_name: formData.customerName,
-      phone_number: Number(formData.phone),
-      available: formData.quantity,
-      exchange: formData.exchange === "yes", // convert to Boolean
-      // category: formData.exchange === "yes" ? formData.category : undefined,
-      // engine_brand:
-      //   formData.category === "Engines" ? formData.engineBrand : undefined,
-      // image_url: formData.imageFile ? "uploaded_image_url_here" : undefined,
-      // model:
-      //   formData.category === "Engines" ? Number(formData.model) : undefined,
-      // item_name:
-      //   formData.category === "Accessories" ? formData.name : undefined,
-      pay_mode: formData.payMode,
-      price: Number(formData.total),
-    };
-
+    if (!isAuthenticated) {
+      toast.error("Please log in to checkout");
+      navigate("/login");
+      return;
+    }
+    if (!engine) {
+      toast.error("Engine data is not available!");
+      return;
+    }
+    const availableQuantity = engine.available || 0;
+    if (availableQuantity < formData.quantity) {
+      toast.warning(`Insufficient stock. Only ${availableQuantity} available`);
+      return;
+    }
     try {
-      const { data } = await axios.post(
-        `${backend_url}/engines/${id}`,
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      // Find available quantity once
-      const engine = engines.find((engine) => engine._id === id);
-      const availableQuantity = engine ? engine.available : 0;
-
-      if (availableQuantity < formData.quantity) {
-        toast.warning(
-          `Insufficient stock. Only ${availableQuantity} available`
-        );
-        return;
-      }
-
-      if (data.success) {
+      const payload = {
+        title: engine.title,
+        image_url_main: engine.image_url,
+        customer_name: formData.customerName,
+        phone_number: formData.phone,
+        available: formData.quantity,
+        exchange: formData.exchange === "yes",
+        category: formData.exchange === "yes" ? formData.category : undefined,
+        engine_brand:
+          formData.category === "Engines" ? formData.engineBrand : undefined,
+        image_url: formData.imageFile ? "uploaded_image_url_here" : undefined,
+        model:
+          formData.category === "Engines" ? Number(formData.model) : undefined,
+        item_name:
+          formData.category === "Accessories" ? formData.name : undefined,
+        pay_mode: formData.payMode,
+        price: Number(formData.total),
+      };
+      const response = await api.post(`/engines/${id}`, payload);
+      if (response.data.success) {
         toast.success("Engine checkout successful!");
-
         setEngines((prevEngines) =>
           prevEngines.map((engine) =>
-            engine._id === id ? data.engine : engine
+            engine._id === id ? response.data.engine : engine
           )
         );
-
         navigate(-1);
-      } else {
-        toast.error(`Checkout error: ${data.message}`);
+        refreshHistory();
       }
     } catch (error) {
-      toast.error(error.response?.data.message || "Internal server error");
-      console.error("Internal server error:", error);
+      const message = error.response?.data?.message || "Checkout failed";
+      toast.error(message);
+      console.error("Checkout error:", error);
     }
   };
 
@@ -128,7 +121,6 @@ const EngineCheckoutForm = () => {
               Checkout
             </h1>
             <form className="space-y-4" onSubmit={handleSubmit}>
-              {/* Customer Name */}
               <div>
                 <label
                   htmlFor="customerName"
@@ -146,7 +138,6 @@ const EngineCheckoutForm = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                 />
               </div>
-              {/* Phone Number */}
               <div>
                 <label
                   htmlFor="phone"
@@ -179,7 +170,6 @@ const EngineCheckoutForm = () => {
                 </div>
                 {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
               </div>
-              {/* Quantity */}
               <div className="mt-4">
                 <label
                   htmlFor="quantity"
@@ -238,7 +228,6 @@ const EngineCheckoutForm = () => {
                   </button>
                 </div>
               </div>
-              {/* Exchange Option */}
               <div>
                 <p className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Exchange?
@@ -279,8 +268,7 @@ const EngineCheckoutForm = () => {
                   </label>
                 </div>
               </div>
-              {/* Conditional Fields for Exchange Yes */}
-              {/* {formData.exchange === "yes" && (
+              {formData.exchange === "yes" && (
                 <>
                   <div className="mt-4">
                     <label
@@ -336,7 +324,9 @@ const EngineCheckoutForm = () => {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                       >
                         <option value="">Select Brand</option>
-                        <option value="Ashok Leyland Hino">Ashok Leyland Hino</option>
+                        <option value="Ashok Leyland Hino">
+                          Ashok Leyland Hino
+                        </option>
                         <option value="Ashok Leyland">Ashok Leyland</option>
                         <option value="Tata Cummins">Tata Cummins</option>
                         <option value="Tata TCIC">Tata TCIC</option>
@@ -383,8 +373,7 @@ const EngineCheckoutForm = () => {
                     </div>
                   )}
                 </>
-              )} */}
-              {/* Pay Mode */}
+              )}
               <div className="mt-4">
                 <label
                   htmlFor="payMode"
@@ -407,7 +396,6 @@ const EngineCheckoutForm = () => {
                   <option value="Others">Others</option>
                 </select>
               </div>
-              {/* Total Price */}
               <div className="mt-3">
                 <label
                   htmlFor="total"
@@ -428,7 +416,6 @@ const EngineCheckoutForm = () => {
               <button
                 type="submit"
                 className="w-full text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-xl text-base px-6 py-3 text-center shadow-lg transform hover:scale-105 cursor-pointer"
-                // onClick={handleCheckout}
               >
                 Checkout
               </button>

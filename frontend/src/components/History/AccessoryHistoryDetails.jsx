@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../api";
 import { useHistoryContext } from "../../contexts/HistoryContext"; // adjust the path as needed
 
 const AccessoryHistoryDetails = () => {
@@ -17,8 +17,8 @@ const AccessoryHistoryDetails = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/history/accessories/${
+      const response = await api.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/accessories/history/${
           accessory._id
         }`
       );

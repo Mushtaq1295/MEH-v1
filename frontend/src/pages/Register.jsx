@@ -1,43 +1,21 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const navigate = useNavigate();
+  const { register } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = {
-      email,
-      password,
-    };
-
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/register`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Registration successful!");
-        navigate("/login");
-      } else {
-        setError(data.error || "Registration failed");
-      }
-    } catch (error) {
-      setError("Something went wrong. Try again later.");
+    setError("");
+    const result = await register(email, password);
+    if (!result.success) {
+      setError(result.message);
     }
   };
 
