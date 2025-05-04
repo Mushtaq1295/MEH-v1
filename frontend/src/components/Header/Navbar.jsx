@@ -1,56 +1,18 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
-import { Link, Navigate, NavLink } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
 import Search from "./Search";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
+import "./Navbar.css";
 
 const Navbar = () => {
-  const navigate = useNavigate();
-
-const {logout} = useContext(AuthContext);
-
-
+  const { user, isAuthenticated, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const menuRef = useRef(null);
   const dropdownRef = useRef(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const handleLogout = async () => {
-    try {
-      await fetch("/api/logout", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-
-      logout();
-      navigate("/login")
-
-      // Clear user data on logout
-      // setCurrentUser(null);
-      // setToken(null);
-      // localStorage.removeItem("token"); // Ensure token is removed from storage
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
-   // Close menu when clicking outside
-   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsMenuOpen(false);
@@ -73,50 +35,9 @@ const {logout} = useContext(AuthContext);
   return (
     <nav className="top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-gray-900 sticky shadow-gray-600">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4 md:flex-nowrap">
-        {/* Logo */}
-        <>
-  <style>
-    {`
-      .highlight-text {
-        position: relative;
-        display: inline-block;
-        color: white;
-        font-weight: 800;
-        font-size: clamp(2rem, 8vw, 2.5rem);
-        white-space: nowrap;
-        overflow: visible; /* allow full text */
-        line-height: 1.2;
-        padding: 0 0.25rem; /* left-right padding */
-      }
-
-      .highlight-text::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
-        animation: shimmer 2.5s infinite;
-      }
-
-      @keyframes shimmer {
-        0% {
-          left: -100%;
-        }
-        100% {
-          left: 100%;
-        }
-      }
-    `}
-  </style>
-
-  <NavLink to="/" className="highlight-text">
-    MEH
-  </NavLink>
-</>
-
-
+        <NavLink to="/" className="meh-shimmer">
+          MEH
+        </NavLink>
         <div className="flex justify-center md:justify-start">
           <Search />
         </div>
@@ -158,16 +79,6 @@ const {logout} = useContext(AuthContext);
                 Home
               </NavLink>
             </li>
-            <li>
-              {/* <NavLink
-                to=""
-                className="block py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500"
-              >
-                Exchange
-              </NavLink> */}
-            </li>
-
-            {/* History Link */}
             <li>
               <NavLink
                 to="/history"
