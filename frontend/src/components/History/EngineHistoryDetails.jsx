@@ -22,7 +22,7 @@ const EngineHistoryDetails = () => {
   const handleDelete = async () => {
     try {
       const response = await api.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/history/engines/${engine._id}`
+        `${import.meta.env.VITE_BACKEND_URL}/engines/history/${engine._id}`
       );
       if (response.data.success) {
         alert("Engine deleted successfully!");

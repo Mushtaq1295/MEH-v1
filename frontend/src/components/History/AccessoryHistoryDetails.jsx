@@ -18,7 +18,7 @@ const AccessoryHistoryDetails = () => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/history/accessories/${
+        `${import.meta.env.VITE_BACKEND_URL}/accessories/history/${
           accessory._id
         }`
       );

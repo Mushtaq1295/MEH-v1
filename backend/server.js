@@ -2,6 +2,7 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
+const isProd = process.env.NODE_ENV === "production";
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
@@ -91,13 +92,13 @@ app.post("/api/login", async (req, res) => {
     // Set cookies
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: isProd ? "None" : "Lax",
       sameSite: "Strict",
       maxAge: 15 * 60 * 1000, // 15 minutes
     });
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: isProd ? "None" : "Lax",
       sameSite: "Strict",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
