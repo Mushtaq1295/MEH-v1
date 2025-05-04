@@ -27,8 +27,8 @@ export const HistoryProvider = ({ children }) => {
     setLoading(true);
     try {
       const [enginesResponse, accessoriesResponse] = await Promise.all([
-        axios.get(`${backend_url}/history/engines`),
-        axios.get(`${backend_url}/history/accessories`),
+        axios.get(`${backend_url}/engines/history/all`),
+        axios.get(`${backend_url}/accessories/history/all`),
       ]);
 
       setEnginesHistory(enginesResponse.data || []);

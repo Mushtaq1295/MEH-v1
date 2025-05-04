@@ -1,44 +1,22 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext.jsx";
+import React, { useState } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const { login } = useContext(AuthContext);
-
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page reload
-
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
-        {
-          // ✅ Port updated to 8080
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem("token", data.token);
-        login(data.user, data.token); // Use the login function instead of setCurrentUser
-        navigate("/");
-      } else {
-        setError(data.message || "Invalid credentials");
-      }
-    } catch (error) {
-      setError("Something went wrong. Try again later.");
+    e.preventDefault();
+    setError("");
+    const result = await login(email, password);
+    if (!result.success) {
+      setError(result.message);
     }
   };
 
@@ -50,8 +28,7 @@ const Login = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Sign in to your account
             </h1>
-            {error && <p className="text-red-500">{error}</p>}{" "}
-            {/* 🔴 Show error message */}
+            {error && <p className="text-red-500">{error}</p>}
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
@@ -65,7 +42,7 @@ const Login = () => {
                   name="email"
                   id="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)} // Track email input
+                  onChange={(e) => setEmail(e.target.value)}
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@company.com"
                   required
@@ -83,7 +60,7 @@ const Login = () => {
                   name="password"
                   id="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)} // Track password input
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required
@@ -100,7 +77,6 @@ const Login = () => {
                   )}
                 </button>
               </div>
-
               <button
                 type="submit"
                 className="w-full text-white bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-indigo-600 hover:to-blue-500 transition-all duration-300 ease-in-out focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-xl text-base px-6 py-3 text-center shadow-lg transform hover:scale-105 cursor-pointer"

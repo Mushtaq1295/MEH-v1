@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEngines } from "../../contexts/EnginesContext";
-import axios from "axios";
+import { useAuth } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
+import api from "../../api";
 
 const EngineEditForm = () => {
-  const { id } = useParams(); // Get engine ID from URL
+  const { id } = useParams();
   const { engines, setEngines } = useEngines();
+  const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const backend_url = import.meta.env.VITE_BACKEND_URL;
 
-  // Find the selected engine by ID
   const selectedEngine = engines.find((engine) => engine._id === id);
 
-  // Form state
   const [formData, setFormData] = useState({
     title: "",
     image_url: "",
@@ -24,7 +23,6 @@ const EngineEditForm = () => {
     from: "",
   });
 
-  // Populate form when component loads
   useEffect(() => {
     if (selectedEngine) {
       setFormData({
@@ -39,20 +37,19 @@ const EngineEditForm = () => {
     }
   }, [selectedEngine]);
 
-  // Handle input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isAuthenticated || user.role !== "admin") {
+      toast.error("Access denied: Admins only");
+      navigate("/login");
+      return;
+    }
     try {
-      const response = await axios.put(
-        `${backend_url}/engines/${id}`,
-        formData
-      );
-      console.log(response);
+      const response = await api.put(`/engines/${id}`, formData);
       setEngines((prevEngines) =>
         prevEngines.map((engine) =>
           engine._id === id ? response.data.updatedEngine : engine
@@ -61,7 +58,8 @@ const EngineEditForm = () => {
       toast.success(response.data.message);
       navigate(-1);
     } catch (error) {
-      toast.error(error.response?.data.message || "Some Error Occured");
+      const message = error.response?.data?.message || "Error updating engine";
+      toast.error(message);
       console.error("Error updating engine:", error);
     }
   };
@@ -111,7 +109,6 @@ const EngineEditForm = () => {
                   )}
                 </select>
               </div>
-
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Price (₹):
