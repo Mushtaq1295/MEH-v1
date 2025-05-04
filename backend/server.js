@@ -1,8 +1,8 @@
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== "prod") {
   require("dotenv").config();
 }
 
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === "prod";
 const express = require("express");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
@@ -17,7 +17,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -92,14 +92,14 @@ app.post("/api/login", async (req, res) => {
     // Set cookies
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: isProd ? "None" : "Lax",
-      sameSite: "Strict",
+      secure: isProd,
+      sameSite: isProd ? "None" : "Lax",
       maxAge: 15 * 60 * 1000, // 15 minutes
     });
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: isProd ? "None" : "Lax",
-      sameSite: "Strict",
+      secure: isProd,
+      sameSite: isProd ? "None" : "Lax",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -150,8 +150,8 @@ app.post("/api/refresh-token", async (req, res) => {
     // Set new access token cookie
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
+      secure: isProd,
+      sameSite: isProd ? "None" : "Lax",
       maxAge: 15 * 60 * 1000, // 15 minutes
     });
 
@@ -238,6 +238,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start Server
-app.listen(port, () =>
-  console.log(`Server running on http://localhost:${port}`)
-);
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+  console.log(process.env.NODE_ENV);
+});

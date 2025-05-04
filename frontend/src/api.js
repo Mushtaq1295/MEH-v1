@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL, // e.g., http://localhost:5000
-  withCredentials: true, // Send HttpOnly cookies
+  baseURL: import.meta.env.VITE_BACKEND_URL,
+  withCredentials: true,
 });
 
 api.interceptors.response.use(
