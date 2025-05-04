@@ -40,26 +40,6 @@ export const AuthProvider = ({ children }) => {
     fetchUser();
   }, [fetchUser]);
 
-  // Periodically refresh token before it expires (every 10 minutes)
-  useEffect(() => {
-    const refreshInterval = setInterval(async () => {
-      try {
-        const response = await api.post("/api/refresh-token");
-        if (response.data.success) {
-          setUser(response.data.user);
-          setIsAuthenticated(true);
-        }
-      } catch (error) {
-        console.error("Token refresh error:", error);
-        setUser(null);
-        setIsAuthenticated(false);
-        toast.error("Session expired. Please log in again.");
-        navigate("/login");
-      }
-    }, 10 * 60 * 1000); // Every 10 minutes
-
-    return () => clearInterval(refreshInterval);
-  }, [navigate]);
 
   // Login function
   const login = async (email, password) => {

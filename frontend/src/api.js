@@ -5,33 +5,31 @@ const api = axios.create({
   withCredentials: true,
 });
 
+// in api.js
+
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    const originalRequest = error.config;
-    if (
-      error.response?.status === 401 &&
-      error.response.data.message === "Token expired" &&
-      !originalRequest._retry
-    ) {
-      originalRequest._retry = true;
+    const original = error.config;
+    // only try once per request
+    if (error.response?.status === 401 && !original._retry) {
+      original._retry = true;
       try {
-        console.log("Attempting to refresh token...");
-        const refreshResponse = await axios.post(
+        // hit your refresh endpoint
+        const { data } = await axios.post(
           `${import.meta.env.VITE_BACKEND_URL}/api/refresh-token`,
           {},
           { withCredentials: true }
         );
-        console.log("Refresh response:", refreshResponse.data);
-        if (refreshResponse.data.success) {
-          return api(originalRequest); // Retry original request
+        if (data.success) {
+          // now retry the original request; the new accessToken cookie is sent automatically
+          return api(original);
         }
       } catch (refreshError) {
-        console.error("Refresh token failed:", refreshError);
-        return Promise.reject(refreshError);
+        // if refresh failed, fall through and reject
+        console.error("Refresh-token call failed:", refreshError);
       }
     }
-    console.error("API error:", error);
     return Promise.reject(error);
   }
 );
