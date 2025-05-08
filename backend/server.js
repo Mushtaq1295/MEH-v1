@@ -12,23 +12,13 @@ const connectDB = require("./config/db");
 const accessoryRoutes = require("./routes/accessoryRoutes");
 const engineRoutes = require("./routes/engineRoutes");
 const User = require("./models/User");
-const allowedOrigins = [process.env.CLIENT_URL];
 
 
 const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
+app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
