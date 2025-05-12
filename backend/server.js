@@ -18,13 +18,20 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Database Connection
 connectDB(process.env.ATLAS_DB_URL);
+
+const corsOptions = {
+  origin: process.env.CLIENT_URL,  // e.g. https://meh-v1.vercel.app
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 // Routes
 app.get("/", (req, res) => res.send("Status: OK"));
@@ -88,7 +95,9 @@ app.post("/api/login", async (req, res) => {
 
     // Store refresh token in user document
     user.refreshToken = refreshToken;
+    console.log("start")
     await user.save();
+    console.log("end")
 
     // Set cookies
     res.cookie("accessToken", accessToken, {
