@@ -108,14 +108,14 @@ const Navbar = () => {
                     Login
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink
                     to="/register"
                     className="block py-2 px-3 text-blue-700 dark:text-blue-500"
                   >
                     Register
                   </NavLink>
-                </li>
+                </li> */}
               </>
             )}
           </ul>

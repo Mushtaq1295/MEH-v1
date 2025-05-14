@@ -83,7 +83,7 @@ const Login = () => {
               >
                 Log in
               </button>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              {/* <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?{" "}
                 <NavLink
                   to="/register"
@@ -91,7 +91,7 @@ const Login = () => {
                 >
                   Sign Up
                 </NavLink>
-              </p>
+              </p> */}
             </form>
           </div>
         </div>
