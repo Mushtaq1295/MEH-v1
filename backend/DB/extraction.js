@@ -5,7 +5,8 @@ require("dotenv").config(); // Load environment variables
 // MongoDB Connection String
 const db_url =
   process.env.ATLAS_DB_URL ||
-  "mongodb+srv://thesaiteja24:thesaiteja24@cluster0.j9kft.mongodb.net/MEH?retryWrites=true&w=majority&appName=Cluster0";
+  "mongodb+srv://mehuser:mehpass123@cluster0.qc0tysj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  // "mongodb+srv://thesaiteja24:thesaiteja24@cluster0.j9kft.mongodb.net/MEH?retryWrites=true&w=majority&appName=Cluster0";
 
 // Connect to MongoDB
 const connectDB = async () => {

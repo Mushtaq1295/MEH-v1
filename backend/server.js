@@ -95,9 +95,8 @@ app.post("/api/login", async (req, res) => {
 
     // Store refresh token in user document
     user.refreshToken = refreshToken;
-    console.log("start")
     await user.save();
-    console.log("end")
+
 
     // Set cookies
     res.cookie("accessToken", accessToken, {

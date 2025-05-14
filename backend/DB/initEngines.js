@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { sampleEngines } = require("./enginesData");
-const Engine = require("../models/engineModel");
+const Engine = require("../models/Engine");
 const connectDB = require("../config/db");
 
 require("dotenv").config({ path: "../.env" }); // Load environment variables

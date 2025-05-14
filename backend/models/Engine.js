@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const engineSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  image_url: { type: String, required: true }, // ✅ Ensure image field exists
+  image_url: { type: String, required: true}, // ✅ Ensure image field exists
   category: {
     type: String,
     required: true,

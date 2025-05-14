@@ -79,7 +79,7 @@ const sampleEngines = [
 },
 {
   title:  "EURO-2",
-  image_url: "",
+  image_url: "https://res.cloudinary.com/dv8h7yjv2/image/upload/v1741568670/public-v1/al-euro2.png",
   category:  "ASHOK LEYLAND",
   price:  97,
   available:  11,
