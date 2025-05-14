@@ -83,14 +83,14 @@ const EngineCheckoutForm = () => {
         phone_number: formData.phone,
         available: formData.quantity,
         exchange: formData.exchange === "yes",
-        category: formData.exchange === "yes" ? formData.category : undefined,
-        engine_brand:
-          formData.category === "Engines" ? formData.engineBrand : undefined,
-        image_url: formData.imageFile ? "uploaded_image_url_here" : undefined,
-        model:
-          formData.category === "Engines" ? Number(formData.model) : undefined,
-        item_name:
-          formData.category === "Accessories" ? formData.name : undefined,
+        // category: formData.exchange === "yes" ? formData.category : undefined,
+        // engine_brand:
+        //   formData.category === "Engines" ? formData.engineBrand : undefined,
+        // image_url: formData.imageFile ? "uploaded_image_url_here" : undefined,
+        // model:
+        //   formData.category === "Engines" ? Number(formData.model) : undefined,
+        // item_name:
+        //   formData.category === "Accessories" ? formData.name : undefined,
         pay_mode: formData.payMode,
         price: Number(formData.total),
       };
@@ -268,7 +268,7 @@ const EngineCheckoutForm = () => {
                   </label>
                 </div>
               </div>
-              {formData.exchange === "yes" && (
+              {/* {formData.exchange === "yes" && (
                 <>
                   <div className="mt-4">
                     <label
@@ -373,7 +373,7 @@ const EngineCheckoutForm = () => {
                     </div>
                   )}
                 </>
-              )}
+              )} */}
               <div className="mt-4">
                 <label
                   htmlFor="payMode"
