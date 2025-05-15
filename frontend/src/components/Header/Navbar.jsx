@@ -33,7 +33,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="top-0 z-50 shadow-md bg-white border-gray-200 dark:bg-gray-900 sticky shadow-gray-600">
+    <nav className="top-0 z-50 shadow-md bg-gray-900 border-gray-900 sticky shadow-gray-600">
       <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4 md:flex-nowrap">
         <NavLink to="/" className="meh-shimmer">
           MEH
