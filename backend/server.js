@@ -25,10 +25,21 @@ app.use(cookieParser());
 // Database Connection
 connectDB(process.env.ATLAS_DB_URL);
 
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://meh-v1-frontend.onrender.com'
+];
+
 const corsOptions = {
-  origin: process.env.CLIENT_URL,  // e.g. https://meh-v1.vercel.app
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS: ' + origin));
+    }
+  },
   credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
 };
 
 app.use(cors(corsOptions));
