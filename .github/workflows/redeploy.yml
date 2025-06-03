@@ -1,0 +1,27 @@
+name: 3x Daily Dummy Commits
+
+on:
+  schedule:
+    - cron: "0 6,12,18 * * *" # Runs 3 times a day (6am, 12pm, 6pm UTC)
+
+jobs:
+  dummy-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Make Dummy Commit
+        run: |
+          git config user.name "meh-bot"
+          git config user.email "meh-bot@example.com"
+          echo "dummy commit to trigger redeploy at $(date -u)" >> dummy.txt
+          git add dummy.txt
+          git commit -m "🤖 dummy commit to trigger redeploy at $(date -u)" || echo "No changes to commit"
+          git push
+        env:
+          # Use GitHub token to push the commit
+          GIT_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Fix permission issue
+        continue-on-error: false
